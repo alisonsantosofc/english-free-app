@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect style="stroke-width: 0px; stroke: rgb(144, 22, 231); fill: rgb(32, 26, 131);" x="1" y="1" width="510" height="510" rx="150" ry="150" transform="matrix(1, 0, 0, 1, 0, 2.842170943040401e-14)"/>
+  <g transform="matrix(1.6075479984283447, 0, 0, 1.3798600435256958, -15.778427124023438, -205.594970703125)">
+    <title>Letter</title>
+    <path d="M 228.43 292.388 L 109.698 292.388" stroke-linecap="round" stroke-linejoin="round" style="stroke-width: 22.7622px; stroke: rgb(238, 241, 255);"/>
+    <path d="M 168.534 259.231 L 168.534 290.537" stroke-linecap="round" stroke-linejoin="round" style="stroke-width: 22.7622px; stroke: rgb(238, 241, 255);"/>
+    <path d="M 196.158 293.962 C 196.158 352.538 157.37 399.943 109.579 399.943" stroke-linecap="round" stroke-linejoin="round" style="stroke-width: 22.7622px; fill: none; stroke: rgb(238, 241, 255);"/>
+    <path d="M 228.549 399.943 C 207.134 399.943 188.099 386.637 174.418 365.708" stroke-linecap="round" stroke-linejoin="round" style="stroke-width: 22.7622px; stroke: rgb(238, 241, 255);"/>
+    <path d="M 133.373 473.124 L 204.755 473.124 C 264.24 473.124 288.034 445.404 288.034 376.103 L 288.034 292.943 C 288.034 223.642 264.24 195.922 204.755 195.922 L 133.373 195.922 C 73.888 195.922 50.094 223.642 50.094 292.943 L 50.094 376.103 C 50.094 445.404 73.888 473.124 133.373 473.124 Z" stroke-linecap="round" stroke-linejoin="round" style="stroke-width: 22.7622px; fill: none; stroke: rgb(253, 37, 37);"/>
+  </g>
+</svg>
