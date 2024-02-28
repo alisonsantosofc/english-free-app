@@ -5,21 +5,19 @@ interface HeadingProps {
   title: string;
   description: string;
   icon: LucideIcon;
-  iconColor?: string;
   bgColor?: string;
 }
 
 export function Heading({ 
   title, 
   description, 
-  icon: Icon, 
-  iconColor, 
+  icon: Icon,
   bgColor 
 }: HeadingProps) {
   return (
-    <header className="px-4 lg:px-8 flex items-center gap-x-3 mb-8">
-      <div className={cn("p-2 w-fit rounded-md", bgColor)}>
-        <Icon className={cn("w-10 h-10", iconColor)} />
+    <header className="px-4 lg:px-8 flex items-center gap-x-4 mb-8">
+      <div className={cn("p-4 rounded-3xl", bgColor)}>
+        <Icon className={cn("w-16 h-16 text-xl text-white")} />
       </div>
       <div>
         <h2 className="text-3xl font-bold">

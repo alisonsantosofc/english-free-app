@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Cake } from "lucide-react";
+import { PlaySquare } from "lucide-react";
 
 import { Heading } from "@/components/custom/Heading";
 
@@ -11,18 +11,17 @@ const PartiesPage = () => {
   return (
     <section>
       <Heading 
-        title="Festas"
-        description="Organize uma festa e convide sua galera."
-        icon={Cake}
-        iconColor="text-orange-500"
-        bgColor="bg-orange-500/10"
+        title="Aulas de inglês grátis no YouTube"
+        description="Assista as melhores aulas gravadas no YouTube, selecionadas por níveis de inglês."
+        icon={PlaySquare}
+        bgColor="bg-red-500"
       />
       <div className="px-4 lg:px-8">
         <div className="space-y-4 mt-4">
           <div className="flex flex-col-reverse gap-y-4">
             {parties.map((party, i) => (
               <div key={i}>
-                {`Festa ${i}`}
+                {`Aula ${i}`}
               </div>
             ))}
           </div>

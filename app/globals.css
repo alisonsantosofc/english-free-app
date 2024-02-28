@@ -67,6 +67,7 @@ body,
     
     --radius: 0.5rem;
 
+    --main-color-200: #645cf6;
     --main-color-400: #2f29a9;
     --main-color-500: #201a83;
     --second-color-400: #ed3e3e;
@@ -111,9 +112,6 @@ body,
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-
-    --main-color: #433ccc;
-    --second-color: #e45b5b;
     
     --shadow-color: #000000;
     --letter: #eaeaf2;

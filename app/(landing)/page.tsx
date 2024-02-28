@@ -38,10 +38,10 @@ const LandingPage = () => {
           </h1>
         </Link>
         <p className={cn("text-lg w-full md:text-4xl md:max-w-xl font-semibold ")}>
-          Domine o Inglês sem gastar um centavo e em pouco tempo!
+          Domine o inglês sem gastar um centavo e em pouco tempo!
         </p>
         <p className={cn("w-full md:max-w-xl")}>
-          Uma plataforma pensada para quem deseja aprender Inglês mais
+          Uma plataforma pensada para quem deseja aprender inglês mais
           não pode gastar, aprenda rápido seguindo os cronogramas e economize tempo.
         </p>
         <div className="flex gap-4 flex-col sm:flex-row md:flex-row mt-8">

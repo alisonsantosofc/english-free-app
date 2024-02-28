@@ -4,7 +4,7 @@ import { Nunito } from "next/font/google";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Cake, Code, Film, Home, ImageIcon, MessageSquare, Music, PartyPopper, Settings } from "lucide-react";
+import { PlaySquare, School, CalendarCheck, Settings, GraduationCap } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -16,21 +16,23 @@ const nunito = Nunito({
 const routes = [
   {
     label: 'Área Principal',
-    icon: Home,
+    icon: School,
     href: '/dashboard',
-    color: 'text-sky-400',
   },
   {
-    label: 'Festas',
-    icon: Cake,
-    href: '/parties',
-    color: 'text-orange-500',
+    label: 'Aulas de inglês grátis',
+    icon: PlaySquare,
+    href: '/classes',
   },
   {
-    label: 'Eventos',
-    icon: PartyPopper,
-    href: '/events',
-    color: 'text-violet-500',
+    label: 'Cronogramas de estudo',
+    icon: CalendarCheck,
+    href: '/schedules',
+  },
+  {
+    label: 'Certificado de inglês',
+    icon: GraduationCap,
+    href: '/certified',
   },
   {
     label: 'Configurações',
@@ -57,7 +59,7 @@ export function Sidebar() {
             />
           </div>
           <h1 className={cn("text-3xl font-bold", nunito.className)}>
-            Byparty
+            English Free
           </h1>
         </Link>
         <div className="space-y-1">
@@ -67,11 +69,11 @@ export function Sidebar() {
               key={route.href}
               className={cn(
                 "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer rounded-lg transition hover:text-white hover:bg-white/10",
-                pathname === route.href ? "text-white bg-white/10" : "text-zinc-400"
+                pathname === route.href ? "text-white bg-blue-800 hover:bg-blue-800" : "text-zinc-400"
               )}
             >
               <div className="flex items-center flex-1">
-                <route.icon className={cn("h-5 w-5 md:h-6 md:w-6 mr-3", pathname === route.href ? route.color : "text-white")} />
+                <route.icon className={cn("h-5 w-5 md:h-6 md:w-6 mr-3", "text-white")} />
                 {route.label}
               </div>
             </Link>

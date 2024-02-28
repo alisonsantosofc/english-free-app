@@ -58,6 +58,7 @@ const config = {
         },
         // Custom colors
         mainColor: {
+          "200": "var(--main-color-200)",
           "400": "var(--main-color-400)",
           "500": "var(--main-color-500)",
         },

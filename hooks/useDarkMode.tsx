@@ -16,11 +16,17 @@ const DarkModeContext = createContext<DarkModeContextData>(
 );
 
 export function DarkModeProvider({ children }: DarkModeProviderProps) {
-  const localDarkMode = JSON.parse(
-    localStorage.getItem('dark_mode') as string
-  );
+  const [darkMode, setDarkMode] = useState(false);
 
-  const [darkMode, setDarkMode] = useState(localDarkMode || false);
+  useEffect(() => {
+    const localDarkMode = JSON.parse(
+      localStorage.getItem('dark_mode') as string
+    );
+
+    if (localDarkMode) {
+      setDarkMode(localDarkMode);
+    }
+  }, []);
 
   function handleChangeDarkMode() {
     // Saving data to local stoge
