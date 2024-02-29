@@ -36,7 +36,7 @@ const studySchedules = [
   }
 ]
 
-const EventsPage = () => {
+const SchedulesPage = () => {
   return (
     <section className="h-full">
       <Heading 
@@ -93,4 +93,4 @@ const EventsPage = () => {
   );
 }
 
-export default EventsPage;
+export default SchedulesPage;

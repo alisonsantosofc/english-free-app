@@ -64,7 +64,6 @@ const ConversationPage = () => {
         title="Conversação"
         description="Nosso modelo de conversação mais avançado."
         icon={MessageSquare}
-        iconColor="text-orange-500"
         bgColor="bg-orange-500/10"
       />
       <div className="px-4 lg:px-8">
