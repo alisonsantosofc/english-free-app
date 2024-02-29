@@ -1,9 +1,10 @@
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
+import prisma from "../../../prisma/client";
 
 import { authOptions } from "@/lib/auth";
 
-import a1_classes from './a1_classes.json';
+import { lessonsSeed } from "@/prisma/seeds/lessons";
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -13,9 +14,16 @@ export async function GET(req: NextRequest) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    return NextResponse.json(a1_classes);
+    const lessons = await prisma.lesson.findMany();
+
+    if (!lessons.length) {
+      await lessonsSeed()
+        .catch((e) => console.error(e));
+    }
+
+    return NextResponse.json(lessons);
   } catch (error) {
-    console.log("[CLASSES_ERROR]", error);
+    console.log("[LESSONS_ERROR]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }

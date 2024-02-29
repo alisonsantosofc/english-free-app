@@ -22,7 +22,7 @@ const routes = [
   {
     label: 'Aulas de inglês grátis',
     icon: PlaySquare,
-    href: '/classes',
+    href: '/lessons',
   },
   {
     label: 'Cronogramas de estudo',

@@ -9,7 +9,7 @@ const tools = [
   {
     label: 'Aulas de inglês grátis',
     icon: PlaySquare,
-    href: '/classes',
+    href: '/lessons',
     bgColor: 'bg-red-500',
   },
   {

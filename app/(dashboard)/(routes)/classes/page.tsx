@@ -4,7 +4,7 @@ import { PlaySquare } from "lucide-react";
 
 import { Heading } from "@/components/custom/Heading";
 
-const ClassesPage = () => {
+const LessonsPage = () => {
   return (
     <section>
       <Heading 
@@ -21,4 +21,4 @@ const ClassesPage = () => {
   );
 }
 
-export default ClassesPage;
+export default LessonsPage;
