@@ -9,7 +9,7 @@ export function SignInButton() {
   return (
     <Button
       variant="default"
-      className="flex gap-2 bg-mainColor-500 hover:bg-mainColor-400"
+      className="flex gap-2 bg-mainColor-500 text-white hover:bg-mainColor-400"
       onClick={() => {
         signIn('google', {
           callbackUrl: "/dashboard"

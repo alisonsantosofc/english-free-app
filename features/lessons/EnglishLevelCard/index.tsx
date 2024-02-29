@@ -54,7 +54,7 @@ export function EnglishLevelCard({ level, description, lessons }: EnglishLevelCa
 
       <Accordion className="flex flex-col justify-center" type="single" collapsible>
         {categories.map((category, i) => (
-          <AccordionItem key={i} value={`item-${i + 1}`} className="px-4">
+          <AccordionItem key={i} value={`item-${i + 1}`} className={cn("px-4", i === 0 ? "border-t" : "")}>
             <AccordionTrigger>
               <div className="flex gap-1">
                 <category.icon className={cn("h-5 w-5 md:h-6 md:w-6 mr-3")} />
