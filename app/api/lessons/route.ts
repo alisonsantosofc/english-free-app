@@ -16,10 +16,10 @@ export async function GET(req: NextRequest) {
 
     const lessons = await prisma.lesson.findMany();
 
-    if (!lessons.length) {
-      await lessonsSeed()
-        .catch((e) => console.error(e));
-    }
+    // if (!lessons.length) {
+    //   await lessonsSeed()
+    //     .catch((e) => console.error(e));
+    // }
 
     return NextResponse.json(lessons);
   } catch (error) {
