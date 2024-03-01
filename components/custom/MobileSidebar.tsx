@@ -1,33 +1,33 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { useEffect, useState } from 'react';
+import { Menu } from 'lucide-react';
 
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
-import { Sidebar } from "@/components/custom/Sidebar";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Sidebar } from '@/components/custom/Sidebar';
 
 export function MobileSidebar() {
-  const [isMounted, setIsMounted] = useState(false);
+	const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
   
-  if (!isMounted) {
-    return null;
-  }
+	if (!isMounted) {
+		return null;
+	}
 
-  return (
-    <Sheet>
-      <SheetTrigger>
-        <div className="md:hidden h-10 w-10 rounded-md flex items-center justify-center hover:border">
-          <Menu />
-        </div>
-      </SheetTrigger>
+	return (
+		<Sheet>
+			<SheetTrigger>
+				<div className="md:hidden h-10 w-10 rounded-md flex items-center justify-center hover:border">
+					<Menu />
+				</div>
+			</SheetTrigger>
       
-      <SheetContent side="left" className="p-0">
-        <Sidebar />
-      </SheetContent>
-    </Sheet>
-  )
+			<SheetContent side="left" className="p-0">
+				<Sidebar />
+			</SheetContent>
+		</Sheet>
+	);
 }

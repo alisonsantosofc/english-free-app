@@ -1,0 +1,24 @@
+{
+  "pt-br":{
+    "content": {
+      "routesLabels": {
+        "dashboard": "Área Principal",
+        "lessons": "Aulas de inglês grátis",
+        "schedules": "Cronogramas de estudo",
+        "certified": "Certificado de inglês",
+        "settings": "Configurações"
+      }
+    }
+  },
+  "en-us": {
+    "content": {
+      "routesLabels": {
+        "dashboard": "Dashboard",
+        "lessons": "Free English lessons",
+        "schedules": "Study schedules",
+        "certified": "English certificate",
+        "settings": "Settings"
+      }
+    }
+  }
+}
