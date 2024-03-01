@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/custom/Navbar";
 import { Sidebar } from "@/components/custom/Sidebar";
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -20,9 +21,11 @@ const DashboardLayout = async ({
       <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 z-[80] bg-gray-900">
         <Sidebar />
       </div>
-      <main className="h-full md:pl-72 md:pt-20">
-        <Navbar />
-        {session && children}
+      <main>
+        <ScrollArea className="h-full w-full pt-20 md:pl-72 md:pt-20">
+          <Navbar />
+          {session && children}
+        </ScrollArea>
       </main>
     </div>
   );

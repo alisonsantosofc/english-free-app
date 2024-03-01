@@ -16,6 +16,26 @@ body,
     @apply bg-background text-foreground;
   }
 
+  /* Estilo para a barra de rolagem */
+  ::-webkit-scrollbar {
+    width: 12px; /* largura da barra de rolagem */
+  }
+
+  /* Estilo para a área da barra de rolagem */
+  ::-webkit-scrollbar-track {
+    background: #c9cfd5; /* cor de fundo da área da barra de rolagem */
+  }
+
+  /* Estilo para o polegar (ou "thumb") da barra de rolagem */
+  ::-webkit-scrollbar-thumb {
+    background: #9ea2a8; /* cor do polegar da barra de rolagem */
+  }
+
+  /* Estilo para as setas de rolagem */
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+
   @keyframes rightleft {
     0% {
       transform: translateX(0%);
@@ -119,5 +139,15 @@ body,
 
     --shape-500: #1a1a23;
     --shape-600: #2c3139;
+  }
+
+  /* Estilo para a área da barra de rolagem */
+  body.dark::-webkit-scrollbar-track {
+    background: #3f4347; /* cor de fundo da área da barra de rolagem */
+  }
+
+  /* Estilo para o polegar (ou "thumb") da barra de rolagem */
+  body.dark::-webkit-scrollbar-thumb {
+    background: #747679; /* cor do polegar da barra de rolagem */
   }
 }

@@ -35,7 +35,7 @@ const DashboardPage = () => {
         <h2 className="text-2xl md:text-4xl font-bold text-center">
           Aprenda inglês rápido seguindo um cronograma
         </h2>
-        <p className="text-muted-foreground font-light text-sm md:text-lg text-center">
+        <p className="text-muted-foreground font-light text-sm px-6 md:text-lg text-center">
           Você pode estudar as aulas por níveis de inglês no seu próprio tempo ou seguir um cronograma definido.
         </p>
       </header>
@@ -44,7 +44,7 @@ const DashboardPage = () => {
           <Card 
             onClick={() => router.push(tool.href)}
             key={tool.href}
-            className="p-4 border-var(--border)/5 flex items-center justify-between hover:shadow-custom transition cursor-pointer"
+            className="p-4 border-var(--border)/5 flex items-center justify-between hover:bg-white/5 transition cursor-pointer"
           >
             <div className="flex items-center gap-x-4">
               <div className={cn("p-2 w-fit rounded-md", tool.bgColor)}>
