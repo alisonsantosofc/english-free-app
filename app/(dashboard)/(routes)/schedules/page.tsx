@@ -52,12 +52,12 @@ const SchedulesPage = () => {
 				icon={CalendarCheck}
 				bgColor="bg-blue-800"
 			/>
-			<div className="px-4 lg:px-8">
-				<div className="space-y-4 mt-16">
-					<div className="w-full h-[600px] flex gap-8 lg:gap-16">
+			<div className="h-full px-4 lg:px-8">
+				<div className="h-full space-y-4 mt-16">
+					<div className="w-full h-full pb-16 grid lg:grid-cols-2 2xl:grid-cols-3 gap-8 sm:px-28 md:px-8 lg:px-0 ">
 						{studySchedules.map((schedule) => (
 							<div key={schedule.id} className={cn('flex flex-col flex-1 items-center p-6 pt-10 rounded-2xl border-4 border-blue-500 bg-blue-800 text-white')}>
-								<schedule.icon className={cn('h-10 w-10 md:h-28 md:w-28', 'text-white')} />
+								<schedule.icon className={cn('h-20 w-20 md:h-28 md:w-28', 'text-white')} />
                 
 								<h4 className="font-medium text-2xl mb-2 mt-8">
 									{replaceStringWithParams(i18n[lang].content.scheduleTitle, {
