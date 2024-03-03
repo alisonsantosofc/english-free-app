@@ -9,7 +9,7 @@ import { useLang } from '@/hooks/useLang';
 
 import i18n from './i18n.json';
 
-export function SignInButton() {
+export function SignUpButton() {
 	const session = useSession();
 	const route = useRouter();
 	const { lang } = useLang();
@@ -17,7 +17,7 @@ export function SignInButton() {
 	return (
 		<Button
 			variant="default"
-			className="flex gap-2 bg-mainColor-500 text-white hover:bg-mainColor-400"
+			className="flex gap-2 bg-blue-800 text-white hover:bg-blue-800/90"
 			onClick={() => {
 				if (!session) {
 					signIn('google', {

@@ -1,19 +1,19 @@
 'use client';
 
 import { signOut, useSession } from 'next-auth/react';
-import { Award, LogOut, MoonStar, SunMedium, UserRound } from 'lucide-react';
+import { Award, LogOut, UserRound } from 'lucide-react';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ToggleDarkMode } from './ToggleDarkMode';
-import { ToggleLang } from './ToggleLang';
+import { ToggleDarkMode } from '@/components/custom/ToggleDarkMode';
+import { ToggleLang } from '@/components/custom/ToggleLang';
 
-import { useDarkMode } from '@/hooks/useDarkMode';
-
+import i18n from './i18n.json';
+import { useLang } from '@/hooks/useLang';
 
 export function UserMenu() {
 	const session = useSession();
-	const { darkMode } = useDarkMode();
+	const { lang } = useLang();
 
 	return (
 		<Popover>
@@ -42,7 +42,7 @@ export function UserMenu() {
 				>
 					<div className="flex items-center flex-1">
 						<Award className="h-5 w-5 mr-3 text-letter" />
-            Assinatura
+						{i18n[lang].content.options.subscription}
 					</div>
 				</div>
 
@@ -59,7 +59,7 @@ export function UserMenu() {
 						}}
 					>
 						<LogOut className="h-5 w-5 mr-3 text-letter" />
-            Sair
+						{i18n[lang].content.options.logout}
 					</div>
 				</div>
 			</PopoverContent>

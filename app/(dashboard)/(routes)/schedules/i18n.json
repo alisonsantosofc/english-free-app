@@ -1,0 +1,54 @@
+{
+  "pt-br":{
+    "content": {
+      "title": "Cronogramas de estudo",
+      "textHighlight": "Organize melhor seus estudos e aprenda inglês em até 12 meses.",
+      "scheduleTitle": "Aprender em #months meses",
+      "schedules": {
+        "threeMonths": {
+          "description": "Para quem tem mais urgência e precisa aprender mais rápido para um uso específico.",
+			    "tags": ["Rápido", "Intensivo"]
+        },
+        "sixMonths": {
+          "description": "Para quem tem mais tempo para aprender tranquilamente e precisa colocar em prática",
+			    "tags": ["Equilibrado", "Perfeito"]
+        },
+        "twelveMonths": {
+          "description": "Para quem tem pouco tempo para aprender e tem a vida corrida, mais precisa aprender e praticar.",
+			    "tags": ["Imersivo", "Completo"]
+        }
+      },
+      "scheduleButtonTitle": "Usar cronograma de #months meses",
+      "minutesPerDay": "#minutes minutos por dia",
+      "resultInWeeks": "#weeks semanas",
+      "estimatedTime": "Tempo estimado: ",
+      "resultIn": "Resultado em: "
+    }
+  },
+  "en-us": {
+    "content": {
+      "title": "Study schedules",
+      "textHighlight": "Better organize your studies and learn English in up to 12 months.",
+      "scheduleTitle": "Learn in #months months",
+      "schedules": {
+        "threeMonths": {
+          "description": "For those who are more urgent and need to learn faster for a specific use.",
+          "tags": ["Quick", "Intensive"]
+        },
+        "sixMonths": {
+          "description": "For those who have more time to learn calmly and need to put it into practice",
+          "tags": ["Balanced", "Perfect"]
+        },
+        "twelveMonths": {
+          "description": "For those who have little time to learn and have a busy life, they need to learn and practice the most.",
+          "tags": ["Immersive", "Complete"]
+        }
+      },
+      "scheduleButtonTitle": "Use #months-month schedule",
+      "minutesPerDay": "#minutes minutes a day",
+      "resultInWeeks": "#weeks weeks",
+      "estimatedTime": "Estimated time: ",
+      "resultIn": "Result in: "
+    }
+  }
+}

@@ -1,56 +1,39 @@
 'use client';
 
-import { Nunito } from 'next/font/google';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import Link from 'next/link';
 import { LogIn } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { SignInButton } from '@/components/custom/SignInButton';
+import { SignUpButton } from '@/components/custom/SignUpButton';
 
 import { cn } from '@/lib/utils';
 
-const nunito = Nunito({ 
-	weight: '900', 
-	subsets: ['latin'], 
-});
+import i18n from './i18n.json';
+import { useLang } from '@/hooks/useLang';
+import { LandingNavbar } from '@/features/landing/LandingNavbar';
 
 const LandingPage = () => {
 	const route = useRouter();
+	const { lang } = useLang();
 
 	return (
-		<div className="w-screen md:w-[1244px] mx-auto h-full p-4 md:p-8">
-			<div className="pt-[20%] flex flex-col gap-4">
-				<Link 
-					href="/dashboard" 
-					className="flex items-center pl-3 mb-8"
-				>
-					<div className="relative w-14 h-14 mr-4">
-						<Image
-							fill
-							alt="logo"
-							src="/images/icon.svg"
-						/>
-					</div>
-					<h1 className={cn('text-4xl font-bold', nunito.className)}>
-            English Free
-					</h1>
-				</Link>
-				<p className={cn('text-lg w-full md:text-4xl md:max-w-xl font-semibold ')}>
-          Domine o inglês sem gastar um centavo e em pouco tempo!
+		<div className="w-screen md:w-[1244px] mx-auto h-full p-4 xl:p-0">
+			<div className="flex flex-col gap-4 pt-20 md:pt-44">
+				<LandingNavbar />
+				
+				<p className={cn('w-full text-2xl sm:text-4xl md:max-w-2xl font-bold ')}>
+					{i18n[lang].content.title}
 				</p>
 				<p className={cn('w-full md:max-w-xl')}>
-          Uma plataforma pensada para quem deseja aprender inglês mais
-          não pode gastar, aprenda rápido seguindo os cronogramas e economize tempo.
+					{i18n[lang].content.textHighlight}
 				</p>
 				<div className="flex gap-4 flex-col sm:flex-row md:flex-row mt-8">
-					<SignInButton />
+					<SignUpButton />
 					<Button 
 						className="flex gap-2"
 						onClick={() => route.push('/dashboard')}
 					>
-						<span>Entrar na plataforma</span>
+						<span>{i18n[lang].content.signInButton}</span>
 						<LogIn className="w-5 h-5" />
 					</Button>
 				</div>

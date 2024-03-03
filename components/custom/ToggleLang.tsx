@@ -11,7 +11,7 @@ export function ToggleLang({ width = 'small' }: ToggleDarkModeProps) {
 	const { lang, handleChangeLang } = useLang();
 
 	return (
-		<div className="flex justify-between items-center text-xs gap-1">
+		<div className="flex justify-between items-center text-xs gap-2">
 			<i 
 				onClick={() => handleChangeLang('pt-br')}
 				className={cn('py-1 px-2 rounded-sm cursor-pointer', lang === 'pt-br' ? 'bg-black/5 dark:bg-white/5' : '')}

@@ -1,0 +1,24 @@
+{
+  "pt-br":{
+    "content": {
+      "title": "Aulas de inglês grátis",
+      "description": "Assista as melhores aulas gravadas no YouTube, selecionadas por níveis de inglês.",
+      "routesLabels": {
+        "lessons": "Aulas de inglês grátis",
+        "schedules": "Cronogramas de estudo",
+        "certified": "Certificado de inglês"
+      }
+    }
+  },
+  "en-us": {
+    "content": {
+      "title": "Free English lessons",
+      "description": "Watch the best recorded lessons on YouTube, selected by english level.",
+      "routesLabels": {
+        "lessons": "Free English lessons",
+        "schedules": "Study schedules",
+        "certified": "English certificate"
+      }
+    }
+  }
+}

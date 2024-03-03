@@ -1,0 +1,24 @@
+{
+  "pt-br":{
+    "content": {
+      "title": "Aprenda inglês rápido seguindo um cronograma",
+      "textHighlight": "Você pode estudar as aulas por níveis de inglês no seu próprio tempo ou seguir um cronograma definido.",
+      "routesLabels": {
+        "lessons": "Aulas de inglês grátis",
+        "schedules": "Cronogramas de estudo",
+        "certified": "Certificado de inglês"
+      }
+    }
+  },
+  "en-us": {
+    "content": {
+      "title": "Learn English fast on a schedule",
+      "textHighlight": "You can study english level lessons on your own time or follow a set schedule.",
+      "routesLabels": {
+        "lessons": "Free english lessons",
+        "schedules": "Study schedules",
+        "certified": "English certificate"
+      }
+    }
+  }
+}
