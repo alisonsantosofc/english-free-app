@@ -24,7 +24,7 @@ export function MainContent({ children }: MainContentProps) {
 
 	return (
 		<>
-			{localStorage && children}
+			{children}
 		</>
 	);
 }

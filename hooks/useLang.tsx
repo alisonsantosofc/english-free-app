@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
@@ -19,18 +19,18 @@ export function LangProvider({ children }: LangProviderProps) {
 	const [lang, setLang] = useState<'pt-br' | 'en-us'>('pt-br');
 
 	useEffect(() => {
-    const localLang = JSON.parse(
-      localStorage.getItem('lang') as string
-    );
+		const localLang = JSON.parse(
+      window.localStorage.getItem('lang') as string
+		);
 
-    if (localLang) {
-      setLang(localLang === 'en-us' ? 'en-us' : 'pt-br');
-    }
-  }, []);
+		if (localLang) {
+			setLang(localLang === 'en-us' ? 'en-us' : 'pt-br');
+		}
+	}, []);
 
 	function handleChangeLang(newSelectedLang: 'pt-br' | 'en-us') {
 		// Saving data to local stoge
-		localStorage.setItem(
+		window.localStorage.setItem(
 			'lang',
 			JSON.stringify(newSelectedLang)
 		);

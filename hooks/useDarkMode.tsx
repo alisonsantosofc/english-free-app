@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 interface DarkModeProviderProps {
   children: ReactNode;
 }
 
 interface DarkModeContextData {
-  darkMode: boolean;
+  darkMode: boolean | null;
   handleChangeDarkMode: () => void;
 }
 
@@ -16,37 +16,39 @@ const DarkModeContext = createContext<DarkModeContextData>(
 );
 
 export function DarkModeProvider({ children }: DarkModeProviderProps) {
-  const [darkMode, setDarkMode] = useState(false);
+	const [darkMode, setDarkMode] = useState<boolean | null>(null);
 
-  useEffect(() => {
-    const localDarkMode = JSON.parse(
-      localStorage.getItem('dark_mode') as string
-    );
+	useEffect(() => {
+		const localDarkMode = JSON.parse(
+      window.localStorage.getItem('dark_mode') as string
+		);
 
-    if (localDarkMode) {
-      setDarkMode(localDarkMode);
-    }
-  }, []);
+		if (localDarkMode !== null) {
+			setDarkMode(localDarkMode);
+		}
+	}, []);
 
-  function handleChangeDarkMode() {
-    // Saving data to local stoge
-    localStorage.setItem(
-      'dark_mode',
-      JSON.stringify(!darkMode)
-    );
+	function handleChangeDarkMode() {
+		// Saving data to local stoge
+		window.localStorage.setItem(
+			'dark_mode',
+			JSON.stringify(!darkMode)
+		);
 
-    setDarkMode(!darkMode);
-  }
+		const newDarkMode = darkMode ? false : !darkMode ? true : null;
 
-  return (
-    <DarkModeContext.Provider value={{ darkMode, handleChangeDarkMode }}>
-      {children}
-    </DarkModeContext.Provider>
-  )
+		setDarkMode(newDarkMode);
+	}
+
+	return (
+		<DarkModeContext.Provider value={{ darkMode, handleChangeDarkMode }}>
+			{darkMode !== null && children}
+		</DarkModeContext.Provider>
+	);
 }
 
 export function useDarkMode() {
-  const context = useContext(DarkModeContext);
+	const context = useContext(DarkModeContext);
 
-  return context;
+	return context;
 }
