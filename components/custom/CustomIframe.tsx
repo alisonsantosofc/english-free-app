@@ -1,22 +1,20 @@
 interface CustomIframeProps {
   src: string;
-  title: string;
   width: string,
   height: string,
+  className?: string;
 }
 
-export function CustomIframe({ width, height, src, title }: CustomIframeProps) {
-  return (
-    <div>
-      <iframe 
-        width={width} 
-        height={height}
-        src={src} 
-        title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      >
-      </iframe>
-    </div>
-  )
+export function CustomIframe({ width, height, src, className }: CustomIframeProps) {
+	return (
+		<iframe 
+			className={className ? className : ''}
+			width={width} 
+			height={height}
+			src={src}
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+			allowFullScreen
+		>
+		</iframe>
+	);
 }

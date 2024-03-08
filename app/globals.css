@@ -53,6 +53,16 @@ body,
     margin-right: 1rem; /* Ajuste a margem conforme necessário */
   }
 
+  .w-full-72 {
+    width: calc(100% - 18rem);
+    margin-left: 18rem;
+  }
+
+  .max-100vh {
+    min-height: 100vh;
+    max-height: 100vh;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;

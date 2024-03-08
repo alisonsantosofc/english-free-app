@@ -17,11 +17,11 @@ const DashboardLayout = async ({
 	}
 
 	return (
-		<div className="h-full relative">
+		<div className="h-[100vh] relative">
 			<div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 z-[80] bg-gray-900">
 				<Sidebar />
 			</div>
-			<main className="min-h-full min-w-full pt-20 md:pl-72 md:pt-20">
+			<main className="min-w-full h-full overflow-hidden pt-20 pb-24 md:pl-72">
 				<Navbar />
 				{session && children}
 			</main>

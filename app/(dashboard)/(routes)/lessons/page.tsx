@@ -11,6 +11,7 @@ import { EnglishLevelCard } from '@/features/lessons/EnglishLevelCard';
 
 import i18n from './i18n.json';
 import { useLang } from '@/hooks/useLang';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface ILevel {
   level: string;
@@ -49,26 +50,28 @@ const LessonsPage = () => {
 	}, []);
 
 	return (
-		<section>
+		<section className="w-full h-full pb-20">
 			<Heading 
 				title={i18n[lang].content.title}
 				description={i18n[lang].content.description}
 				icon={PlaySquare}
 				bgColor="bg-red-500"
 			/>
-			<div className="px-4 lg:px-8">
-				<div className="space-y-4 mt-4">
-					{!levels.length ? 'Carregando...' : (
-						levels.map((level, i) => (
-							<EnglishLevelCard 
-								key={i}
-								level={level.level} 
-								lessons={level.lessons}
-							/>
-						))
-					)} 
+			<ScrollArea className="h-full w-full border-t-2 border-b-2">
+				<div className="px-4 lg:px-8 min-w-full my-4">
+					<div className="space-y-4">
+						{!levels.length ? 'Carregando...' : (
+							levels.map((level, i) => (
+								<EnglishLevelCard 
+									key={i}
+									level={level.level} 
+									lessons={level.lessons}
+								/>
+							))
+						)} 
+					</div>
 				</div>
-			</div>
+			</ScrollArea>
 		</section>
 	);
 };

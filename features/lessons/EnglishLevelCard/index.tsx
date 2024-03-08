@@ -14,6 +14,7 @@ import { cn } from '@/lib/utils';
 
 import i18n from './i18n.json';
 import { useLang } from '@/hooks/useLang';
+import { LessonDrawer } from '../LessonDrawer';
 
 interface EnglishLevelCardProps {
   level: string;
@@ -34,18 +35,18 @@ export function EnglishLevelCard({ level, lessons }: EnglishLevelCardProps) {
 		const grammarLessons = {
 			title: i18n[lang].content.categoriesTitles.grammar,
 			icon: Languages,
-			lessons: lessons.filter((lesson) => lesson.category === 'grammar'),
+			lessons: lessons.filter((lesson) => lesson.category === 'grammar').sort((a, b) => a.priority < b.priority ? -1 : 1),
 		}; 
 		const vocabularyLessons = {
 			title: i18n[lang].content.categoriesTitles.vocabulary,
 			icon: BookOpenCheck,
-			lessons: lessons.filter((lesson) => lesson.category === 'vocabulary'),
+			lessons: lessons.filter((lesson) => lesson.category === 'vocabulary').sort((a, b) => a.priority < b.priority ? -1 : 1),
 		}; 
 		const topicsLesssons = {
 			title: i18n[lang].content.categoriesTitles.topics,
 			icon: Lightbulb,
-			lessons: lessons.filter((lesson) => lesson.category === 'topics'),
-		}; 
+			lessons: lessons.filter((lesson) => lesson.category === 'topics').sort((a, b) => a.priority < b.priority ? -1 : 1),
+		};
 
 		setCategories([grammarLessons, vocabularyLessons, topicsLesssons]);
 	}, [lang]);
@@ -72,7 +73,7 @@ export function EnglishLevelCard({ level, lessons }: EnglishLevelCardProps) {
   
 	return (
 		<Card
-			className="p-6 border-var(--border)/5 flex flex-col justify-between transition"
+			className="min-w-full p-6 border-var(--border)/5 flex flex-col justify-between transition"
 		>
 			<h4 className="text-xl font-medium mb-4">{`${level.toUpperCase()} - ${getLevelDescription().toUpperCase()}`}</h4>
 
@@ -87,15 +88,20 @@ export function EnglishLevelCard({ level, lessons }: EnglishLevelCardProps) {
 						</AccordionTrigger>
 						<AccordionContent className="grid xl:grid-cols-2 gap-2">
 							{category.lessons.map((lesson) => (
-								<Card
-									key={lesson.id}
-									className="flex items-center px-4 py-2 border-var(--border)/5 transition hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
-								>
-									<div className="flex gap-3 items-center">
-										<div className="min-w-6 min-h-6 bg-blue-800 rounded-md flex justify-center items-center text-white">{lesson.priority}</div>
-										<span>{lesson.name}</span>
-									</div>
-								</Card>
+								<LessonDrawer 
+									key={lesson.id} 
+									lesson={lesson}
+									triggerComponent={
+										<Card
+											className="flex items-center px-4 py-2 border-var(--border)/5 transition hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
+										>
+											<div className="flex gap-3 items-center">
+												<div className="min-w-6 min-h-6 bg-blue-800 rounded-md flex justify-center items-center text-white">{lesson.priority}</div>
+												<span>{lesson.name}</span>
+											</div>
+										</Card>
+									}
+								/>
 							))}
 						</AccordionContent>
 					</AccordionItem>
