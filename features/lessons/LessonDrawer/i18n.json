@@ -1,0 +1,44 @@
+{
+  "pt-br":{
+    "content": {
+      "checklesson": "Marcar aula como concluída",
+      "checkedLabelText": "Aula concluída",
+      "goBack": "Voltar",
+      "reportVideoError": "Relatar problema no vídeo",
+      "categoriesTitles": {
+        "grammar": "Gramática",
+        "vocabulary": "Vocabulário",
+        "topics": "Tópicos"
+      },
+      "levelsDescriptions": {
+        "a1": "Iniciante",
+        "a2": "Básico",
+        "b1": "Intermediário",
+        "b2": "Intermediário Superior",
+        "c1": "Avançado",
+        "c2": "Proficiente"
+      }
+    }
+  },
+  "en-us": {
+    "content": {
+      "checklesson": "Check lesson as complete",
+      "checkedLabelText": "Lesson complete",
+      "goBack": "Go back",
+      "reportVideoError": "Report video problem",
+      "categoriesTitles": {
+        "grammar": "Grammar",
+        "vocabulary": "Vocabulary",
+        "topics": "Topics"
+      },
+      "levelsDescriptions": {
+        "a1": "Beginner",
+        "a2": "Basic",
+        "b1": "Intermediate",
+        "b2": "Upper Intermediate",
+        "c1": "Advanced",
+        "c2": "Proficient"
+      }
+    }
+  }
+}
