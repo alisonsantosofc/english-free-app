@@ -9,17 +9,17 @@ import c2_lessons from './c2_lessons.json';
 
 export async function lessonsSeed() {
 	const lessons = [
-		...a1_lessons, 
-		...a2_lessons,
-		...b1_lessons,
-		...b2_lessons,
-		...c1_lessons,
-		...c2_lessons,
+		...a1_lessons.map((lesson, index) => ({ ...lesson, id: index + 1 })), 
+		...a2_lessons.map((lesson, index) => ({ ...lesson, id: a1_lessons.length + index + 1 })),
+		...b1_lessons.map((lesson, index) => ({ ...lesson, id: a1_lessons.length + a2_lessons.length + index + 1 })),
+		...b2_lessons.map((lesson, index) => ({ ...lesson, id: a1_lessons.length + a2_lessons.length + b1_lessons.length + index + 1 })),
+		...c1_lessons.map((lesson, index) => ({ ...lesson, id: a1_lessons.length + a2_lessons.length + b1_lessons.length + b2_lessons.length + index + 1 })),
+		...c2_lessons.map((lesson, index) => ({ ...lesson, id: a1_lessons.length + a2_lessons.length + b1_lessons.length + b2_lessons.length + c1_lessons.length + index + 1 })),
 	];
 
-	lessons.forEach(async (lesson) => {
+	for (const lesson of lessons) {
 		await prisma.lesson.create({
 			data: lesson,
 		});
-	});
+	}
 }
