@@ -12,7 +12,6 @@ CREATE TABLE "User" (
 CREATE TABLE "Lesson" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
     "src" TEXT NOT NULL,
     "level" TEXT NOT NULL,
     "category" TEXT NOT NULL,

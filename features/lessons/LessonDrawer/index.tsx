@@ -37,9 +37,6 @@ export function LessonDrawer({ triggerComponent, lesson }: LessonDrawerProps) {
 			<DrawerContent className="w-full md:w-full-72">
 				<DrawerHeader>
 					<DrawerTitle className="text-2xl">{lesson.name}</DrawerTitle>
-					<DrawerDescription>
-						{lesson.title}
-					</DrawerDescription>
 				</DrawerHeader>
 				
 				<div className="w-full p-4 flex justify-center">
