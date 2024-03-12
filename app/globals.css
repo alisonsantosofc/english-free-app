@@ -53,14 +53,28 @@ body,
     margin-right: 1rem; /* Ajuste a margem conforme necessário */
   }
 
-  .w-full-72 {
-    width: calc(100% - 18rem);
-    margin-left: 18rem;
+  .w-100vw {
+    width: 100vw;
   }
 
   .max-100vh {
     min-height: 100vh;
     max-height: 100vh;
+  }
+
+  .react-modal-overlay {
+    z-index: 99;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.5);
   }
 
   :root {

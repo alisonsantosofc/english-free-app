@@ -15,6 +15,8 @@ import { cn } from '@/lib/utils';
 import i18n from './i18n.json';
 import { useLang } from '@/hooks/useLang';
 import { LessonDrawer } from '../LessonDrawer';
+import { LessonCard } from '../LessonCard';
+import { useMainModal } from '@/hooks/useMainModal';
 
 interface EnglishLevelCardProps {
   level: string;
@@ -29,6 +31,8 @@ interface LevelCategory {
 
 export function EnglishLevelCard({ level, lessons }: EnglishLevelCardProps) {
 	const { lang } = useLang();
+	const { setMainModal } = useMainModal();
+
 	const [categories, setCategories] = useState<LevelCategory[]>([]);
 
 	useEffect(() => {
@@ -88,20 +92,18 @@ export function EnglishLevelCard({ level, lessons }: EnglishLevelCardProps) {
 						</AccordionTrigger>
 						<AccordionContent className="grid xl:grid-cols-2 gap-2">
 							{category.lessons.map((lesson) => (
-								<LessonDrawer 
+								<Card
 									key={lesson.id} 
-									lesson={lesson}
-									triggerComponent={
-										<Card
-											className="flex items-center px-4 py-2 border-var(--border)/5 transition hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
-										>
-											<div className="flex gap-3 items-center">
-												<div className="min-w-6 min-h-6 bg-blue-800 rounded-md flex justify-center items-center text-white">{lesson.priority}</div>
-												<span>{lesson.name}</span>
-											</div>
-										</Card>
-									}
-								/>
+									className="flex items-center px-4 py-2 border-var(--border)/5 transition hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
+									onClick={() => setMainModal(
+										<LessonCard lesson={lesson} onCloseModal={() => setMainModal(null)} />
+									)}
+								>
+									<div className="flex gap-3 items-center">
+										<div className="min-w-6 min-h-6 bg-blue-800 rounded-md flex justify-center items-center text-white">{lesson.priority}</div>
+										<span>{lesson.name}</span>
+									</div>
+								</Card>
 							))}
 						</AccordionContent>
 					</AccordionItem>

@@ -1,9 +1,11 @@
-import { Navbar } from '@/components/custom/Navbar';
-import { Sidebar } from '@/components/custom/Sidebar';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
+
+import { Navbar } from '@/components/custom/Navbar';
+import { Sidebar } from '@/components/custom/Sidebar';
+import MainModal from '@/components/custom/MainModal';
+
+import { authOptions } from '@/lib/auth';
 
 const DashboardLayout = async ({
 	children,
@@ -25,6 +27,7 @@ const DashboardLayout = async ({
 				<Navbar />
 				{session && children}
 			</main>
+			<MainModal />
 		</div>
 	);
 };
