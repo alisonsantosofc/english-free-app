@@ -34,7 +34,7 @@ export function LessonDrawer({ triggerComponent, lesson }: LessonDrawerProps) {
 			<DrawerTrigger>
 				{triggerComponent}
 			</DrawerTrigger>
-			<DrawerContent className="w-full md:w-full-72">
+			<DrawerContent className="w-full md:w-full-72 xl:w-fit xl:ml-72">
 				<DrawerHeader>
 					<DrawerTitle className="text-2xl">{lesson.name}</DrawerTitle>
 				</DrawerHeader>
@@ -42,7 +42,7 @@ export function LessonDrawer({ triggerComponent, lesson }: LessonDrawerProps) {
 				<div className="w-full p-4 flex justify-center">
 					<div className="flex flex-col gap-4 w-full h-[315px] xl:w-[898px] xl:h-[506px]">
 						<CustomIframe className="rounded-md" width="100%" height="100%" src={lesson.src} />
-						<div className="flex justify-between">
+						<div className="flex flex-col gap-4 justify-start lg:flex-row lg:justify-between">
 							<DrawerDescription className="flex items-center gap-2">
 								<div className="bg-blue-800 text-white px-2 py-1 mr-2 rounded font-medium">{lesson.level.toUpperCase()}</div>
 								<span>

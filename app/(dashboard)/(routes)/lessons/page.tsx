@@ -34,13 +34,28 @@ const LessonsPage = () => {
 					level: 'a1',
 					lessons: lessons.filter((lesson) => lesson.level === 'a1'),
 				};
-
 				const a2 = {
 					level: 'a2',
 					lessons: lessons.filter((lesson) => lesson.level === 'a2'),
 				};
+				const b1 = {
+					level: 'b1',
+					lessons: lessons.filter((lesson) => lesson.level === 'b1'),
+				};
+				const b2 = {
+					level: 'b2',
+					lessons: lessons.filter((lesson) => lesson.level === 'b2'),
+				};
+				const c1 = {
+					level: 'c1',
+					lessons: lessons.filter((lesson) => lesson.level === 'c1'),
+				};
+				const c2 = {
+					level: 'c2',
+					lessons: lessons.filter((lesson) => lesson.level === 'c2'),
+				};
 
-				setLevels([a1, a2]);
+				setLevels([a1, a2, b1, b2, c1, c2]);
 			} catch (error) {
 				console.log(error);
 			}

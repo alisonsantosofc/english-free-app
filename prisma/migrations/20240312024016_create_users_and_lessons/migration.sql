@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "avatar" TEXT NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Lesson" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "src" TEXT NOT NULL,
     "level" TEXT NOT NULL,
