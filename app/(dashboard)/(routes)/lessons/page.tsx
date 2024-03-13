@@ -5,13 +5,13 @@ import axios from 'axios';
 import { PlaySquare } from 'lucide-react';
 
 import { Heading } from '@/components/custom/Heading';
-
-import { ILesson } from '@/features/lessons/@types/ILesson';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { EnglishLevelCard } from '@/features/lessons/EnglishLevelCard';
 
-import i18n from './i18n.json';
+import { ILesson } from '@/features/lessons/@types/ILesson';
 import { useLang } from '@/hooks/useLang';
-import { ScrollArea } from '@/components/ui/scroll-area';
+
+import i18n from './i18n.json';
 
 interface ILevel {
   level: string;
@@ -65,15 +65,15 @@ const LessonsPage = () => {
 	}, []);
 
 	return (
-		<section className="w-full h-full pb-20">
+		<section className="w-full h-section">
 			<Heading 
 				title={i18n[lang].content.title}
 				description={i18n[lang].content.description}
 				icon={PlaySquare}
 				bgColor="bg-red-500"
 			/>
-			<ScrollArea className="h-full w-full border-t-2 border-b-2">
-				<div className="px-4 lg:px-8 min-w-full my-4">
+			<ScrollArea className="w-full h-scroll border-t-2">
+				<div className="my-4 sm:my-8 px-4 sm:px-8 min-w-full">
 					<div className="space-y-4">
 						{!levels.length ? 'Carregando...' : (
 							levels.map((level, i) => (

@@ -57,9 +57,16 @@ body,
     width: 100vw;
   }
 
-  .max-100vh {
-    min-height: 100vh;
-    max-height: 100vh;
+  .w-l-72 {
+    width: calc(100% - 18rem);
+  }
+
+  .h-section {
+    height: calc(100% - 8rem);
+  }
+
+  .h-scroll {
+    height: calc(100% - 8rem);
   }
 
   .react-modal-overlay {
