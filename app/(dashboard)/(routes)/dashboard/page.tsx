@@ -36,7 +36,7 @@ const DashboardPage = () => {
 	];
 
 	return (
-		<section>
+		<section className="w-full h-section">
 			<header className="mb-8 space-y-4">
 				<h2 className="text-2xl md:text-4xl font-bold text-center">
 					{i18n[lang].content.title}
@@ -45,7 +45,7 @@ const DashboardPage = () => {
 					{i18n[lang].content.textHighlight}
 				</p>
 			</header>
-			<nav className="px-4 md:px-20 lg:px-32 space-y-4">
+			<nav className="px-4 md:px-20 lg:px-32 space-y-4 mt-16">
 				{tools.map((tool) => (
 					<Card 
 						onClick={() => router.push(tool.href)}

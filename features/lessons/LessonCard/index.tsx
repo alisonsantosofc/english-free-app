@@ -32,7 +32,7 @@ export function LessonCard({ lesson, onCloseModal }: LessonCardProps) {
 					<CustomIframe className="rounded-md" width="100%" height="100%" src={lesson.src} />
 				</div>
 				<div className="flex flex-col gap-4 justify-start sm:flex-row sm:justify-between">
-					<p className="min-h-fit flex flex-row items-center gap-2">
+					<div className="min-h-fit flex flex-row items-center gap-2">
 						<div className="bg-blue-800 text-white px-2 py-1 mr-2 rounded font-medium">{lesson.level.toUpperCase()}</div>
 						<span>
 							{i18n[lang].content.levelsDescriptions[lesson.level]}
@@ -41,7 +41,7 @@ export function LessonCard({ lesson, onCloseModal }: LessonCardProps) {
 						<span>
 							{i18n[lang].content.categoriesTitles[lesson.category]}
 						</span>
-					</p>
+					</div>
 					<CustomCheckbox 
 						checked={checkedLesson} 
 						labelText={i18n[lang].content.checklesson} 

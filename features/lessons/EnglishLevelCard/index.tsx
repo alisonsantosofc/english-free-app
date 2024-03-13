@@ -14,7 +14,6 @@ import { cn } from '@/lib/utils';
 
 import i18n from './i18n.json';
 import { useLang } from '@/hooks/useLang';
-import { LessonDrawer } from '../LessonDrawer';
 import { LessonCard } from '../LessonCard';
 import { useMainModal } from '@/hooks/useMainModal';
 
@@ -53,7 +52,7 @@ export function EnglishLevelCard({ level, lessons }: EnglishLevelCardProps) {
 		};
 
 		setCategories([grammarLessons, vocabularyLessons, topicsLesssons]);
-	}, [lang]);
+	}, [lang, lessons]);
 
 	function getLevelDescription() {
 		switch (level) {

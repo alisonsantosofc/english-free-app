@@ -4,7 +4,7 @@
       "routesLabels": {
         "dashboard": "Área Principal",
         "lessons": "Aulas de inglês grátis",
-        "schedules": "Cronogramas de estudo",
+        "schedules": "Cronograma de estudo",
         "certified": "Certificado de inglês",
         "settings": "Configurações"
       }
@@ -15,7 +15,7 @@
       "routesLabels": {
         "dashboard": "Dashboard",
         "lessons": "Free english lessons",
-        "schedules": "Study schedules",
+        "schedules": "Study schedule",
         "certified": "English certificate",
         "settings": "Settings"
       }
