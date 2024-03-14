@@ -4,9 +4,7 @@ import prisma from '@/prisma/client';
 
 import { authOptions } from '@/lib/auth';
 
-import { lessonsSeed } from '@/prisma/seeds/lessons';
-
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
 	const session = await getServerSession(authOptions);
 
 	try {
@@ -14,16 +12,9 @@ export async function GET(req: NextRequest) {
 			return new NextResponse('Unauthorized', { status: 401 });
 		}
 
-		const lessons = await prisma.lesson.findMany();
-
-		// if (!lessons.length) {
-		//   await lessonsSeed()
-		//     .catch((e) => console.error(e));
-		// }
-
-		return NextResponse.json(lessons);
+		return NextResponse.json(true);
 	} catch (error) {
-		console.log('[LESSONS_ERROR]', error);
+		console.log('[SCHEDULES_SELECT_ERROR]', error);
 		return new NextResponse('Internal error', { status: 500 });
 	}
 }
