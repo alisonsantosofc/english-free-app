@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import { signIn, useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 import { 
 	Form, 
@@ -14,12 +16,13 @@ import {
 } from '@/src/components/ui/form';
 import { Input } from '@/src/components/ui/input';
 import { Button } from '@/src/components/ui/button';
-import Link from 'next/link';
 import { Label } from '@/src/components/ui/label';
-import { signIn } from 'next-auth/react';
+
+import { LandingNavbar } from '@/src/features/landing/LandingNavbar';
 
 const Page = () => {
 	const router = useRouter();
+	const session = useSession();
 
 	const formSchema = z.object({
 		email: z.string().email({
@@ -58,6 +61,7 @@ const Page = () => {
 
 	return (
 		<section className="h-full flex justify-center items-center">
+			<LandingNavbar />
 			<div className="w-fit p-4 lg:p-8">
 				<header className="mb-4">
 					<h2 className="text-3xl font-bold">

@@ -10,11 +10,11 @@ const SessionLayout = async ({
 }: {
   children: React.ReactNode;
 }) => {
-	// const session = await getServerSession(authOptions);
+	const session = await getServerSession(authOptions);
 
-	// if (!session) {
-	// 	redirect('/');
-	// }
+	if (session) {
+		redirect('/dashboard');
+	}
 
 	return (
 		<div className="h-[100vh] relative">
