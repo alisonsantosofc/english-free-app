@@ -9,7 +9,7 @@ export function ToggleDarkMode() {
 		<div className="flex justify-between items-center">
 			<Switch 
 				onClick={() => handleChangeDarkMode()}
-				checked={darkMode}
+				checked={darkMode ? darkMode : false}
 			/>
 			<div className="flex items-center flex-1 text-label">
 				{darkMode 
