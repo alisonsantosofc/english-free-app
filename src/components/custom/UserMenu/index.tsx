@@ -10,6 +10,7 @@ import { ToggleLang } from '@/src/components/custom/ToggleLang';
 
 import i18n from './i18n.json';
 import { useLang } from '@/src/hooks/useLang';
+import { AuthButton } from '../AuthButton';
 
 export function UserMenu() {
 	const session = useSession();
@@ -34,31 +35,15 @@ export function UserMenu() {
 				</div>
 
 				<div className="min-w-full min-h-[1px] bg-shape-600 my-1"></div>
-				<div
-					className="group flex p-3 w-full justify-start cursor-pointer rounded-lg transition hover:bg-foreground/[0.04] hover:text-letter text-label text-sm"
-				>
-					<div className="flex items-center flex-1">
-						<Award className="h-5 w-5 mr-3 text-letter" />
-						{i18n[lang].content.options.subscription}
-					</div>
+
+				<div className="flex p-3 w-full justify-start cursor-pointer rounded-lg transition hover:bg-foreground/[0.04] hover:text-letter text-label text-sm">
+					<Award className="h-5 w-5 mr-3 text-letter" />
+					{i18n[lang].content.options.subscription}
 				</div>
 
 				<div className="min-w-full min-h-[1px] bg-shape-600 my-1"></div>
-				<div
-					className="group flex p-3 w-full justify-start cursor-pointer rounded-lg transition hover:bg-foreground/[0.04] hover:text-letter text-label text-sm"
-				>
-					<div 
-						className="flex items-center flex-1"
-						onClick={() => {
-							signOut({
-								callbackUrl: '/'
-							});
-						}}
-					>
-						<LogOut className="h-5 w-5 mr-3 text-letter" />
-						{i18n[lang].content.options.logout}
-					</div>
-				</div>
+				
+				<AuthButton.Logout />
 			</PopoverContent>
 		</Popover>
 	);

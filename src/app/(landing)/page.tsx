@@ -28,14 +28,8 @@ const LandingPage = () => {
 					{i18n[lang].content.textHighlight}
 				</p>
 				<div className="flex gap-4 flex-col sm:flex-row md:flex-row mt-8">
+					<AuthButton.Register />
 					<AuthButton.Login />
-					<Button 
-						className="flex gap-2"
-						onClick={() => route.push('/dashboard')}
-					>
-						<span>{i18n[lang].content.signInButton}</span>
-						<LogIn className="w-5 h-5" />
-					</Button>
 				</div>
 			</div>
 		</div>

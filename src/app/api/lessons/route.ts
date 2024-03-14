@@ -9,7 +9,10 @@ export async function GET(req: NextRequest) {
 
 	try {
 		if (!session) {
-			return new NextResponse('Unauthorized', { status: 401 });
+			return new NextResponse(
+				JSON.stringify({ code: '0.1.1', message: 'You are not logged in' }),
+				{ status: 401 }
+			);
 		}
 
 		const lessons = await prisma.lesson.findMany();
