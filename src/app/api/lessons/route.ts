@@ -8,12 +8,12 @@ export async function GET(req: NextRequest) {
 	const session = await getServerSession(authOptions);
 
 	try {
-		// if (!session) {
-		// 	return new NextResponse(
-		// 		JSON.stringify({ code: '0.1.1', message: 'You are not logged in' }),
-		// 		{ status: 401 }
-		// 	);
-		// }
+		if (!session) {
+			return new NextResponse(
+				JSON.stringify({ code: '0.1.1', message: 'You are not logged in' }),
+				{ status: 401 }
+			);
+		}
 
 		const lessons = await prisma.lesson.findMany();
 
