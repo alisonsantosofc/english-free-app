@@ -2,7 +2,7 @@ import { LangProvider } from './useLang';
 import { DarkModeProvider } from './useDarkMode';
 import { MainModalProvider } from './useMainModal';
 import { LessonsProvider } from './useLessons';
-import { ScheduleProvider } from './useSchedule';
+import { SchedulesProvider } from './useSchedules';
 
 export function HooksProviders({ children }: { children: React.ReactNode }) {
 	return (
@@ -11,9 +11,9 @@ export function HooksProviders({ children }: { children: React.ReactNode }) {
 				<DarkModeProvider>
 					<MainModalProvider>
 						<LessonsProvider>
-							<ScheduleProvider>
+							<SchedulesProvider>
 								{children}
-							</ScheduleProvider>
+							</SchedulesProvider>
 						</LessonsProvider>
 					</MainModalProvider>
 				</DarkModeProvider>

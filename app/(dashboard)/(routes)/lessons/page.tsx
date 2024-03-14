@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { PlaySquare } from 'lucide-react';
 
 import { Heading } from '@/components/custom/Heading';
@@ -21,7 +20,7 @@ interface ILevel {
 
 const LessonsPage = () => {
 	const { lang } = useLang();
-	const { lessons, fetchLessons } = useLessons();
+	const { lessons, fetchLessons, fetchLessonsReqStatus } = useLessons();
 
 	const [levels, setLevels] = useState<ILevel[]>([]);
 
@@ -58,8 +57,12 @@ const LessonsPage = () => {
 		};
 
 		setLevels([a1, a2, b1, b2, c1, c2]);
-		console.log({ levels });
 	}, [lessons]);
+
+	useEffect(() => {
+		console.log(fetchLessonsReqStatus);
+	}, [fetchLessonsReqStatus]);
+	
 
 	return (
 		<section className="w-full h-section">
@@ -73,13 +76,15 @@ const LessonsPage = () => {
 				<div className="my-4 sm:my-8 px-4 sm:px-8 min-w-full">
 					<div className="space-y-4">
 						{
-							levels.map((level, i) => (
-								<EnglishLevelCard 
-									key={i}
-									level={level.level} 
-									lessons={level.lessons}
-								/>
-							))
+							fetchLessonsReqStatus === 'loading' ? 'Carregando...' : (
+								levels.map((level, i) => (
+									<EnglishLevelCard 
+										key={i}
+										level={level.level} 
+										lessons={level.lessons}
+									/>
+								))
+							)
 						} 
 					</div>
 				</div>

@@ -8,9 +8,11 @@ import { replaceStringWithParams } from '@/utils/strings';
 
 import i18n from './i18n.json';
 import schedulesWeeks from './schedulesWeeks.json';
+import { useSchedules } from '@/hooks/useSchedules';
 
 export default function SchedulesSelector() {
 	const { lang } = useLang();
+	const { setSchedule } = useSchedules();
 
 	const studySchedules = [
 		{
@@ -83,6 +85,7 @@ export default function SchedulesSelector() {
 					<div className="mt-16">
 						<Button 
 							className="flex gap-2 bg-blue-300/80 text-blue-900 hover:bg-blue-300"
+							onClick={() => setSchedule(schedule)}
 						>
 							<span>{replaceStringWithParams(i18n[lang].content.scheduleButtonTitle, {
 								months: String(schedule.months),

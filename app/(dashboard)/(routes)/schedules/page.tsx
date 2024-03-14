@@ -9,9 +9,11 @@ import { useLang } from '@/hooks/useLang';
 
 import i18n from './i18n.json';
 import SchedulesSelector from '@/features/schedules/SchedulesSelector';
+import { useSchedules } from '@/hooks/useSchedules';
 
 const SchedulesPage = () => {
 	const { lang } = useLang();
+	const { schedule } = useSchedules();
 
 	return (
 		<section className="w-full h-section">
@@ -22,7 +24,13 @@ const SchedulesPage = () => {
 				bgColor="bg-blue-800"
 			/>
 			<ScrollArea className="w-full h-scroll border-t-2">
-				<SchedulesSelector />
+				{
+					schedule ? (
+						<div>{schedule.months}</div>
+					) : (
+						<SchedulesSelector />	
+					)
+				}
 			</ScrollArea>
 		</section>
 	);

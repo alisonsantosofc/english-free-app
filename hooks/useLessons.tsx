@@ -35,12 +35,13 @@ export function LessonsProvider({ children }: LessonsProviderProps) {
 			setLessons(lessonsResponse);
 			
 			setFetchLessonsReqStatus('succeeded');
+
+			setTimeout(() => {
+				setFetchLessonsReqStatus('idle');
+			}, 500);
 		} catch (error) {
 			setFetchLessonsReqStatus('failed');
-			console.log(error);
 		}
-		
-		setFetchLessonsReqStatus('idle');
 	};
 
 	return (

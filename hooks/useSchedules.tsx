@@ -4,31 +4,31 @@ import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useStat
 
 import { ISchedule } from '@/features/schedules/@types/ISchedule';
 
-interface ScheduleProviderProps {
+interface SchedulesProviderProps {
   children: ReactNode;
 }
 
-interface ScheduleContextData {
+interface SchedulesContextData {
   schedule: ISchedule | null;
   setSchedule: Dispatch<SetStateAction<ISchedule | null>>;
 }
 
-const ScheduleContext = createContext<ScheduleContextData>(
-  {} as ScheduleContextData
+const SchedulesContext = createContext<SchedulesContextData>(
+  {} as SchedulesContextData
 );
 
-export function ScheduleProvider({ children }: ScheduleProviderProps) {
+export function SchedulesProvider({ children }: SchedulesProviderProps) {
 	const [schedule, setSchedule] = useState<ISchedule | null>(null);
 
 	return (
-		<ScheduleContext.Provider value={{ schedule, setSchedule }}>
+		<SchedulesContext.Provider value={{ schedule, setSchedule }}>
 			{children}
-		</ScheduleContext.Provider>
+		</SchedulesContext.Provider>
 	);
 }
 
-export function useSchedule() {
-	const context = useContext(ScheduleContext);
+export function useSchedules() {
+	const context = useContext(SchedulesContext);
 
 	return context;
 }
