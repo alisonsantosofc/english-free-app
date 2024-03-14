@@ -4,8 +4,6 @@ import prisma from '@/prisma/client';
 
 import { authOptions } from '@/src/lib/auth';
 
-import { lessonsSeed } from '@/prisma/seeds/lessons';
-
 export async function GET(req: NextRequest) {
 	const session = await getServerSession(authOptions);
 
@@ -15,11 +13,6 @@ export async function GET(req: NextRequest) {
 		}
 
 		const lessons = await prisma.lesson.findMany();
-
-		// if (!lessons.length) {
-		//   await lessonsSeed()
-		//     .catch((e) => console.error(e));
-		// }
 
 		return NextResponse.json(lessons);
 	} catch (error) {

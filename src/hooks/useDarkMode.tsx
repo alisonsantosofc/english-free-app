@@ -25,6 +25,8 @@ export function DarkModeProvider({ children }: DarkModeProviderProps) {
 
 		if (localDarkMode !== null) {
 			setDarkMode(localDarkMode);
+		} else {
+			setDarkMode(false);
 		}
 	}, []);
 

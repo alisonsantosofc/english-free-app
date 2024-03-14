@@ -19,10 +19,7 @@ export function UserMenu() {
 		<Popover>
 			<PopoverTrigger>
 				<Avatar className="w-12 h-12 flex items-center justify-center bg-shape-600">
-					<AvatarImage src={session.data?.user?.image || ''} />
-					<AvatarFallback>
-						<UserRound  className="w-7 h-7 text-foreground bg-shape-600" />
-					</AvatarFallback>
+					<span className="text-2xl">{session.data?.user?.name?.charAt(0)}</span>
 				</Avatar>
 			</PopoverTrigger>
 			<PopoverContent className="mr-4 rounded-xl">

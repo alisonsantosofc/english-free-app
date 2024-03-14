@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { LogIn } from 'lucide-react';
 
 import { Button } from '@/src/components/ui/button';
-import { SignUpButton } from '@/src/components/custom/SignUpButton';
+import { AuthButton } from '@/src/components/custom/AuthButton';
 
 import { cn } from '@/src/lib/utils';
 
@@ -28,7 +28,7 @@ const LandingPage = () => {
 					{i18n[lang].content.textHighlight}
 				</p>
 				<div className="flex gap-4 flex-col sm:flex-row md:flex-row mt-8">
-					<SignUpButton />
+					<AuthButton.Login />
 					<Button 
 						className="flex gap-2"
 						onClick={() => route.push('/dashboard')}

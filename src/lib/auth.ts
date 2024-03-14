@@ -1,47 +1,26 @@
-import prisma from '@/prisma/client';
 import type { NextAuthOptions } from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const authOptions: NextAuthOptions = {
+	session: {
+		strategy: 'jwt',
+	},
+	secret: process.env.AUTH_SECRET,
 	providers: [
-		GoogleProvider({
-			clientId: process.env.GOOGLE_CLIENT_ID as string,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+		CredentialsProvider({
+			name: 'Sign in',
+			credentials: {
+				email: {
+					label: 'Email',
+					type: 'email',
+					placeholder: 'example@example.com',
+				},
+				password: { label: 'Password', type: 'password' },
+			},
+			async authorize(credentials) {
+				const user = { id: '1', name: 'Admin', email: 'admin@admin.com' };
+				return user;
+			},
 		}),
 	],
-	secret: process.env.AUTH_SECRET,
-	callbacks: {
-		async session({ session }) {
-			return {
-				...session,
-			};
-		},
-		async signIn({ user, account, profile }) {
-			try {
-				const { name, email, image } = user;
-        
-				// Verify if user exists on database
-				const existingUser = await prisma.user.findUnique({
-					where: { email: String(email) },
-				});
-
-				if (existingUser) {
-					// Update user data on database
-					await prisma.user.update({
-						where: { email: String(email) },
-						data: { name: String(name), email: String(email) },
-					});
-				} else {
-					// Register new user on database
-					await prisma.user.create({
-						data: { name: String(name), email: String(email) },
-					});
-				}
-
-				return true;
-			} catch {
-				return false;
-			}
-		},
-	},
 };
