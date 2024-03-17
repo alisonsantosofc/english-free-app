@@ -100,7 +100,7 @@ export function EnglishLevelCard({ level, lessons }: EnglishLevelCardProps) {
 								>
 									<div className="flex gap-3 items-center">
 										<div className="min-w-6 min-h-6 bg-blue-800 rounded-md flex justify-center items-center text-white">{lesson.priority}</div>
-										<span>{lesson.name}</span>
+										<span className="line-clamp-1">{lesson.name}</span>
 									</div>
 								</Card>
 							))}

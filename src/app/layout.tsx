@@ -5,6 +5,7 @@ import './globals.css';
 import { NextAuthProvider } from './providers';
 import { HooksProviders } from '@/src/hooks/provider';
 import { MainContent } from '@/src/components/custom/MainContent';
+import { Toaster } from '@/src/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
 					<HooksProviders>
 						<MainContent>
 							{children}
+							<Toaster />
 						</MainContent>
 					</HooksProviders>
 				</NextAuthProvider>
