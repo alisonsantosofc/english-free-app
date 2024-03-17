@@ -13,7 +13,7 @@ const nunito = Nunito({
 
 export function LandingNavbar() {
 	return (
-		<div className="fixed top-0 right-0 bg-background w-full flex items-center justify-center pt-2 px-4 xl:px-0">
+		<div className="fixed top-0 right-0 bg-background w-full h-20 flex items-center justify-center px-4 xl:px-0">
 			<div className="w-full md:w-[1244px] flex items-center justify-between gap-8">
 				<Link 
 					href="/dashboard" 

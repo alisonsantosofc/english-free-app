@@ -18,8 +18,14 @@ export async function GET(req: NextRequest) {
 		const lessons = await prisma.lesson.findMany();
 
 		return NextResponse.json(lessons);
-	} catch (error) {
+	} catch (error: any) {
 		console.log('[LESSONS_ERROR]', error);
-		return new NextResponse('Internal error', { status: 500 });
+		return new NextResponse(
+			JSON.stringify({
+				status: 'error',
+				message: error.message,
+			}),
+			{ status: 500 }
+		);
 	}
 }

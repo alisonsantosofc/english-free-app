@@ -1,10 +1,10 @@
 'use client';
 
 import * as z from 'zod';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
 import { 
@@ -18,9 +18,18 @@ import { Button } from '@/src/components/ui/button';
 import { Label } from '@/src/components/ui/label';
 
 import { LandingNavbar } from '@/src/features/landing/LandingNavbar';
+import CustomCheckbox from '@/src/components/custom/CustomCheckbox';
+import { useState } from 'react';
 
 const Page = () => {
 	const router = useRouter();
+	const session = useSession();
+
+	if (!session) {
+		router.push('/dashboard');
+	}
+
+	const [checkTermsAccepted, setCheckTermsAccepted] = useState(false);
 
 	const formSchema = z.object({
 		name: z.string().min(1, {
@@ -63,7 +72,7 @@ const Page = () => {
 	};
 
 	return (
-		<section className="h-full flex justify-center items-center">
+		<section className="h-full flex justify-center items-start pt-20 sm:items-center">
 			<LandingNavbar />
 			<div className="w-full sm:w-96 p-4 lg:p-8">
 				<header className="mb-4">
@@ -157,6 +166,17 @@ const Page = () => {
 											{...field}
 										/>
 									</FormControl>
+								</FormItem>
+							)}
+						/>
+						<FormField 
+							name="confirmPassword"
+							render={({ field }) => (
+								<FormItem className="flex flex-col">
+									<CustomCheckbox 
+										checked={checkTermsAccepted} 
+										onClick={() => setCheckTermsAccepted(!checkTermsAccepted)} 
+									/>
 								</FormItem>
 							)}
 						/>

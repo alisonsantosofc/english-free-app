@@ -24,6 +24,10 @@ const Page = () => {
 	const router = useRouter();
 	const session = useSession();
 
+	if (!session) {
+		router.push('/dashboard');
+	}
+
 	const formSchema = z.object({
 		email: z.string().email({
 			message: 'Email está inválido',
@@ -60,9 +64,9 @@ const Page = () => {
 	};
 
 	return (
-		<section className="h-full flex justify-center items-center">
+		<section className="h-full flex justify-center items-start pt-20 sm:items-center">
 			<LandingNavbar />
-			<div className="w-fit p-4 lg:p-8">
+			<div className="w-full sm:w-96 p-4 lg:p-8">
 				<header className="mb-4">
 					<h2 className="text-3xl font-bold">
 						Entrar

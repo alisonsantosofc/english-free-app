@@ -16,8 +16,14 @@ export async function POST(req: NextRequest) {
 		}
 
 		return NextResponse.json(true);
-	} catch (error) {
+	} catch (error: any) {
 		console.log('[SCHEDULES_SELECT_ERROR]', error);
-		return new NextResponse('Internal error', { status: 500 });
+		return new NextResponse(
+			JSON.stringify({
+				status: 'error',
+				message: error.message,
+			}),
+			{ status: 500 }
+		);
 	}
 }
