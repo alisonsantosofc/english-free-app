@@ -17,12 +17,15 @@ import {
 import { Input } from '@/src/components/ui/input';
 import { Button } from '@/src/components/ui/button';
 import { Label } from '@/src/components/ui/label';
-
 import { LandingNavbar } from '@/src/features/landing/LandingNavbar';
+
+import i18n from './i18n.json';
+import { useLang } from '@/src/hooks/useLang';
 
 const Page = () => {
 	const router = useRouter();
 	const session = useSession();
+	const { lang } = useLang();
 
 	if (!session) {
 		router.push('/dashboard');
@@ -69,16 +72,16 @@ const Page = () => {
 			<div className="w-full sm:w-96 p-4 lg:p-8">
 				<header className="mb-4">
 					<h2 className="text-3xl font-bold">
-						Entrar
+						{i18n[lang].content.title}
 					</h2>
 					<p className="flex items-center gap-1 pl-1">
-						<span>ou</span>
+						<span>{i18n[lang].content.or}</span>
 						<Button 
 							className="p-0 m-0 pt-[1px] font-normal"
 							variant="underlink"
 						>
 							<Link href="/register">
-							  Criar uma conta
+								{i18n[lang].content.createAccount}
 							</Link>
 						</Button>
 					</p>
@@ -112,7 +115,7 @@ const Page = () => {
 							render={({ field }) => (
 								<FormItem className="flex flex-col">
 									<Label className="text-label">
-										senha
+										{i18n[lang].content.password}
 									</Label>
 									<FormControl className="m-0 p-0">
 										<Input 
@@ -130,7 +133,7 @@ const Page = () => {
 							className="w-full"
 							disabled={isLoading}
 						>
-              Entrar na plataforma
+							{i18n[lang].content.loginButton}
 						</Button>
 					</form>
 				</Form>

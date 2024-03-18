@@ -1,0 +1,28 @@
+{
+  "pt-br":{
+    "content": {
+      "title": "Criar uma conta",
+      "or": "ou",
+      "login": "Entrar na plataforma",
+      "name": "nome",
+      "password": "senha",
+      "confirmPassword": "confirmar senha",
+      "acceptTerms": "Estou de acordo com os termos de uso e política de privacidade.",
+      "recoveryPassword": "Esqueceu sua senha?",
+      "createAccountButton": "Registrar"
+    }
+  },
+  "en-us": {
+    "content": {
+      "title": "Create account",
+      "or": "or",
+      "login": "Login to the platform",
+      "name": "name",
+      "password": "password",
+      "confirmPassword": "confirm password",
+      "acceptTerms": "I agree with the terms of use and privacy policy.",
+      "recoveryPassword": "Forgot your password?",
+      "createAccountButton": "Register"
+    }
+  }
+}
