@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
@@ -26,11 +26,13 @@ import { useToast } from '@/src/components/ui/use-toast';
 
 import i18n from './i18n.json';
 import { useLang } from '@/src/hooks/useLang';
+import { useSessions } from '@/src/hooks/useSessions';
 
 const Page = () => {
 	const router = useRouter();
 	const session = useSession();
 	const { lang } = useLang();
+	const { registerUser, registerUserReqStatus, registerUserReqCode } = useSessions();
 	const { toast } = useToast();
 
 	if (!session) {
@@ -39,7 +41,6 @@ const Page = () => {
 
 	const [checkTermsAccepted, setCheckTermsAccepted] = useState(false);
 	const [showPassword, setShowPassword] = useState(false); // Estado para controlar a exibição da senha
-	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
 	const formSchema = z.object({
 		name: z.string().min(1, {
@@ -50,13 +51,7 @@ const Page = () => {
 		}),
 		password: z.string().min(8, {
 			message: 'Senha está inválida',
-		}),
-		confirmPassword: z.string().min(8, {
-			message: 'Confirmação de senha está inválida',
-		}),
-	}).refine((data) => data.password === data.confirmPassword, {
-		message: 'Confirmação de senha está inválida',
-		path: ['confirmPassword'],
+		})
 	});
 
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -65,7 +60,6 @@ const Page = () => {
 			name: '',
 			email: '',
 			password: '',
-			confirmPassword: '',
 		}
 	});
 
@@ -75,32 +69,45 @@ const Page = () => {
 		try {
 			if (!checkTermsAccepted) {
 				toast({
-					title: 'Você deve aceitar os termos de uso e política de privacidade para continuar.',
+					description: 'Você deve aceitar os termos de uso e política de privacidade para continuar.',
+					variant: 'destructive'
 				});
 				return;
 			}
-
-			const response = await axios.post('/api/register', {
+			
+			await registerUser({
 				name: values.name,
 				email: values.email,
 				password: values.password,
 			});
-
-			signIn('credentials', { callbackUrl: '/' });
-
-			toast({
-				title: 'Conta criada com sucesso, entre agora mesmo na plataforma!',
-			});
-
-			setCheckTermsAccepted(false);
-			form.reset();
 		} catch (error: any) {
-			// TODO: Open Pro Modal
 			console.log(error);
 		} finally {
 			router.refresh();
 		}
 	};
+
+	// Monitor register user request
+	useEffect(() => {
+		if (registerUserReqStatus === 'failed') {
+			toast({
+				description: (i18n as any)[lang].requests[registerUserReqCode].message,
+				variant: (i18n as any)[lang].requests[registerUserReqCode].variant,
+			});
+		}
+
+		if (registerUserReqStatus === 'succeeded') {
+			signIn('credentials', { callbackUrl: '/' });
+
+			setCheckTermsAccepted(false);
+			form.reset();
+
+			toast({
+				title: 'Conta criada com sucesso, entre agora mesmo na plataforma!',
+				variant: 'success',
+			});
+		}
+	}, [registerUserReqStatus]);
 
 	return (
 		<section className="h-full flex justify-center items-start pt-20 sm:items-center">
@@ -183,7 +190,7 @@ const Page = () => {
 												className="absolute top-0 right-0 mt-2 mr-3 cursor-pointer text-label"
 												onClick={() => setShowPassword(!showPassword)}
 											>
-												{showPassword ? <EyeOff /> : <Eye />}
+												{showPassword ? <Eye /> : <EyeOff />}
 											</div>
 										</div>
 									</FormControl>
@@ -191,33 +198,7 @@ const Page = () => {
 							)}
 						/>
 						<FormField
-							name="confirmPassword"
-							render={({ field }) => (
-								<FormItem className="flex flex-col">
-									<Label className="text-label">{i18n[lang].content.confirmPassword}</Label>
-									<FormControl className="m-0 p-0">
-										<div className="relative">
-											<Input
-												className={`px-4 pr-10 outline-none focus-visible:ring-0 focus-visible:ring-transparent ${
-													form.formState.errors.confirmPassword ? 'border-red-500' : ''
-												}`}
-												disabled={isLoading}
-												type={showConfirmPassword ? 'text' : 'password'}
-												{...field}
-											/>
-											<div
-												className="absolute top-0 right-0 mt-2 mr-3 cursor-pointer text-label"
-												onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-											>
-												{showConfirmPassword ? <EyeOff /> : <Eye />}
-											</div>
-										</div>
-									</FormControl>
-								</FormItem>
-							)}
-						/>
-						<FormField
-							name="confirmPassword"
+							name="checkTermsAccepted"
 							render={({ field }) => (
 								<FormItem className="flex flex-col">
 									<CustomCheckbox

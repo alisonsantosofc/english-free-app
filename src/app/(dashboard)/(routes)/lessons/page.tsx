@@ -58,12 +58,7 @@ const LessonsPage = () => {
 
 		setLevels([a1, a2, b1, b2, c1, c2]);
 	}, [lessons]);
-
-	useEffect(() => {
-		console.log(fetchLessonsReqStatus);
-	}, [fetchLessonsReqStatus]);
 	
-
 	return (
 		<section className="w-full h-section">
 			<Heading 

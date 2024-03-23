@@ -4,13 +4,14 @@ import prisma from '@/prisma/client';
 
 import { authOptions } from '@/src/lib/auth';
 
+// ROUTE 4
 export async function GET(req: NextRequest) {
 	const session = await getServerSession(authOptions);
 
 	try {
 		if (!session) {
 			return new NextResponse(
-				JSON.stringify({ code: '0.1.1', message: 'You are not logged in' }),
+				JSON.stringify({ code: '4.1', message: 'You are not logged in' }),
 				{ status: 401 }
 			);
 		}
@@ -19,10 +20,9 @@ export async function GET(req: NextRequest) {
 
 		return NextResponse.json(lessons);
 	} catch (error: any) {
-		console.log('[LESSONS_ERROR]', error);
 		return new NextResponse(
 			JSON.stringify({
-				status: 'error',
+				code: '4.2',
 				message: error.message,
 			}),
 			{ status: 500 }

@@ -10,6 +10,11 @@
       "acceptTerms": "Estou de acordo com os termos de uso e política de privacidade.",
       "recoveryPassword": "Esqueceu sua senha?",
       "createAccountButton": "Registrar"
+    },
+    "messages": {},
+    "requests": {
+      "1.1": {"variant": "destructive", "message": "Email já está cadastrado. Por favor, tente outro endereço de email."},
+      "1.2": {"variant": "destructive", "message": "Erro interno do servidor. Por favor, tente novamente mais tarde."}
     }
   },
   "en-us": {
@@ -23,6 +28,11 @@
       "acceptTerms": "I agree with the terms of use and privacy policy.",
       "recoveryPassword": "Forgot your password?",
       "createAccountButton": "Register"
+    },
+    "messages": {},
+    "requests": {
+      "1.1": {"variant": "destructive", "message": "Email is already registered. Please try another email address."},
+      "1.2": {"variant": "destructive", "message": "Internal server error. Please try again later."}
     }
   }
 }

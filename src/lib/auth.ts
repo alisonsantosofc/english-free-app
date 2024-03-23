@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
 				email: {
 					label: 'Email',
 					type: 'email',
-					placeholder: 'example@example.com',
+					placeholder: 'example@email.com',
 				},
 				password: { label: 'Password', type: 'password' },
 			},
@@ -48,7 +48,6 @@ export const authOptions: NextAuthOptions = {
 	],
 	callbacks: {
 		session: ({ session, token }) => {
-			console.log('Session Callback', { session, token });
 			return {
 				...session,
 				user: {
@@ -59,7 +58,6 @@ export const authOptions: NextAuthOptions = {
 			};
 		},
 		jwt: ({ token, user }) => {
-			console.log('JWT Callback', { token, user });
 			if (user) {
 				const u = user as unknown as any;
 				return {
