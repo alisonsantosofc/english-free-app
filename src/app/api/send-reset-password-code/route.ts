@@ -10,16 +10,16 @@ async function sendEmail(userEmail: string, code: string) {
 	let transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
-			user: 'seuemail@gmail.com', // Seu e-mail
-			pass: 'sua_senha' // Sua senha
+			user: 'alisonsoftwaredev@gmail.com',
+			pass: '@Crazy96'
 		}
 	});
 
 	// Definição dos detalhes do e-mail
 	let mailOptions = {
-		from: 'seuemail@gmail.com',
+		from: 'alisonsoftwaredev@gmail.com',
 		to: userEmail,
-		subject: 'Seu Código de Verificação',
+		subject: 'Código de Verificação',
 		text: `Seu código de verificação é: ${code}`
 	};
 
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
 		await sendEmail(email, generatedCode);
 
 		return NextResponse.json({
-			code,
+			expiresAt,
 		});
 	} catch (error: any) {
 		return new NextResponse(

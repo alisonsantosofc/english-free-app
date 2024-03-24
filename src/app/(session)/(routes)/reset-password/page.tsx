@@ -1,7 +1,6 @@
 'use client';
 
 import * as z from 'zod';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
@@ -21,11 +20,17 @@ import { LandingNavbar } from '@/src/features/landing/LandingNavbar';
 
 import i18n from './i18n.json';
 import { useLang } from '@/src/hooks/useLang';
+import { useSessions } from '@/src/hooks/useSessions';
 
 const Page = () => {
 	const router = useRouter();
 	const session = useSession();
 	const { lang } = useLang();
+	const { 
+		sendResetPasswordCode, 
+		sendResetPasswordCodeReqStatus, 
+		sendResetPasswordCodeReqCode, 
+	} = useSessions();
 
 	if (session.data) {
 		router.push('/dashboard');
@@ -35,16 +40,12 @@ const Page = () => {
 		email: z.string().email({
 			message: 'Email está inválido',
 		}),
-		password: z.string().min(8, {
-			message: 'Senha está inválida',
-		}),
 	});
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			email: '',
-			password: '',
 		}
 	});
 
@@ -52,9 +53,8 @@ const Page = () => {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			signIn('credentials', {
-				...values,
-				callbackUrl: '/dashboard'
+			sendResetPasswordCode({
+				email: values.email,
 			});
 
 			form.reset();
@@ -73,17 +73,6 @@ const Page = () => {
 					<h2 className="text-2xl sm:text-3xl font-bold">
 						{i18n[lang].content.title}
 					</h2>
-					<p className="flex items-center gap-1 pl-1">
-						<span>{i18n[lang].content.or}</span>
-						<Button 
-							className="p-0 m-0 pt-[1px] font-normal"
-							variant="underlink"
-						>
-							<Link href="/register">
-								{i18n[lang].content.createAccount}
-							</Link>
-						</Button>
-					</p>
 				</header>
 
 				<Form {...form}>
@@ -109,41 +98,12 @@ const Page = () => {
 								</FormItem>
 							)}
 						/>
-						<FormField 
-							name="password"
-							render={({ field }) => (
-								<FormItem className="flex flex-col">
-									<Label className="text-label">
-										{i18n[lang].content.password}
-									</Label>
-									<FormControl className="m-0 p-0">
-										<Input 
-											className="px-4 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
-											disabled={isLoading}
-											type="password"
-											{...field}
-										/>
-									</FormControl>
-								</FormItem>
-							)}
-						/>
-
-						<div className="">
-							<Button 
-								className="p-0 m-0 pt-[1px] font-normal mt-[-1rem]"
-								variant="link"
-							>
-								<Link href="/reset-password">
-									{i18n[lang].content.recoveryPassword}
-								</Link>
-							</Button>
-						</div>
 
 						<Button 
 							className="w-full mt-4"
 							disabled={isLoading}
 						>
-							{i18n[lang].content.loginButton}
+							{i18n[lang].content.sendCode}
 						</Button>
 					</form>
 				</Form>

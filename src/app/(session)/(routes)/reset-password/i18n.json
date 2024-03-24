@@ -1,0 +1,14 @@
+{
+  "pt-br":{
+    "content": {
+      "title": "Recuperar senha",
+      "sendCode": "Enviar"
+    }
+  },
+  "en-us": {
+    "content": {
+      "title": "Recovery password",
+      "sendCode": "Send"
+    }
+  }
+}

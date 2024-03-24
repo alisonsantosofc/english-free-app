@@ -15,10 +15,17 @@ interface RegisterUserProps {
 	password: string;
 }
 
+interface SendResetPasswordProps {
+	email: string;
+}
+
 interface SessionsContextData {
 	registerUser: (data: RegisterUserProps) => Promise<void>;
 	registerUserReqStatus: TRequestStatus;
 	registerUserReqCode: string;
+	sendResetPasswordCode: (data: SendResetPasswordProps) => Promise<void>;
+	sendResetPasswordCodeReqStatus: TRequestStatus;
+	sendResetPasswordCodeReqCode: string;
 }
 
 const SessionsContext = createContext<SessionsContextData>(
@@ -28,12 +35,14 @@ const SessionsContext = createContext<SessionsContextData>(
 export function SessionsProvider({ children }: SessionsProviderProps) {
 	const [registerUserReqStatus, setRegisterUserReqStatus] = useState<TRequestStatus>('idle');
 	const [registerUserReqCode, setRegisterUserReqCode] = useState<string>('');
+	const [sendResetPasswordCodeReqStatus, setSendResetPasswordCodeReqStatus] = useState<TRequestStatus>('idle');
+	const [sendResetPasswordCodeReqCode, setSendResetPasswordCodeReqCode] = useState<string>('');
 
-	async function registerUser({ name, email, password }:RegisterUserProps) {
+	async function registerUser({ name, email, password }: RegisterUserProps) {
 		try {
 			setRegisterUserReqStatus('loading');
 
-			const response = await axios.post('/api/register', {
+			await axios.post('/api/register', {
 				name,
 				email,
 				password,
@@ -50,8 +59,34 @@ export function SessionsProvider({ children }: SessionsProviderProps) {
 		}
 	};
 
+	async function sendResetPasswordCode({ email }: SendResetPasswordProps) {
+		try {
+			setSendResetPasswordCodeReqStatus('loading');
+
+			await axios.post('/api/send-reset-password-code', {
+				email,
+			});
+			
+			setSendResetPasswordCodeReqStatus('succeeded');
+
+			setTimeout(() => {
+				setSendResetPasswordCodeReqStatus('idle');
+			}, 500);
+		} catch (error: any) {
+			setSendResetPasswordCodeReqCode(error.response.data.code);
+			setSendResetPasswordCodeReqStatus('failed');
+		}
+	};
+
 	return (
-		<SessionsContext.Provider value={{ registerUser, registerUserReqStatus, registerUserReqCode }}>
+		<SessionsContext.Provider value={{ 
+			registerUser, 
+			registerUserReqStatus, 
+			registerUserReqCode,
+			sendResetPasswordCode,
+			sendResetPasswordCodeReqStatus,
+			sendResetPasswordCodeReqCode 
+		}}>
 			{children}
 		</SessionsContext.Provider>
 	);
