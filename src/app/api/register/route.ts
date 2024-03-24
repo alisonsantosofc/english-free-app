@@ -36,6 +36,7 @@ export async function POST(req: Request) {
 				name: newUser.name,
 				email: newUser.email,
 				isAdmin: newUser.isAdmin,
+				validated: newUser.validated,
 			},
 		});
 	} catch (error: any) {

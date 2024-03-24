@@ -1,0 +1,18 @@
+{
+  "pt-br":{
+    "content": {
+      "title": "Código de verificação",
+      "password": "senha",
+      "recoveryPassword": "Esqueceu sua senha?",
+      "loginButton": "Entrar na plataforma"
+    }
+  },
+  "en-us": {
+    "content": {
+      "title": "verification code",
+      "password": "password",
+      "recoveryPassword": "Forgot your password?",
+      "loginButton": "Login to the platform"
+    }
+  }
+}

@@ -42,6 +42,7 @@ export const authOptions: NextAuthOptions = {
 					email: user.email,
 					name: user.name,
 					isAdmin: user.isAdmin,
+					validated: user.validated,
 				};
 			},
 		}),
@@ -54,6 +55,7 @@ export const authOptions: NextAuthOptions = {
 					...session.user,
 					id: token.id,
 					isAdmin: token.isAdmin,
+					validated: token.validated,
 				},
 			};
 		},
@@ -64,6 +66,7 @@ export const authOptions: NextAuthOptions = {
 					...token,
 					id: u.id,
 					isAdmin: u.isAdmin,
+					validated: u.validated,
 				};
 			}
 			return token;

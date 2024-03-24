@@ -35,7 +35,7 @@ const Page = () => {
 	const { registerUser, registerUserReqStatus, registerUserReqCode } = useSessions();
 	const { toast } = useToast();
 
-	if (!session) {
+	if (session.data) {
 		router.push('/dashboard');
 	}
 
@@ -114,7 +114,7 @@ const Page = () => {
 			<LandingNavbar />
 			<div className="w-full sm:w-96 p-4 lg:p-8">
 				<header className="mb-4">
-					<h2 className="text-3xl font-bold">
+					<h2 className="text-2xl sm:text-3xl font-bold">
 						{i18n[lang].content.title}
 					</h2>
 					<p className="flex items-center gap-1 pl-1">
