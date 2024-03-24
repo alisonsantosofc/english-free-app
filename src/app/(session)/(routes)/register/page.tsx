@@ -69,7 +69,7 @@ const Page = () => {
 		try {
 			if (!checkTermsAccepted) {
 				toast({
-					description: 'Você deve aceitar os termos de uso e política de privacidade para continuar.',
+					description: i18n[lang].messages.checkTermsAlert,
 					variant: 'destructive'
 				});
 				return;
@@ -103,7 +103,7 @@ const Page = () => {
 			form.reset();
 
 			toast({
-				title: 'Conta criada com sucesso, entre agora mesmo na plataforma!',
+				title: 'Conta criada com sucesso, você será redirecionado para entrar na plataforma!',
 				variant: 'success',
 			});
 		}

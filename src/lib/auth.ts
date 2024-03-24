@@ -16,11 +16,11 @@ export const authOptions: NextAuthOptions = {
 			name: 'Sign in',
 			credentials: {
 				email: {
-					label: 'Email',
+					label: 'email',
 					type: 'email',
 					placeholder: 'example@email.com',
 				},
-				password: { label: 'Password', type: 'password' },
+				password: { label: 'password', type: 'password' },
 			},
 			async authorize(credentials) {
 				if (!credentials?.email || !credentials.password) {
