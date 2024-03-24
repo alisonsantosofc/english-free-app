@@ -40,7 +40,7 @@ const Page = () => {
 	}
 
 	const [checkTermsAccepted, setCheckTermsAccepted] = useState(false);
-	const [showPassword, setShowPassword] = useState(false); // Estado para controlar a exibição da senha
+	const [showPassword, setShowPassword] = useState(false);
 
 	const formSchema = z.object({
 		name: z.string().min(1, {

@@ -1,7 +1,7 @@
 'use client';
 
 import * as z from 'zod';
-import axios from 'axios';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
@@ -21,6 +21,7 @@ import { LandingNavbar } from '@/src/features/landing/LandingNavbar';
 
 import i18n from './i18n.json';
 import { useLang } from '@/src/hooks/useLang';
+import { Eye, EyeOff } from 'lucide-react';
 
 const Page = () => {
 	const router = useRouter();
@@ -30,6 +31,8 @@ const Page = () => {
 	if (session.data) {
 		router.push('/dashboard');
 	}
+
+	const [showPassword, setShowPassword] = useState(false);
 
 	const formSchema = z.object({
 		email: z.string().email({
@@ -109,20 +112,28 @@ const Page = () => {
 								</FormItem>
 							)}
 						/>
-						<FormField 
+						<FormField
 							name="password"
 							render={({ field }) => (
 								<FormItem className="flex flex-col">
-									<Label className="text-label">
-										{i18n[lang].content.password}
-									</Label>
+									<Label className="text-label">{i18n[lang].content.password}</Label>
 									<FormControl className="m-0 p-0">
-										<Input 
-											className="px-4 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
-											disabled={isLoading}
-											type="password"
-											{...field}
-										/>
+										<div className="relative">
+											<Input
+												className={`px-4 pr-10 outline-none focus-visible:ring-0 focus-visible:ring-transparent ${
+													form.formState.errors.password ? 'border-red-500' : ''
+												}`}
+												disabled={isLoading}
+												type={showPassword ? 'text' : 'password'}
+												{...field}
+											/>
+											<div
+												className="absolute top-0 right-0 mt-2 mr-3 cursor-pointer text-label"
+												onClick={() => setShowPassword(!showPassword)}
+											>
+												{showPassword ? <Eye /> : <EyeOff />}
+											</div>
+										</div>
 									</FormControl>
 								</FormItem>
 							)}
