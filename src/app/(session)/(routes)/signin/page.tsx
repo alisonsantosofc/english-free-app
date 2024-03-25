@@ -135,19 +135,21 @@ const Page = () => {
 											</div>
 										</div>
 									</FormControl>
+									<Button 
+										className="p-0 m-0 font-normal w-fit h-fit"
+										variant="link"
+										type='button'
+									>
+										<Link className="text-left" href="/reset-password">
+											{i18n[lang].content.recoveryPassword}
+										</Link>
+									</Button>
 								</FormItem>
 							)}
 						/>
 
 						<div className="">
-							<Button 
-								className="p-0 m-0 pt-[1px] font-normal mt-[-1rem]"
-								variant="link"
-							>
-								<Link href="/reset-password">
-									{i18n[lang].content.recoveryPassword}
-								</Link>
-							</Button>
+							
 						</div>
 
 						<Button 

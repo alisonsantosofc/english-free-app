@@ -4,16 +4,19 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 import { generateCode } from '@/src/utils/data';
+import { resetPasswordCodeEmailTemplateString } from '../(emails)/ResetPasswordCodeEmailTemplate';
 
 // Função para enviar o e-mail
-async function sendEmail(userEmail: string, code: string) {
-	const resend = new Resend('re_4ZBjFHMh_Q3GAdJxP46dLY4QzHLB6ipth');
+async function sendEmail(userEmail: string, userName: string, code: string) {
+	const resend = new Resend(process.env.RESEND_API_KEY);
+
+	const emailContent = resetPasswordCodeEmailTemplateString({ code, userName });
 
 	resend.emails.send({
 		from: 'englishfree@resend.dev',
 		to: userEmail,
-		subject: 'Código de Verificação',
-		html: `<p>Esse é seu código de verificação: <strong>${code}</strong></p>`
+		subject: 'Resetar senha',
+		html: emailContent,
 	});
 }
 
@@ -40,7 +43,7 @@ export async function POST(req: Request) {
 		const expiresAt = new Date(new Date().setHours(new Date().getHours() + 3));
 
 		// Envia o e-mail com o código gerado
-		await sendEmail(email, generatedCode);
+		await sendEmail(email, user.name, generatedCode);
 
 		const code = await prisma.code.create({
 			data: {
