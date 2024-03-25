@@ -1,30 +1,20 @@
 import prisma from '@/prisma/client';
 import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+
+import { Resend } from 'resend';
 
 import { generateCode } from '@/src/utils/data';
 
 // Função para enviar o e-mail
 async function sendEmail(userEmail: string, code: string) {
-	// Configuração do transporte de e-mail
-	let transporter = nodemailer.createTransport({
-		service: 'gmail',
-		auth: {
-			user: 'alisonsoftwaredev@gmail.com',
-			pass: '@Crazy96'
-		}
-	});
+	const resend = new Resend('re_4ZBjFHMh_Q3GAdJxP46dLY4QzHLB6ipth');
 
-	// Definição dos detalhes do e-mail
-	let mailOptions = {
-		from: 'alisonsoftwaredev@gmail.com',
+	resend.emails.send({
+		from: 'englishfree@resend.dev',
 		to: userEmail,
 		subject: 'Código de Verificação',
-		text: `Seu código de verificação é: ${code}`
-	};
-
-	// Envio do e-mail
-	await transporter.sendMail(mailOptions);
+		html: `<p>Esse é seu código de verificação: <strong>${code}</strong></p>`
+	});
 }
 
 // ROUTE 2
@@ -49,6 +39,9 @@ export async function POST(req: Request) {
 
 		const expiresAt = new Date(new Date().setHours(new Date().getHours() + 3));
 
+		// Envia o e-mail com o código gerado
+		await sendEmail(email, generatedCode);
+
 		const code = await prisma.code.create({
 			data: {
 				code: generatedCode,
@@ -56,9 +49,6 @@ export async function POST(req: Request) {
 				expiresAt,
 			},
 		});
-
-		// Envia o e-mail com o código gerado
-		await sendEmail(email, generatedCode);
 
 		return NextResponse.json({
 			expiresAt,
