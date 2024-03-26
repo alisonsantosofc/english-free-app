@@ -1,5 +1,6 @@
 import prisma from '@/prisma/client';
 import { NextResponse } from 'next/server';
+import dayjs from 'dayjs';
 
 import { Resend } from 'resend';
 
@@ -38,6 +39,36 @@ export async function POST(req: Request) {
 			);
 		}
 
+		const userId = user.id;
+
+		const code = await prisma.code.findUnique({
+			where: {
+				userId,
+			}
+		});
+
+		if (code) {
+			const codeCreatedAt = dayjs(code?.createdAt);
+
+			console.log(dayjs(code?.createdAt).toDate());
+			console.log(dayjs(code?.createdAt).add(1, 'day').toDate());
+
+			const codeCreatedBefore14Hours = codeCreatedAt.isBefore(dayjs(code?.createdAt).add(14, 'hours'));
+
+			if (codeCreatedBefore14Hours) {
+				return new NextResponse(
+					JSON.stringify({ code: '2.2', message: 'Users can request codes every 14 hours.' }),
+					{ status: 400 }
+				);
+			}
+
+			await prisma.code.delete({
+				where: {
+					id: code?.id,
+				}
+			});
+		}
+
 		const generatedCode = generateCode();
 
 		const expiresAt = new Date(new Date().setHours(new Date().getHours() + 3));
@@ -45,7 +76,7 @@ export async function POST(req: Request) {
 		// Envia o e-mail com o código gerado
 		await sendEmail(email, user.name, generatedCode);
 
-		const code = await prisma.code.create({
+		await prisma.code.create({
 			data: {
 				code: generatedCode,
 				userId: user.id,
@@ -59,7 +90,7 @@ export async function POST(req: Request) {
 	} catch (error: any) {
 		return new NextResponse(
 			JSON.stringify({
-				code: '2.2',
+				code: '2.3',
 				message: error.message,
 			}),
 			{ status: 500 }
