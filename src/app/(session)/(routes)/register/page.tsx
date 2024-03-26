@@ -32,8 +32,8 @@ const Page = () => {
 	const router = useRouter();
 	const session = useSession();
 	const { lang } = useLang();
-	const { registerUser, registerUserReqStatus, registerUserReqCode } = useSessions();
 	const { toast } = useToast();
+	const { registerUser, registerUserReqStatus, registerUserReqCode } = useSessions();
 
 	if (session.data) {
 		router.push('/dashboard');
@@ -103,7 +103,7 @@ const Page = () => {
 			form.reset();
 
 			toast({
-				title: 'Conta criada com sucesso, você será redirecionado para entrar na plataforma!',
+				description: 'Conta criada com sucesso, você será redirecionado para entrar na plataforma!',
 				variant: 'success',
 			});
 		}
@@ -145,7 +145,7 @@ const Page = () => {
 											className={`px-4 outline-none focus-visible:ring-0 focus-visible:ring-transparent ${
 												form.formState.errors.name ? 'border-red-500' : ''
 											}`}
-											disabled={isLoading}
+											disabled={isLoading || registerUserReqStatus === 'loading'}
 											type="text"
 											{...field}
 										/>
@@ -163,7 +163,7 @@ const Page = () => {
 											className={`px-4 outline-none focus-visible:ring-0 focus-visible:ring-transparent ${
 												form.formState.errors.email ? 'border-red-500' : ''
 											}`}
-											disabled={isLoading}
+											disabled={isLoading || registerUserReqStatus === 'loading'}
 											placeholder="example@email.com"
 											{...field}
 										/>
@@ -182,7 +182,7 @@ const Page = () => {
 												className={`px-4 pr-10 outline-none focus-visible:ring-0 focus-visible:ring-transparent ${
 													form.formState.errors.password ? 'border-red-500' : ''
 												}`}
-												disabled={isLoading}
+												disabled={isLoading || registerUserReqStatus === 'loading'}
 												type={showPassword ? 'text' : 'password'}
 												{...field}
 											/>
@@ -212,7 +212,7 @@ const Page = () => {
 
 						<Button
 							className="w-full mt-8"
-							disabled={isLoading}
+							disabled={isLoading || registerUserReqStatus === 'loading'}
 						>
 							{i18n[lang].content.createAccountButton}
 						</Button>
