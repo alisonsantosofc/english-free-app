@@ -39,4 +39,7 @@ CREATE TABLE "Code" (
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Code_code_key" ON "Code"("code");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Code_userId_key" ON "Code"("userId");

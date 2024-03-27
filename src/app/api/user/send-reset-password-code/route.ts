@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { Resend } from 'resend';
 
 import { generateCode } from '@/src/utils/data';
-import { resetPasswordCodeEmailTemplateString } from '../(emails)/ResetPasswordCodeEmailTemplate';
+import { resetPasswordCodeEmailTemplateString } from '../../(emails)/ResetPasswordCodeEmailTemplate';
 
 // Função para enviar o e-mail
 async function sendEmail(userEmail: string, userName: string, code: string) {
@@ -21,7 +21,7 @@ async function sendEmail(userEmail: string, userName: string, code: string) {
 	});
 }
 
-// ROUTE 2
+// ROUTE 1
 export async function POST(req: Request) {
 	try {
 		const { email } = await req.json();
@@ -34,7 +34,10 @@ export async function POST(req: Request) {
 
 		if (!user) {
 			return new NextResponse(
-				JSON.stringify({ code: '2.1', message: 'User does not exists.' }),
+				JSON.stringify({ 
+					code: '1.2.1', 
+					message: 'User does not exists.' 
+				}),
 				{ status: 400 }
 			);
 		}
@@ -50,14 +53,14 @@ export async function POST(req: Request) {
 		if (code) {
 			const codeCreatedAt = dayjs(code?.createdAt);
 
-			console.log(dayjs(code?.createdAt).toDate());
-			console.log(dayjs(code?.createdAt).add(1, 'day').toDate());
-
 			const codeCreatedBefore14Hours = codeCreatedAt.isBefore(dayjs(code?.createdAt).add(14, 'hours'));
 
 			if (codeCreatedBefore14Hours) {
 				return new NextResponse(
-					JSON.stringify({ code: '2.2', message: 'Users can request codes every 14 hours.' }),
+					JSON.stringify({ 
+						code: '1.2.2', 
+						message: 'Users can request codes every 14 hours.' 
+					}),
 					{ status: 400 }
 				);
 			}
@@ -71,10 +74,20 @@ export async function POST(req: Request) {
 
 		const generatedCode = generateCode();
 
-		const expiresAt = new Date(new Date().setHours(new Date().getHours() + 3));
+		const expiresAt = dayjs().add(14, 'hours').toDate();
 
-		// Envia o e-mail com o código gerado
-		await sendEmail(email, user.name, generatedCode);
+		// Send the email with the generated code
+		try {
+			await sendEmail(email, user.name, generatedCode);
+		} catch (error: any) {
+			return new NextResponse(
+				JSON.stringify({ 
+					code: '1.2.3', 
+					message: error.message, 
+				}),
+				{ status: 500 }
+			);
+		}
 
 		await prisma.code.create({
 			data: {
@@ -90,7 +103,7 @@ export async function POST(req: Request) {
 	} catch (error: any) {
 		return new NextResponse(
 			JSON.stringify({
-				code: '2.3',
+				code: '1.2.4',
 				message: error.message,
 			}),
 			{ status: 500 }

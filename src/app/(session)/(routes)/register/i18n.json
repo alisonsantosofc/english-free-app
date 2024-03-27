@@ -15,8 +15,8 @@
       "checkTermsAlert": "Você deve aceitar os termos de uso e política de privacidade para continuar."
     },
     "requests": {
-      "1.1": {"variant": "destructive", "message": "Email já está cadastrado. Por favor, tente outro endereço de email."},
-      "1.2": {"variant": "destructive", "message": "Erro interno do servidor. Por favor, tente novamente mais tarde."}
+      "1.1.1": {"variant": "destructive", "message": "Email já está cadastrado. Por favor, tente outro endereço de email."},
+      "1.1.2": {"variant": "destructive", "message": "Erro interno do servidor. Por favor, tente novamente mais tarde."}
     }
   },
   "en-us": {
@@ -35,8 +35,8 @@
       "checkTermsAlert": "You must accept the terms of use and privacy policy to continue."
     },
     "requests": {
-      "1.1": {"variant": "destructive", "message": "Email is already registered. Please try another email address."},
-      "1.2": {"variant": "destructive", "message": "Internal server error. Please try again later."}
+      "1.1.1": {"variant": "destructive", "message": "Email is already registered. Please try another email address."},
+      "1.1.2": {"variant": "destructive", "message": "Internal server error. Please try again later."}
     }
   }
 }

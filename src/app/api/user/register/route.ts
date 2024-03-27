@@ -15,7 +15,7 @@ export async function POST(req: Request) {
 
 		if (user) {
 			return new NextResponse(
-				JSON.stringify({ code: '1.1', message: 'User email already exists.' }),
+				JSON.stringify({ code: '1.1.1', message: 'User email already exists.' }),
 				{ status: 400 }
 			);
 		}
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
 	} catch (error: any) {
 		return new NextResponse(
 			JSON.stringify({
-				code: '1.2',
+				code: '1.1.2',
 				message: error.message,
 			}),
 			{ status: 500 }

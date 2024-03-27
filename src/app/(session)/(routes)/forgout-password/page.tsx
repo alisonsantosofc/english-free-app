@@ -79,7 +79,7 @@ const Page = () => {
 			form.reset();
 
 			toast({
-				description: i18n[lang].messages.resetPasswordSuccess,
+				description: i18n[lang].messages.generatedCodeSuccess,
 				variant: 'success',
 			});
 		}
@@ -123,7 +123,7 @@ const Page = () => {
 							className="w-full mt-4"
 							disabled={isLoading || sendResetPasswordCodeReqStatus === 'loading'}
 						>
-							{i18n[lang].content.buttonSave}
+							{i18n[lang].content.sendCode}
 						</Button>
 					</form>
 				</Form>

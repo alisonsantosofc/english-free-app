@@ -140,7 +140,7 @@ const Page = () => {
 										variant="link"
 										type='button'
 									>
-										<Link className="text-left" href="/reset-password">
+										<Link className="text-left" href="/forgout-password">
 											{i18n[lang].content.recoveryPassword}
 										</Link>
 									</Button>

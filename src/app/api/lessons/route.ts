@@ -4,14 +4,14 @@ import prisma from '@/prisma/client';
 
 import { authOptions } from '@/src/lib/auth';
 
-// ROUTE 3
+// ROUTE 2
 export async function GET(req: NextRequest) {
 	const session = await getServerSession(authOptions);
 
 	try {
 		if (!session) {
 			return new NextResponse(
-				JSON.stringify({ code: '3.1', message: 'You are not logged in' }),
+				JSON.stringify({ code: '2.1.1', message: 'You are not logged in' }),
 				{ status: 401 }
 			);
 		}
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
 	} catch (error: any) {
 		return new NextResponse(
 			JSON.stringify({
-				code: '3.2',
+				code: '2.1.2',
 				message: error.message,
 			}),
 			{ status: 500 }
