@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { signIn, useSession } from 'next-auth/react';
 import { Eye, EyeOff } from 'lucide-react';
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
 
@@ -34,6 +34,7 @@ import i18n from './i18n.json';
 
 const Page = () => {
 	const router = useRouter();
+	const searchParams = useSearchParams();
 	const session = useSession();
 	const { lang } = useLang();
 	const { toast } = useToast();
@@ -49,6 +50,8 @@ const Page = () => {
 
 	const [showPassword, setShowPassword] = useState(false);
 
+	const code = searchParams.get('code');
+
 	const formSchema = z.object({
 		code: z.string().min(6, {
 			message: 'Código está inválido',
@@ -61,7 +64,7 @@ const Page = () => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			code: '',
+			code: code || '',
 			password: '',
 		}
 	});
@@ -97,6 +100,8 @@ const Page = () => {
 				description: i18n[lang].messages.resetPasswordSuccess,
 				variant: 'success',
 			});
+
+			router.push('/signin');
 		}
 	}, [resetPasswordReqStatus]);
 
@@ -139,12 +144,12 @@ const Page = () => {
 											{...field}
 										>
 											<InputOTPGroup>
-												<InputOTPSlot index={0} className="uppercase" />
-												<InputOTPSlot index={1} className="uppercase" />
-												<InputOTPSlot index={2} className="uppercase" />
-												<InputOTPSlot index={3} className="uppercase" />
-												<InputOTPSlot index={4} className="uppercase" />
-												<InputOTPSlot index={5} className="uppercase" />
+												<InputOTPSlot index={0} className="uppercase font-bold text-lg" />
+												<InputOTPSlot index={1} className="uppercase font-bold text-lg" />
+												<InputOTPSlot index={2} className="uppercase font-bold text-lg" />
+												<InputOTPSlot index={3} className="uppercase font-bold text-lg" />
+												<InputOTPSlot index={4} className="uppercase font-bold text-lg" />
+												<InputOTPSlot index={5} className="uppercase font-bold text-lg" />
 											</InputOTPGroup>
 										</InputOTP>
 									</FormControl>

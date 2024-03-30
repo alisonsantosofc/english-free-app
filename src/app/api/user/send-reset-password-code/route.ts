@@ -51,11 +51,11 @@ export async function POST(req: Request) {
 		});
 
 		if (code) {
-			const codeCreatedAt = dayjs(code?.createdAt);
+			const codeExpiresAt = dayjs(code.expiresAt);
 
-			const codeCreatedBefore14Hours = codeCreatedAt.isBefore(dayjs(code?.createdAt).add(14, 'hours'));
+			const codeCreatedBefore14Hours = dayjs().isAfter(codeExpiresAt);
 
-			if (codeCreatedBefore14Hours) {
+			if (!codeCreatedBefore14Hours) {
 				return new NextResponse(
 					JSON.stringify({ 
 						code: '1.2.2', 
@@ -67,7 +67,7 @@ export async function POST(req: Request) {
 
 			await prisma.code.delete({
 				where: {
-					id: code?.id,
+					id: code.id,
 				}
 			});
 		}
