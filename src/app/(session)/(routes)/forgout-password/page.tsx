@@ -23,6 +23,7 @@ import { useSessions } from '@/src/hooks/useSessions';
 import { useToast } from '@/src/components/ui/use-toast';
 
 import i18n from './i18n.json';
+import Link from 'next/link';
 
 const Page = () => {
 	const router = useRouter();
@@ -66,7 +67,7 @@ const Page = () => {
 		}
 	};
 
-	// Monitor register user request
+	// Monitor send reset password code request
 	useEffect(() => {
 		if (sendResetPasswordCodeReqStatus === 'failed') {
 			toast({
@@ -89,10 +90,21 @@ const Page = () => {
 		<section className="h-full flex justify-center items-start pt-20 sm:items-center">
 			<LandingNavbar />
 			<div className="w-full sm:w-96 p-4 lg:p-8">
-				<header className="mb-4">
+				<header className="mb-8">
 					<h2 className="text-2xl sm:text-3xl font-bold">
 						{i18n[lang].content.title}
 					</h2>
+					<p className="flex items-center gap-1 pl-1">
+						<span>{i18n[lang].content.or}</span>
+						<Button
+							className="p-0 m-0 h-fit font-normal"
+							variant="underlink"
+						>
+							<Link href="/signin">
+								{i18n[lang].content.login}
+							</Link>
+						</Button>
+					</p>
 				</header>
 
 				<Form {...form}>
@@ -115,15 +127,28 @@ const Page = () => {
 											{...field}
 										/>
 									</FormControl>
+									<Label className="text-label font-normal text-xs">
+										{i18n[lang].content.inputs.email.description}
+									</Label>
 								</FormItem>
 							)}
 						/>
 
 						<Button 
+							className="p-0 m-0 font-normal w-fit h-fit"
+							variant="link"
+							type='button'
+						>
+							<Link className="text-left" href="/reset-password">
+								{i18n[lang].content.resetPassword}
+							</Link>
+						</Button>
+
+						<Button 
 							className="w-full mt-4"
 							disabled={isLoading || sendResetPasswordCodeReqStatus === 'loading'}
 						>
-							{i18n[lang].content.sendCode}
+							{i18n[lang].content.button.send}
 						</Button>
 					</form>
 				</Form>

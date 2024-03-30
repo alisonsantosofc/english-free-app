@@ -19,6 +19,11 @@ interface SendResetPasswordProps {
 	email: string;
 }
 
+interface ResetPasswordProps {
+	code: string;
+	password: string;
+}
+
 interface SessionsContextData {
 	registerUser: (data: RegisterUserProps) => Promise<void>;
 	registerUserReqStatus: TRequestStatus;
@@ -26,6 +31,9 @@ interface SessionsContextData {
 	sendResetPasswordCode: (data: SendResetPasswordProps) => Promise<void>;
 	sendResetPasswordCodeReqStatus: TRequestStatus;
 	sendResetPasswordCodeReqCode: string;
+	resetPassword: (data: ResetPasswordProps) => Promise<void>;
+	resetPasswordReqStatus: TRequestStatus;
+	resetPasswordReqCode: string;
 }
 
 const SessionsContext = createContext<SessionsContextData>(
@@ -37,12 +45,14 @@ export function SessionsProvider({ children }: SessionsProviderProps) {
 	const [registerUserReqCode, setRegisterUserReqCode] = useState<string>('');
 	const [sendResetPasswordCodeReqStatus, setSendResetPasswordCodeReqStatus] = useState<TRequestStatus>('idle');
 	const [sendResetPasswordCodeReqCode, setSendResetPasswordCodeReqCode] = useState<string>('');
+	const [resetPasswordReqStatus, setResetPasswordReqStatus] = useState<TRequestStatus>('idle');
+	const [resetPasswordReqCode, setResetPasswordReqCode] = useState<string>('');
 
 	async function registerUser({ name, email, password }: RegisterUserProps) {
 		try {
 			setRegisterUserReqStatus('loading');
 
-			await axios.post('/api/register', {
+			await axios.post('/api/user/register', {
 				name,
 				email,
 				password,
@@ -63,7 +73,7 @@ export function SessionsProvider({ children }: SessionsProviderProps) {
 		try {
 			setSendResetPasswordCodeReqStatus('loading');
 
-			await axios.post('/api/send-reset-password-code', {
+			await axios.post('/api/user/send-reset-password-code', {
 				email,
 			});
 			
@@ -78,6 +88,28 @@ export function SessionsProvider({ children }: SessionsProviderProps) {
 		}
 	};
 
+	async function resetPassword({ code, password }: ResetPasswordProps) {
+		try {
+			setResetPasswordReqStatus('loading');
+			console.log('Caiu');
+			
+
+			await axios.post('/api/user/reset-password', {
+				code,
+				password,
+			});
+			
+			setResetPasswordReqStatus('succeeded');
+
+			setTimeout(() => {
+				setResetPasswordReqStatus('idle');
+			}, 500);
+		} catch (error: any) {
+			setResetPasswordReqCode(error.response.data.code);
+			setResetPasswordReqStatus('failed');
+		}
+	};
+
 	return (
 		<SessionsContext.Provider value={{ 
 			registerUser, 
@@ -85,7 +117,10 @@ export function SessionsProvider({ children }: SessionsProviderProps) {
 			registerUserReqCode,
 			sendResetPasswordCode,
 			sendResetPasswordCodeReqStatus,
-			sendResetPasswordCodeReqCode 
+			sendResetPasswordCodeReqCode,
+			resetPassword,
+			resetPasswordReqStatus,
+			resetPasswordReqCode, 
 		}}>
 			{children}
 		</SessionsContext.Provider>

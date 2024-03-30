@@ -113,14 +113,14 @@ const Page = () => {
 		<section className="h-full flex justify-center items-start pt-20 sm:items-center">
 			<LandingNavbar />
 			<div className="w-full sm:w-96 p-4 lg:p-8">
-				<header className="mb-4">
+				<header className="mb-8">
 					<h2 className="text-2xl sm:text-3xl font-bold">
 						{i18n[lang].content.title}
 					</h2>
 					<p className="flex items-center gap-1 pl-1">
 						<span>{i18n[lang].content.or}</span>
 						<Button
-							className="p-0 m-0 pt-[1px] font-normal"
+							className="p-0 m-0 h-fit font-normal"
 							variant="underlink"
 						>
 							<Link href="/signin">
@@ -211,7 +211,7 @@ const Page = () => {
 						/>
 
 						<Button
-							className="w-full mt-8"
+							className="w-full mt-4"
 							disabled={isLoading || registerUserReqStatus === 'loading'}
 						>
 							{i18n[lang].content.createAccountButton}

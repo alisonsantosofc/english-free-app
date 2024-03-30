@@ -1,11 +1,14 @@
 'use client';
 
 import * as z from 'zod';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { signIn, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
+import { Eye, EyeOff } from 'lucide-react';
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
 
 import { 
 	Form, 
@@ -13,6 +16,11 @@ import {
 	FormField, 
 	FormItem 
 } from '@/src/components/ui/form';
+import {
+	InputOTP,
+	InputOTPGroup,
+	InputOTPSlot,
+} from '@/src/components/ui/input-otp';
 import { Input } from '@/src/components/ui/input';
 import { Button } from '@/src/components/ui/button';
 import { Label } from '@/src/components/ui/label';
@@ -30,25 +38,31 @@ const Page = () => {
 	const { lang } = useLang();
 	const { toast } = useToast();
 	const { 
-		sendResetPasswordCode, 
-		sendResetPasswordCodeReqStatus, 
-		sendResetPasswordCodeReqCode, 
+		resetPassword, 
+		resetPasswordReqStatus, 
+		resetPasswordReqCode, 
 	} = useSessions();
 
 	if (session.data) {
 		router.push('/dashboard');
 	}
 
+	const [showPassword, setShowPassword] = useState(false);
+
 	const formSchema = z.object({
-		email: z.string().email({
-			message: 'Email está inválido',
+		code: z.string().min(6, {
+			message: 'Código está inválido',
+		}),
+		password: z.string().min(8, {
+			message: 'Senha está inválida',
 		}),
 	});
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			email: '',
+			code: '',
+			password: '',
 		}
 	});
 
@@ -56,8 +70,9 @@ const Page = () => {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			sendResetPasswordCode({
-				email: values.email,
+			resetPassword({
+				code: values.code,
+				password: values.password,
 			});
 		} catch (error: any) {
 			console.log(error);
@@ -66,16 +81,16 @@ const Page = () => {
 		}
 	};
 
-	// Monitor register user request
+	// Monitor reset password request
 	useEffect(() => {
-		if (sendResetPasswordCodeReqStatus === 'failed') {
+		if (resetPasswordReqStatus === 'failed') {
 			toast({
-				description: (i18n as any)[lang].requests[sendResetPasswordCodeReqCode].message,
-				variant: (i18n as any)[lang].requests[sendResetPasswordCodeReqCode].variant,
+				description: (i18n as any)[lang].requests[resetPasswordReqCode].message,
+				variant: (i18n as any)[lang].requests[resetPasswordReqCode].variant,
 			});
 		}
 
-		if (sendResetPasswordCodeReqStatus === 'succeeded') {
+		if (resetPasswordReqStatus === 'succeeded') {
 			form.reset();
 
 			toast({
@@ -83,16 +98,27 @@ const Page = () => {
 				variant: 'success',
 			});
 		}
-	}, [sendResetPasswordCodeReqStatus]);
+	}, [resetPasswordReqStatus]);
 
 	return (
 		<section className="h-full flex justify-center items-start pt-20 sm:items-center">
 			<LandingNavbar />
 			<div className="w-full sm:w-96 p-4 lg:p-8">
-				<header className="mb-4">
+				<header className="mb-8">
 					<h2 className="text-2xl sm:text-3xl font-bold">
 						{i18n[lang].content.title}
 					</h2>
+					<p className="flex items-center gap-1 pl-1">
+						<span>{i18n[lang].content.or}</span>
+						<Button
+							className="p-0 m-0 h-fit font-normal"
+							variant="underlink"
+						>
+							<Link href="/signin">
+								{i18n[lang].content.login}
+							</Link>
+						</Button>
+					</p>
 				</header>
 
 				<Form {...form}>
@@ -100,28 +126,72 @@ const Page = () => {
 						onSubmit={form.handleSubmit(onSubmit)}
 						className="flex flex-col gap-4"
 					>
-						<FormField 
-							name="email"
+						<FormField
+							name="code"
 							render={({ field }) => (
 								<FormItem className="flex flex-col">
-									<Label className="text-label">
-										email
-									</Label>
+									<Label className="text-label">{i18n[lang].content.inputs.code}</Label>
 									<FormControl className="m-0 p-0">
-										<Input 
-											className="px-4 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
-											disabled={isLoading || sendResetPasswordCodeReqStatus === 'loading'}
-											placeholder="example@email.com"
+										<InputOTP 
+											maxLength={6} 
+											pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
+											disabled={isLoading || resetPasswordReqStatus === 'loading'} 
 											{...field}
-										/>
+										>
+											<InputOTPGroup>
+												<InputOTPSlot index={0} className="uppercase" />
+												<InputOTPSlot index={1} className="uppercase" />
+												<InputOTPSlot index={2} className="uppercase" />
+												<InputOTPSlot index={3} className="uppercase" />
+												<InputOTPSlot index={4} className="uppercase" />
+												<InputOTPSlot index={5} className="uppercase" />
+											</InputOTPGroup>
+										</InputOTP>
+									</FormControl>
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							name="password"
+							render={({ field }) => (
+								<FormItem className="flex flex-col">
+									<Label className="text-label">{i18n[lang].content.inputs.password}</Label>
+									<FormControl className="m-0 p-0">
+										<div className="relative">
+											<Input
+												className={`px-4 pr-10 outline-none focus-visible:ring-0 focus-visible:ring-transparent ${
+													form.formState.errors.password ? 'border-red-500' : ''
+												}`}
+												disabled={isLoading || resetPasswordReqStatus === 'loading'}
+												type={showPassword ? 'text' : 'password'}
+												{...field}
+											/>
+											<div
+												className="absolute top-0 right-0 mt-2 mr-3 cursor-pointer text-label"
+												onClick={() => setShowPassword(!showPassword)}
+											>
+												{showPassword ? <Eye /> : <EyeOff />}
+											</div>
+										</div>
 									</FormControl>
 								</FormItem>
 							)}
 						/>
 
 						<Button 
+							className="p-0 m-0 font-normal w-fit h-fit"
+							variant="link"
+							type='button'
+						>
+							<Link className="text-left" href="/forgout-password">
+								{i18n[lang].content.forgoutPassword}
+							</Link>
+						</Button>
+
+						<Button 
 							className="w-full mt-4"
-							disabled={isLoading || sendResetPasswordCodeReqStatus === 'loading'}
+							disabled={isLoading || resetPasswordReqStatus === 'loading'}
 						>
 							{i18n[lang].content.buttonSave}
 						</Button>

@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 
 		const userCode = await prisma.code.findUnique({
 			where: {
-				code,
+				code: String(code).toUpperCase(),
 			}
 		});
 

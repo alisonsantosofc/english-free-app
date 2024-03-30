@@ -2,7 +2,17 @@
   "pt-br":{
     "content": {
       "title": "Recuperar senha",
-      "sendCode": "Enviar"
+      "or": "ou",
+      "login": "Entrar na plataforma",
+      "resetPassword": "Você já tem um código?",
+      "inputs": {
+        "email": {
+          "description": "Insira o endereço de email utilizado no cadastro, para receber seu código de verificação."
+        }
+      },
+      "button": {
+        "send": "Enviar"
+      }
     },
     "messages": {
       "generatedCodeSuccess": "Código gerado com sucesso, em alguns instantes você receberá um email com seu código!"
@@ -17,7 +27,17 @@
   "en-us": {
     "content": {
       "title": "Recovery password",
-      "sendCode": "Send"
+      "or": "or",
+      "login": "Login to the platform",
+      "resetPassword": "Do you already have a code?",
+      "inputs": {
+        "email": {
+          "description": "Enter the email address used to register to receive your verification code."
+        }
+      },
+      "button": {
+        "send": "Send"
+      }
     },
     "messages": {
       "generatedCodeSuccess": "Code generated successfully, in a few moments you will receive an email with your code!"

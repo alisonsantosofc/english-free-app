@@ -2,28 +2,42 @@
   "pt-br":{
     "content": {
       "title": "Resetar senha",
+      "or": "ou",
+      "login": "Entrar na plataforma",
+      "forgoutPassword": "Não tem um código?",
+      "inputs": {
+        "code": "código de verificação",
+        "password": "nova senha"
+      },
       "buttonSave": "Salvar"
     },
     "messages": {
-      "resetPasswordSuccess": "Senha alterada com sucesso, você já pode ultilizar sua nova senha!"
+      "resetPasswordSuccess": "Senha atualizada com sucesso, você já pode ultilizar sua nova senha!"
     },
     "requests": {
-      "1.3.1": {"variant": "destructive", "message": "Código não existe. Por favor, verifique seu código."},
-      "1.3.2": {"variant": "destructive", "message": "Código está expirado. Por favor, tente gerar outro código."},
+      "1.3.1": {"variant": "destructive", "message": "Código não existe. Por favor, verifique seu código e tente novamente."},
+      "1.3.2": {"variant": "destructive", "message": "Código expirado. Por favor, solicite um novo código e tente novamente."},
       "1.3.3": {"variant": "destructive", "message": "Erro interno do servidor. Por favor, tente novamente mais tarde."}
     }
   },
   "en-us": {
     "content": {
       "title": "Reset password",
-      "buttonSave": "Salvar"
+      "or": "or",
+      "login": "Login to the platform",
+      "forgoutPassword": "Don't have a code?",
+      "inputs": {
+        "code": "verification code",
+        "password": "new password"
+      },
+      "buttonSave": "Save"
     },
     "messages": {
-      "resetPasswordSuccess": "Password changed successfully, you can now use your new password!"
+      "resetPasswordSuccess": "Password updated successfully, you can now use your new password!"
     },
     "requests": {
-      "1.3.1": {"variant": "destructive", "message": "Code does not exist. Please check your code."},
-       "1.3.2": {"variant": "destructive", "message": "Code is expired. Please try generating another code."},
+      "1.3.1": {"variant": "destructive", "message": "Code does not exist. Please check your code and try again."},
+       "1.3.2": {"variant": "destructive", "message": "Expired code. Please request a new code and try again."},
        "1.3.3": {"variant": "destructive", "message": "Internal server error. Please try again later."}
     }
   }
