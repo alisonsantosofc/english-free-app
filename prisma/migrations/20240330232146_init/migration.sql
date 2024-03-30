@@ -26,13 +26,23 @@ CREATE TABLE "Lesson" (
 
 -- CreateTable
 CREATE TABLE "Code" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "code" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "expiresAt" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Code_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UserLesson" (
+    "id" SERIAL NOT NULL,
+    "userId" TEXT NOT NULL,
+    "lessonId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "UserLesson_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -43,3 +53,15 @@ CREATE UNIQUE INDEX "Code_code_key" ON "Code"("code");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Code_userId_key" ON "Code"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserLesson_userId_key" ON "UserLesson"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserLesson_lessonId_key" ON "UserLesson"("lessonId");
+
+-- AddForeignKey
+ALTER TABLE "UserLesson" ADD CONSTRAINT "UserLesson_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserLesson" ADD CONSTRAINT "UserLesson_lessonId_fkey" FOREIGN KEY ("lessonId") REFERENCES "Lesson"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
