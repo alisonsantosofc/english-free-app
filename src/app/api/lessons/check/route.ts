@@ -10,12 +10,19 @@ export async function POST(req: NextRequest) {
 	const session = await getServerSession(authOptions);
 
 	try {
-		const { lessonId } = await req.json();
+		const { lessonId, checked } = await req.json();
 
 		if (!session) {
 			return new NextResponse(
-				JSON.stringify({ code: '2.2.1', message: 'You are not logged in' }),
+				JSON.stringify({ code: '2.2.1', message: 'You are not logged in.' }),
 				{ status: 401 }
+			);
+		}
+
+		if (typeof checked !== 'boolean') {
+			return new NextResponse(
+				JSON.stringify({ code: '2.2.2', message: 'Invalid checked value.' }),
+				{ status: 400 }
 			);
 		}
 
@@ -25,14 +32,15 @@ export async function POST(req: NextRequest) {
 			data: {
 				lessonId,
 				userId: String(userId),
+				checked,
 			}
 		});
 
-		return NextResponse.json(true);
+		return NextResponse.next();
 	} catch (error: any) {
 		return new NextResponse(
 			JSON.stringify({
-				code: '2.2.2',
+				code: '2.2.3',
 				message: error.message,
 			}),
 			{ status: 500 }

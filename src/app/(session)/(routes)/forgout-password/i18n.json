@@ -7,11 +7,11 @@
       "resetPassword": "Você já tem um código?",
       "inputs": {
         "email": {
-          "description": "Insira o endereço de email utilizado no cadastro, para receber seu código de verificação."
+          "description": "Para redefinir sua senha, informe o seu endereço de e-mail utilizado no cadastro."
         }
       },
       "button": {
-        "send": "Enviar"
+        "continue": "Continuar"
       }
     },
     "messages": {
@@ -32,11 +32,11 @@
       "resetPassword": "Do you already have a code?",
       "inputs": {
         "email": {
-          "description": "Enter the email address used to register to receive your verification code."
+          "description": "To reset your password, enter your email address used when registering."
         }
       },
       "button": {
-        "send": "Send"
+        "continue": "Continue"
       }
     },
     "messages": {

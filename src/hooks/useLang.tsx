@@ -20,7 +20,7 @@ export function LangProvider({ children }: LangProviderProps) {
 
 	useEffect(() => {
 		const localLang = JSON.parse(
-      window.localStorage.getItem('lang') as string
+      localStorage.getItem('lang') as string
 		);
 
 		if (localLang) {
@@ -30,7 +30,7 @@ export function LangProvider({ children }: LangProviderProps) {
 
 	function handleChangeLang(newSelectedLang: 'pt-br' | 'en-us') {
 		// Saving data to local stoge
-		window.localStorage.setItem(
+		localStorage.setItem(
 			'lang',
 			JSON.stringify(newSelectedLang)
 		);

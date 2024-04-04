@@ -20,7 +20,7 @@ export function DarkModeProvider({ children }: DarkModeProviderProps) {
 
 	useEffect(() => {
 		const localDarkMode = JSON.parse(
-      window.localStorage.getItem('dark_mode') as string
+      localStorage.getItem('dark_mode') as string
 		);
 
 		if (localDarkMode !== null) {
@@ -32,7 +32,7 @@ export function DarkModeProvider({ children }: DarkModeProviderProps) {
 
 	function handleChangeDarkMode() {
 		// Saving data to local stoge
-		window.localStorage.setItem(
+		localStorage.setItem(
 			'dark_mode',
 			JSON.stringify(!darkMode)
 		);

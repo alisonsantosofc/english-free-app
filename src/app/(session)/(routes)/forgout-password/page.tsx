@@ -148,7 +148,7 @@ const Page = () => {
 							className="w-full mt-4"
 							disabled={isLoading || sendResetPasswordCodeReqStatus === 'loading'}
 						>
-							{i18n[lang].content.button.send}
+							{i18n[lang].content.button.continue}
 						</Button>
 					</form>
 				</Form>

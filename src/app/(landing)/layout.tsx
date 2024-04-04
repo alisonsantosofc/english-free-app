@@ -2,13 +2,16 @@ import { authOptions } from '@/src/lib/auth';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 
-const DashboardLayout = async ({
+const LandingLayout = async ({
 	children,
 }: {
   children: React.ReactNode;
 }) => {
 	const session = await getServerSession(authOptions);
-	console.log(session);
+
+	if (session) {
+		redirect('/dashboard');
+	}
 
 	return (
 		<div className="w-full h-full bg-background text-letter">
@@ -17,4 +20,4 @@ const DashboardLayout = async ({
 	);
 };
 
-export default DashboardLayout;
+export default LandingLayout;

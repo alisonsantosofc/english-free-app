@@ -20,13 +20,13 @@ interface ILevel {
 
 const LessonsPage = () => {
 	const { lang } = useLang();
-	const { lessons, fetchLessons, fetchLessonsReqStatus } = useLessons();
+	const { lessons, getLessons, getLessonsReqStatus } = useLessons();
 
 	const [levels, setLevels] = useState<ILevel[]>([]);
 
 	useEffect(() => {
 		if (!lessons.length) {
-			fetchLessons();
+			getLessons();
 		}
 	}, []);
 
@@ -71,7 +71,7 @@ const LessonsPage = () => {
 				<div className="my-4 sm:my-8 px-4 sm:px-8 min-w-full">
 					<div className="space-y-4">
 						{
-							fetchLessonsReqStatus === 'loading' ? 'Carregando...' : (
+							getLessonsReqStatus === 'loading' ? 'Carregando...' : (
 								levels.map((level, i) => (
 									<EnglishLevelCard 
 										key={i}

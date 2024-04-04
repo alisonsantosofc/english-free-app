@@ -45,7 +45,7 @@ export default function SchedulesSelector() {
 	];
 
 	return (
-		<div className="w-full h-full grid lg:grid-cols-2 2xl:grid-cols-3 gap-8 my-4 sm:my-8 2xl:my-16 px-4 sm:px-28 md:px-8">
+		<div className="w-full h-full grid lg:grid-cols-2 2xl:grid-cols-3 gap-8 my-4 sm:my-8 px-4 sm:px-28 md:px-8 md:pt-4">
 			{studySchedules.map((schedule) => (
 				<div key={schedule.id} className={cn('flex flex-col flex-1 items-center p-6 pt-10 rounded-2xl border-4 border-blue-500 bg-blue-800 text-white')}>
 					<schedule.icon className={cn('h-20 w-20 md:h-28 md:w-28', 'text-white')} />
