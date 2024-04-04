@@ -10,29 +10,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String       @id @default(uuid())
+model users {
+  id        String         @id @default(uuid())
   name      String
-  email     String       @unique
+  email     String         @unique
   password  String
-  isAdmin   Boolean      @default(false)
-  validated Boolean      @default(false)
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
-  lessons   UserLesson[]
+  isAdmin   Boolean        @default(false)
+  validated Boolean        @default(false)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  lessons   user_lessons[]
 }
 
-model Lesson {
-  id          Int          @id @default(autoincrement())
+model lessons {
+  id          Int            @id @default(autoincrement())
   name        String
   src         String
   level       String
   category    String
   priority    Int
-  userLessons UserLesson[]
+  userLessons user_lessons[]
 }
 
-model Code {
+model verification_codes {
   id        Int      @id @default(autoincrement())
   code      String   @unique
   userId    String   @unique
@@ -40,12 +40,13 @@ model Code {
   createdAt DateTime @default(now())
 }
 
-model UserLesson {
+model user_lessons {
   id        Int      @id @default(autoincrement())
   userId    String   @unique
   lessonId  Int      @unique
+  checked   Boolean  @default(true)
   createdAt DateTime @default(now())
 
-  user   User   @relation(fields: [userId], references: [id])
-  lesson Lesson @relation(fields: [lessonId], references: [id])
+  user   users   @relation(fields: [userId], references: [id])
+  lesson lessons @relation(fields: [lessonId], references: [id])
 }

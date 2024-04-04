@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 	try {
 		const { code, password } = await req.json();
 
-		const userCode = await prisma.code.findUnique({
+		const userCode = await prisma.verification_codes.findUnique({
 			where: {
 				code: String(code).toUpperCase(),
 			}
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
 
 		const hashedPassword = await hash(password, 12);
 
-		await prisma.user.update({
+		await prisma.users.update({
 			data: {
 				password: hashedPassword,
 			},

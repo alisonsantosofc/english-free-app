@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 
 		const { id: userId } = session.user as IUserSession;
 
-		await prisma.userLesson.create({
+		await prisma.user_lessons.create({
 			data: {
 				lessonId,
 				userId: String(userId),

@@ -26,7 +26,7 @@ export async function POST(req: Request) {
 	try {
 		const { email } = await req.json();
 
-		const user = await prisma.user.findUnique({
+		const user = await prisma.users.findUnique({
 			where: {
 				email,
 			},
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
 
 		const userId = user.id;
 
-		const code = await prisma.code.findUnique({
+		const code = await prisma.verification_codes.findUnique({
 			where: {
 				userId,
 			}
@@ -65,7 +65,7 @@ export async function POST(req: Request) {
 				);
 			}
 
-			await prisma.code.delete({
+			await prisma.verification_codes.delete({
 				where: {
 					id: code.id,
 				}
@@ -89,7 +89,7 @@ export async function POST(req: Request) {
 			);
 		}
 
-		await prisma.code.create({
+		await prisma.verification_codes.create({
 			data: {
 				code: generatedCode,
 				userId: user.id,

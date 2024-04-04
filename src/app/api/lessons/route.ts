@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
 			);
 		}
 
-		const lessons = await prisma.lesson.findMany();
+		const lessons = await prisma.lessons.findMany();
 
 		return NextResponse.json(lessons);
 	} catch (error: any) {

@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 
 async function main() {
 	const password = await hash('password123', 12);
-	const user = await prisma.user.upsert({
+	const user = await prisma.users.upsert({
 		where: { email: 'admin@admin.com' },
 		update: {},
 		create: {
@@ -33,7 +33,7 @@ async function main() {
 	];
 
 	for (const lesson of lessons) {
-		await prisma.lesson.create({
+		await prisma.lessons.create({
 			data: lesson,
 		});
 	}
