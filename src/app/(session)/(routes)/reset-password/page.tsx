@@ -113,7 +113,7 @@ const Page = () => {
 					<h2 className="text-2xl sm:text-3xl font-bold">
 						{i18n[lang].content.title}
 					</h2>
-					<p className="flex items-center gap-1 pl-1">
+					<p className="flex items-center gap-1">
 						<span>{i18n[lang].content.or}</span>
 						<Button
 							className="p-0 m-0 h-fit font-normal"
