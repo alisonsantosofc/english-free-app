@@ -35,6 +35,7 @@ export function LessonsProvider({ children }: LessonsProviderProps) {
 		JSON.parse(
 		localStorage.getItem('lessons') as string
 		) || []);
+
 	const [getLessonsReqStatus, setGetLessonsReqStatus] = useState<TRequestStatus>('idle');
 	const [getLessonsReqCode, setGetLessonsReqCode] = useState<string>('');
 	const [checkUserLessonReqStatus, setCheckUserLessonReqStatus] = useState<TRequestStatus>('idle');
@@ -69,6 +70,12 @@ export function LessonsProvider({ children }: LessonsProviderProps) {
 				lessonId,
 				checked,
 			});
+
+			// const lessonsUpdated = [...lessons];
+			// const lessonIndex = lessonsUpdated.findIndex(lesson => lesson.id === lessonId);
+			// lessonsUpdated[lessonIndex] = {
+			// 	...lessonsUpdated[lessonIndex],
+			// };
 			
 			setCheckUserLessonReqStatus('succeeded');
 			setTimeout(() => {

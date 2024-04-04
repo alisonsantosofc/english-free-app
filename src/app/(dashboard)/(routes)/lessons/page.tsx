@@ -12,6 +12,7 @@ import { useLang } from '@/src/hooks/useLang';
 
 import i18n from './i18n.json';
 import { useLessons } from '@/src/hooks/useLessons';
+import { toast } from '@/src/components/ui/use-toast';
 
 interface ILevel {
   level: string;
@@ -20,7 +21,7 @@ interface ILevel {
 
 const LessonsPage = () => {
 	const { lang } = useLang();
-	const { lessons, getLessons, getLessonsReqStatus } = useLessons();
+	const { lessons, getLessons, getLessonsReqStatus, getLessonsReqCode } = useLessons();
 
 	const [levels, setLevels] = useState<ILevel[]>([]);
 
@@ -58,6 +59,16 @@ const LessonsPage = () => {
 
 		setLevels([a1, a2, b1, b2, c1, c2]);
 	}, [lessons]);
+
+	// Monitor get lessons request
+	useEffect(() => {
+		if (getLessonsReqStatus === 'failed') {
+			toast({
+				description: (i18n as any)[lang].requests[getLessonsReqCode].message,
+				variant: (i18n as any)[lang].requests[getLessonsReqCode].variant,
+			});
+		}
+	}, [getLessonsReqStatus]);
 	
 	return (
 		<section className="w-full h-section">

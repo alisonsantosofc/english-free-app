@@ -8,6 +8,10 @@
         "schedules": "Cronogramas de estudo",
         "certified": "Certificado de inglês"
       }
+    },
+    "requests": {
+      "2.1.1": {"variant": "destructive", "message": "Usuário não está logado. Por favor, realize o login e tente novamente."},
+      "2.1.2": {"variant": "destructive", "message": "Erro interno do servidor. Por favor, tente novamente mais tarde."}
     }
   },
   "en-us": {
@@ -19,6 +23,10 @@
         "schedules": "Study schedules",
         "certified": "English certificate"
       }
+    },
+    "requests": {
+      "2.1.1": {"variant": "destructive", "message": "User is not logged in. Please sign in and try again."},
+      "2.1.2": {"variant": "destructive", "message": "Internal server error. Please try again later."}
     }
   }
 }

@@ -28,15 +28,33 @@ export async function POST(req: NextRequest) {
 
 		const { id: userId } = session.user as IUserSession;
 
-		await prisma.user_lessons.create({
-			data: {
+		const userLesson = await prisma.user_lessons.findUnique({
+			where: {
 				lessonId,
-				userId: String(userId),
-				checked,
+				userId,
 			}
 		});
 
-		return NextResponse.next();
+		if (userLesson) {
+			await prisma.user_lessons.update({
+				where: {
+					id: userLesson.id,
+				},
+				data: {
+					checked,
+				}
+			});
+		} else {
+			await prisma.user_lessons.create({
+				data: {
+					lessonId,
+					userId: String(userId),
+					checked,
+				}
+			});
+		}
+
+		return NextResponse.json(true);
 	} catch (error: any) {
 		return new NextResponse(
 			JSON.stringify({

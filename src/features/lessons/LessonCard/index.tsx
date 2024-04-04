@@ -1,4 +1,6 @@
-import { ReactNode, useState } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import { ArrowLeft, VideoOff } from 'lucide-react';
 
 import { Button } from '@/src/components/ui/button';
@@ -10,6 +12,8 @@ import { ILesson } from '../@types/ILesson';
 import { useLang } from '@/src/hooks/useLang';
 
 import i18n from './i18n.json';
+import { useLessons } from '@/src/hooks/useLessons';
+import { toast } from '@/src/components/ui/use-toast';
 
 interface LessonCardProps {
   lesson: ILesson;
@@ -18,8 +22,28 @@ interface LessonCardProps {
 
 export function LessonCard({ lesson, onCloseModal }: LessonCardProps) {
 	const { lang } = useLang();
+	const { checkUserLesson, checkUserLessonReqStatus, checkUserLessonReqCode } = useLessons();
 
 	const [checkedLesson, setCheckedLesson] = useState(false);
+
+	function handleCheckLesson() {
+		setCheckedLesson(!checkedLesson);
+
+		checkUserLesson({
+			lessonId: lesson.id,
+			checked: !checkedLesson,
+		});
+	}
+
+	// Monitor check user lesson request
+	useEffect(() => {
+		if (checkUserLessonReqStatus === 'failed') {
+			toast({
+				description: (i18n as any)[lang].requests[checkUserLessonReqCode].message,
+				variant: (i18n as any)[lang].requests[checkUserLessonReqCode].variant,
+			});
+		}
+	}, [checkUserLessonReqStatus]);
 
 	return (
 		<div className="min-w-full">
@@ -46,7 +70,7 @@ export function LessonCard({ lesson, onCloseModal }: LessonCardProps) {
 						checked={checkedLesson} 
 						labelText={i18n[lang].content.checklesson} 
 						checkedLabelText={i18n[lang].content.checkedLabelText}
-						onClick={() => setCheckedLesson(!checkedLesson)}
+						onClick={handleCheckLesson}
 					/>
 				</div>
 			</section>

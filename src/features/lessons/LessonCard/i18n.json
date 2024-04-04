@@ -18,6 +18,11 @@
         "c1": "Avançado",
         "c2": "Proficiente"
       }
+    },
+    "requests": {
+      "2.2.1": {"variant": "destructive", "message": "Usuário não está logado. Por favor, realize o login e tente novamente."},
+      "2.2.2": {"variant": "destructive", "message": "Valor de verificação inválido. Por favor, entre em contato com o suporte."},
+      "2.2.3": {"variant": "destructive", "message": "Erro interno do servidor. Por favor, tente novamente mais tarde."}
     }
   },
   "en-us": {
@@ -39,6 +44,11 @@
         "c1": "Advanced",
         "c2": "Proficient"
       }
+    },
+    "requests": {
+      "2.2.1": {"variant": "destructive", "message": "User is not logged in. Please log in and try again."},
+      "2.2.2": {"variant": "destructive", "message": "Invalid check value. Please contact support."},
+      "2.2.3": {"variant": "destructive", "message": "Internal server error. Please try again later."}
     }
   }
 }
