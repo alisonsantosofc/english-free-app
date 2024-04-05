@@ -34,7 +34,7 @@ model lessons {
 
 model verification_codes {
   id        Int      @id @default(autoincrement())
-  code      String   @unique
+  code      String   
   userId    String   @unique
   expiresAt DateTime
   createdAt DateTime @default(now())
@@ -42,8 +42,8 @@ model verification_codes {
 
 model user_lessons {
   id        Int      @id @default(autoincrement())
-  userId    String   @unique
-  lessonId  Int      @unique
+  userId    String   
+  lessonId  Int      
   checked   Boolean  @default(true)
   createdAt DateTime @default(now())
 

@@ -47,7 +47,7 @@ export function LessonsProvider({ children }: LessonsProviderProps) {
 
 			const response = await axios.get('/api/lessons');
 			const lessonsResponse = response.data as ILesson[];
-
+			
 			setLessons(lessonsResponse);
 			// save data in local storage
 			localStorage.setItem('lessons', JSON.stringify(lessonsResponse));
@@ -71,11 +71,16 @@ export function LessonsProvider({ children }: LessonsProviderProps) {
 				checked,
 			});
 
-			// const lessonsUpdated = [...lessons];
-			// const lessonIndex = lessonsUpdated.findIndex(lesson => lesson.id === lessonId);
-			// lessonsUpdated[lessonIndex] = {
-			// 	...lessonsUpdated[lessonIndex],
-			// };
+			const lessonsUpdated = [...lessons];
+			const lessonIndex = lessonsUpdated.findIndex(lesson => lesson.id === lessonId);
+			lessonsUpdated[lessonIndex] = {
+				...lessonsUpdated[lessonIndex],
+				checked,
+			};
+			
+			setLessons(lessonsUpdated);
+			// save data in local storage
+			localStorage.setItem('lessons', JSON.stringify(lessonsUpdated));
 			
 			setCheckUserLessonReqStatus('succeeded');
 			setTimeout(() => {
@@ -86,7 +91,7 @@ export function LessonsProvider({ children }: LessonsProviderProps) {
 			setCheckUserLessonReqStatus('failed');
 		}
 	};
-
+	
 	return (
 		<LessonsContext.Provider value={{ 
 			lessons, 

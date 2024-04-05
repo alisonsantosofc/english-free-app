@@ -93,13 +93,13 @@ export function EnglishLevelCard({ level, lessons }: EnglishLevelCardProps) {
 							{category.lessons.map((lesson) => (
 								<Card
 									key={lesson.id} 
-									className="flex items-center px-4 py-2 border-var(--border)/5 transition hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
+									className={cn('flex items-center px-4 py-2 transition cursor-pointer', lesson.checked ? 'border-blue-800/5 bg-blue-800 hover:bg-blue-700/90 dark:hover:bg-blue-700/90' : 'border-var(--border)/5 hover:bg-black/5 dark:hover:bg-white/5' )} 
 									onClick={() => setMainModal(
 										<LessonCard lesson={lesson} onCloseModal={() => setMainModal(null)} />
 									)}
 								>
 									<div className="flex gap-3 items-center">
-										<div className="min-w-6 min-h-6 bg-blue-800 rounded-md flex justify-center items-center text-white">{lesson.priority}</div>
+										<div className={cn('min-w-6 min-h-6 rounded-md flex justify-center items-center', lesson.checked ? 'bg-white text-blue-800' : 'bg-blue-800 text-white')}>{lesson.priority}</div>
 										<span className="line-clamp-1">{lesson.name}</span>
 									</div>
 								</Card>

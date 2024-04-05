@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 	try {
 		const { code, password } = await req.json();
 
-		const userCode = await prisma.verification_codes.findUnique({
+		const userCode = await prisma.verification_codes.findFirst({
 			where: {
 				code: String(code).toUpperCase(),
 			}

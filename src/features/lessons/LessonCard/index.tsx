@@ -24,11 +24,9 @@ export function LessonCard({ lesson, onCloseModal }: LessonCardProps) {
 	const { lang } = useLang();
 	const { checkUserLesson, checkUserLessonReqStatus, checkUserLessonReqCode } = useLessons();
 
-	const [checkedLesson, setCheckedLesson] = useState(false);
+	const [checkedLesson, setCheckedLesson] = useState(lesson.checked);
 
 	function handleCheckLesson() {
-		setCheckedLesson(!checkedLesson);
-
 		checkUserLesson({
 			lessonId: lesson.id,
 			checked: !checkedLesson,
@@ -42,6 +40,10 @@ export function LessonCard({ lesson, onCloseModal }: LessonCardProps) {
 				description: (i18n as any)[lang].requests[checkUserLessonReqCode].message,
 				variant: (i18n as any)[lang].requests[checkUserLessonReqCode].variant,
 			});
+		}
+
+		if (checkUserLessonReqStatus === 'succeeded') {
+			setCheckedLesson(!checkedLesson);
 		}
 	}, [checkUserLessonReqStatus]);
 
@@ -71,6 +73,7 @@ export function LessonCard({ lesson, onCloseModal }: LessonCardProps) {
 						labelText={i18n[lang].content.checklesson} 
 						checkedLabelText={i18n[lang].content.checkedLabelText}
 						onClick={handleCheckLesson}
+						disabled={checkUserLessonReqStatus === 'loading'}
 					/>
 				</div>
 			</section>

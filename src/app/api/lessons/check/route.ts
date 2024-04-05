@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
 
 		const { id: userId } = session.user as IUserSession;
 
-		const userLesson = await prisma.user_lessons.findUnique({
+		const userLesson = await prisma.user_lessons.findFirst({
 			where: {
 				lessonId,
 				userId,

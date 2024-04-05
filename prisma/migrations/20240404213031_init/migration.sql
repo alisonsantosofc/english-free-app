@@ -50,16 +50,7 @@ CREATE TABLE "user_lessons" (
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "verification_codes_code_key" ON "verification_codes"("code");
-
--- CreateIndex
 CREATE UNIQUE INDEX "verification_codes_userId_key" ON "verification_codes"("userId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "user_lessons_userId_key" ON "user_lessons"("userId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "user_lessons_lessonId_key" ON "user_lessons"("lessonId");
 
 -- AddForeignKey
 ALTER TABLE "user_lessons" ADD CONSTRAINT "user_lessons_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
