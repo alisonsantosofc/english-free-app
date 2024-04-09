@@ -40,11 +40,6 @@ export function Sidebar() {
 			label: i18n[lang].content.routesLabels.certified,
 			icon: GraduationCap,
 			href: '/certified',
-		},
-		{
-			label: i18n[lang].content.routesLabels.settings,
-			icon: Settings,
-			href: '/settings',
 		}
 	];
 

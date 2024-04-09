@@ -34,12 +34,12 @@ export function UserMenu() {
 					</div>
 				</div>
 
-				<div className="min-w-full min-h-[1px] bg-shape-600 my-1"></div>
+				{/* <div className="min-w-full min-h-[1px] bg-shape-600 my-1"></div> */}
 
-				<div className="flex p-3 w-full justify-start cursor-pointer rounded-lg transition hover:bg-foreground/[0.04] hover:text-letter text-label text-sm">
+				{/* <div className="flex p-3 w-full justify-start cursor-pointer rounded-lg transition hover:bg-foreground/[0.04] hover:text-letter text-label text-sm">
 					<Award className="h-5 w-5 mr-3 text-letter" />
 					{i18n[lang].content.options.subscription}
-				</div>
+				</div> */}
 
 				<div className="min-w-full min-h-[1px] bg-shape-600 my-1"></div>
 				

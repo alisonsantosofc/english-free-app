@@ -5,8 +5,7 @@
         "dashboard": "Área Principal",
         "lessons": "Aulas de inglês grátis",
         "schedules": "Cronograma de estudo",
-        "certified": "Certificado de inglês",
-        "settings": "Configurações"
+        "certified": "Certificado de inglês"
       }
     }
   },
@@ -16,8 +15,7 @@
         "dashboard": "Dashboard",
         "lessons": "Free english lessons",
         "schedules": "Study schedule",
-        "certified": "English certificate",
-        "settings": "Settings"
+        "certified": "English certificate"
       }
     }
   }
