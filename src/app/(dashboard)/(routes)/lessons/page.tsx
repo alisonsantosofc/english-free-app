@@ -6,13 +6,13 @@ import { PlaySquare } from 'lucide-react';
 import { Heading } from '@/src/components/custom/Heading';
 import { ScrollArea } from '@/src/components/ui/scroll-area';
 import { EnglishLevelCard } from '@/src/features/lessons/EnglishLevelCard';
+import { toast } from '@/src/components/ui/use-toast';
 
 import { ILesson } from '@/src/features/lessons/@types/ILesson';
 import { useLang } from '@/src/hooks/useLang';
+import { useLessons } from '@/src/hooks/useLessons';
 
 import i18n from './i18n.json';
-import { useLessons } from '@/src/hooks/useLessons';
-import { toast } from '@/src/components/ui/use-toast';
 
 interface ILevel {
   level: string;

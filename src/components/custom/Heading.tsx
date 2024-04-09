@@ -20,7 +20,7 @@ export function Heading({
 				<Icon className={cn('w-12 h-12 sm:w-16 sm:h-16 text-xl text-white')} />
 			</div>
 			<div>
-				<h2 className="text-2xl sm:text-3xl font-bold">
+				<h2 className="text-lg sm:text-3xl font-bold">
 					{title}
 				</h2>
 				<p className="text-sm text-muted-foreground">

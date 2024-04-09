@@ -3,12 +3,20 @@
     "content": {
       "title": "Cronograma de estudo",
       "textHighlight": "Organize melhor seus estudos e aprenda inglês de uma forma simplificada."
+    },
+    "requests": {
+      "2.1.1": {"variant": "destructive", "message": "Usuário não está logado. Por favor, realize o login e tente novamente."},
+      "2.1.2": {"variant": "destructive", "message": "Erro interno do servidor. Por favor, tente novamente mais tarde."}
     }
   },
   "en-us": {
     "content": {
       "title": "Study schedule",
       "textHighlight": "Better organize your studies and learn English in up to 12 months."
+    },
+    "requests": {
+      "2.1.1": {"variant": "destructive", "message": "User is not logged in. Please sign in and try again."},
+      "2.1.2": {"variant": "destructive", "message": "Internal server error. Please try again later."}
     }
   }
 }

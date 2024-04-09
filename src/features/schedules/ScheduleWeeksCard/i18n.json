@@ -1,0 +1,16 @@
+{
+  "pt-br":{
+    "content": {
+      "buttons": {
+        "selectOtherSchedule": "Alterar cronograma"
+      }
+    }
+  },
+  "en-us": {
+    "content": {
+      "buttons": {
+        "selectOtherSchedule": "Change schedule"
+      }
+    }
+  }
+}

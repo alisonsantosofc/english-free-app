@@ -53,7 +53,7 @@ const DashboardPage = () => {
 						className="p-4 border-var(--border)/5 flex items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 transition cursor-pointer"
 					>
 						<div className="flex items-center gap-x-4">
-							<div className={cn('p-2 w-fit rounded-md', tool.bgColor)}>
+							<div className={cn('p-2 w-fit rounded-xl', tool.bgColor)}>
 								<tool.icon className={cn('w-6 h-6 md:w-8 md:h-8 text-white')} />
 							</div>
 							<div className="font-semibold">
