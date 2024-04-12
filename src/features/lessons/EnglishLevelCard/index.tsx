@@ -8,54 +8,26 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from '@/src/components/ui/accordion';
+import { LessonCard } from '../LessonCard';
 
 import { ILesson } from '@/src/features/lessons/@types/ILesson';
+import { useLang } from '@/src/hooks/useLang';
+import { useMainModal } from '@/src/hooks/useMainModal';
 import { cn } from '@/src/lib/utils';
 
 import i18n from './i18n.json';
-import { useLang } from '@/src/hooks/useLang';
-import { LessonCard } from '../LessonCard';
-import { useMainModal } from '@/src/hooks/useMainModal';
+import { ILevel, useLessons } from '@/src/hooks/useLessons';
 
 interface EnglishLevelCardProps {
-  level: string;
-  lessons: ILesson[];
+  level: ILevel;
 }
 
-interface LevelCategory {
-  title: string;
-  lessons: ILesson[];
-  icon: LucideIcon;
-}
-
-export function EnglishLevelCard({ level, lessons }: EnglishLevelCardProps) {
+export function EnglishLevelCard({ level }: EnglishLevelCardProps) {
 	const { lang } = useLang();
 	const { setMainModal } = useMainModal();
 
-	const [categories, setCategories] = useState<LevelCategory[]>([]);
-
-	useEffect(() => {
-		const grammarLessons = {
-			title: i18n[lang].content.categoriesTitles.grammar,
-			icon: Languages,
-			lessons: lessons.filter((lesson) => lesson.category === 'grammar').sort((a, b) => a.priority < b.priority ? -1 : 1),
-		}; 
-		const vocabularyLessons = {
-			title: i18n[lang].content.categoriesTitles.vocabulary,
-			icon: BookOpenCheck,
-			lessons: lessons.filter((lesson) => lesson.category === 'vocabulary').sort((a, b) => a.priority < b.priority ? -1 : 1),
-		}; 
-		const topicsLesssons = {
-			title: i18n[lang].content.categoriesTitles.topics,
-			icon: Lightbulb,
-			lessons: lessons.filter((lesson) => lesson.category === 'topics').sort((a, b) => a.priority < b.priority ? -1 : 1),
-		};
-
-		setCategories([grammarLessons, vocabularyLessons, topicsLesssons]);
-	}, [lang, lessons]);
-
 	function getLevelDescription() {
-		switch (level) {
+		switch (level.code) {
 		case 'a1':
 			return i18n[lang].content.levelsDescriptions.a1;
 		case 'a2':
@@ -78,10 +50,10 @@ export function EnglishLevelCard({ level, lessons }: EnglishLevelCardProps) {
 		<Card
 			className="min-w-full p-6 border-var(--border)/5 flex flex-col justify-between transition"
 		>
-			<h4 className="text-xl font-medium mb-4">{`${level.toUpperCase()} - ${getLevelDescription().toUpperCase()}`}</h4>
+			<h4 className="text-xl font-medium mb-4">{`${level.code.toUpperCase()} - ${getLevelDescription().toUpperCase()}`}</h4>
 
 			<Accordion className="flex flex-col justify-center" type="single" collapsible>
-				{categories.map((category, i) => (
+				{level.categories.map((category, i) => (
 					<AccordionItem key={i} value={`item-${i + 1}`} className={cn('px-4', i === 0 ? 'border-t' : '')}>
 						<AccordionTrigger>
 							<div className="flex gap-1">

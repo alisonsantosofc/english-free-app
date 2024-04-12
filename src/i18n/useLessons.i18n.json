@@ -1,0 +1,20 @@
+{
+  "pt-br":{
+    "content": {
+      "categoriesTitles": {
+        "grammar": "Gramática",
+        "vocabulary": "Vocabulário",
+        "topics": "Tópicos"
+      }
+    }
+  },
+  "en-us": {
+    "content": {
+      "categoriesTitles": {
+        "grammar": "Grammar",
+        "vocabulary": "Vocabulary",
+        "topics": "Topics"
+      }
+    }
+  }
+}

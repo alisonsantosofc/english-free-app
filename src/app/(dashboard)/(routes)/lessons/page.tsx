@@ -8,57 +8,20 @@ import { ScrollArea } from '@/src/components/ui/scroll-area';
 import { EnglishLevelCard } from '@/src/features/lessons/EnglishLevelCard';
 import { toast } from '@/src/components/ui/use-toast';
 
-import { ILesson } from '@/src/features/lessons/@types/ILesson';
 import { useLang } from '@/src/hooks/useLang';
 import { useLessons } from '@/src/hooks/useLessons';
 
 import i18n from './i18n.json';
 
-interface ILevel {
-  level: string;
-  lessons: ILesson[];
-}
-
 const LessonsPage = () => {
 	const { lang } = useLang();
-	const { lessons, getLessons, getLessonsReqStatus, getLessonsReqCode } = useLessons();
-
-	const [levels, setLevels] = useState<ILevel[]>([]);
+	const { lessons, levels, getLessons, getLessonsReqStatus, getLessonsReqCode } = useLessons();
 
 	useEffect(() => {
 		if (!lessons.length) {
 			getLessons();
 		}
 	}, []);
-
-	useEffect(() => {
-		const a1 = {
-			level: 'a1',
-			lessons: lessons.filter((lesson) => lesson.level === 'a1'),
-		};
-		const a2 = {
-			level: 'a2',
-			lessons: lessons.filter((lesson) => lesson.level === 'a2'),
-		};
-		const b1 = {
-			level: 'b1',
-			lessons: lessons.filter((lesson) => lesson.level === 'b1'),
-		};
-		const b2 = {
-			level: 'b2',
-			lessons: lessons.filter((lesson) => lesson.level === 'b2'),
-		};
-		const c1 = {
-			level: 'c1',
-			lessons: lessons.filter((lesson) => lesson.level === 'c1'),
-		};
-		const c2 = {
-			level: 'c2',
-			lessons: lessons.filter((lesson) => lesson.level === 'c2'),
-		};
-
-		setLevels([a1, a2, b1, b2, c1, c2]);
-	}, [lessons]);
 
 	// Monitor get lessons request
 	useEffect(() => {
@@ -86,8 +49,7 @@ const LessonsPage = () => {
 								levels.map((level, i) => (
 									<EnglishLevelCard 
 										key={i}
-										level={level.level} 
-										lessons={level.lessons}
+										level={level}
 									/>
 								))
 							)

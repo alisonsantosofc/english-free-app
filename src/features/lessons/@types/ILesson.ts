@@ -6,4 +6,7 @@ export interface ILesson {
   category: 'grammar' | 'vocabulary' | 'topics';
   priority: number;
   checked: boolean;
+
+  previousLessonId?: number | null;
+  nextLessonId?: number | null;
 }

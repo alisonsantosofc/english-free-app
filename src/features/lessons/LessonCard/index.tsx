@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ArrowLeft, VideoOff } from 'lucide-react';
+import { ArrowLeft, ArrowRight, VideoOff } from 'lucide-react';
 
 import { Button } from '@/src/components/ui/button';
 import { CustomIframe } from '@/src/components/custom/CustomIframe';
@@ -14,6 +14,7 @@ import { useLang } from '@/src/hooks/useLang';
 import i18n from './i18n.json';
 import { useLessons } from '@/src/hooks/useLessons';
 import { toast } from '@/src/components/ui/use-toast';
+import { useMainModal } from '@/src/hooks/useMainModal';
 
 interface LessonCardProps {
   lesson: ILesson;
@@ -22,7 +23,8 @@ interface LessonCardProps {
 
 export function LessonCard({ lesson, onCloseModal }: LessonCardProps) {
 	const { lang } = useLang();
-	const { checkUserLesson, checkUserLessonReqStatus, checkUserLessonReqCode } = useLessons();
+	const { setMainModal } = useMainModal();
+	const { getLessonByLevelCategory, checkUserLesson, checkUserLessonReqStatus, checkUserLessonReqCode } = useLessons();
 
 	const [checkedLesson, setCheckedLesson] = useState(lesson.checked);
 
@@ -33,6 +35,30 @@ export function LessonCard({ lesson, onCloseModal }: LessonCardProps) {
 		});
 	}
 
+	function handlePreviousLesson() {
+		if (lesson.previousLessonId) {
+			const previousLesson = getLessonByLevelCategory(lesson.previousLessonId);
+
+			setMainModal(
+				<LessonCard lesson={previousLesson} onCloseModal={() => setMainModal(null)} />
+			);
+		}
+	}
+
+	function handleNextLesson() {
+		if (lesson.nextLessonId) {
+			const nextLesson = getLessonByLevelCategory(lesson.nextLessonId);
+
+			setMainModal(
+				<LessonCard lesson={nextLesson} onCloseModal={() => setMainModal(null)} />
+			);
+		}
+	}
+
+	useEffect(() => {
+		setCheckedLesson(lesson.checked);
+	}, [lesson]);
+	
 	// Monitor check user lesson request
 	useEffect(() => {
 		if (checkUserLessonReqStatus === 'failed') {
@@ -79,13 +105,13 @@ export function LessonCard({ lesson, onCloseModal }: LessonCardProps) {
 			</section>
 
 			<footer className="flex flex-col gap-2 sm:flex-row justify-between">
-				<Button variant="outline" onClick={onCloseModal}>
+				<Button disabled={!lesson.previousLessonId} variant="outline" onClick={handlePreviousLesson}>
 					<ArrowLeft className="w-4 h-4" />
-					{i18n[lang].content.goBack}
+					{i18n[lang].content.buttons.previousLesson}
 				</Button>
-				<Button variant="outline">
-					<VideoOff className="w-4 h-4" />
-					{i18n[lang].content.reportVideoError}
+				<Button variant="outline" onClick={handleNextLesson}>
+					{i18n[lang].content.buttons.nextLesson}
+					<ArrowRight className="w-4 h-4" />
 				</Button>
 			</footer>
 		</div>

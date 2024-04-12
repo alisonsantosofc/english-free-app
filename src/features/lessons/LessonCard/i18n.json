@@ -3,8 +3,6 @@
     "content": {
       "checklesson": "Marcar aula como concluída",
       "checkedLabelText": "Aula concluída",
-      "goBack": "Voltar",
-      "reportVideoError": "Relatar problema no vídeo",
       "categoriesTitles": {
         "grammar": "Gramática",
         "vocabulary": "Vocabulário",
@@ -17,6 +15,10 @@
         "b2": "Intermediário Superior",
         "c1": "Avançado",
         "c2": "Proficiente"
+      },
+      "buttons": {
+        "previousLesson": "Aula anterior",
+        "nextLesson": "Próxima aula"
       }
     },
     "requests": {
@@ -43,6 +45,10 @@
         "b2": "Upper Intermediate",
         "c1": "Advanced",
         "c2": "Proficient"
+      },
+      "buttons": {
+        "previousLesson": "Previous Lesson",
+        "nextLesson": "Next lesson"
       }
     },
     "requests": {
