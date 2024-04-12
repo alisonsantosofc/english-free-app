@@ -19,7 +19,7 @@ function MainModal() {
 			<Card className="relative p-6 w-100vw md:w-fit">
 				{mainModal}
 				<X 
-					className="h-5 w-5 absolute top-2 right-2 cursor-pointer" 
+					className="h-5 w-5 absolute top-4 right-4 cursor-pointer text-label hover:text-foreground" 
 					onClick={() => setMainModal(null)}
 				/>
 			</Card>

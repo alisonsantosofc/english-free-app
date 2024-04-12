@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react';
-import { BookOpenCheck, Languages, Lightbulb, LucideIcon } from 'lucide-react';
-
 import { Card } from '@/src/components/ui/card';
 import {
 	Accordion,
@@ -10,7 +7,6 @@ import {
 } from '@/src/components/ui/accordion';
 import { LessonCard } from '../../lessons/LessonCard';
 
-import { ILesson } from '@/src/features/lessons/@types/ILesson';
 import { useLang } from '@/src/hooks/useLang';
 import { useSchedules } from '@/src/hooks/useSchedules';
 import { useMainModal } from '@/src/hooks/useMainModal';
@@ -18,43 +14,13 @@ import { cn } from '@/src/lib/utils';
 
 import i18n from './i18n.json';
 import { Button } from '@/src/components/ui/button';
+import { useLessons } from '@/src/hooks/useLessons';
 
-interface ScheduleWeeksCardProps {
-  weeks: number[][];
-  lessons: ILesson[];
-}
-
-interface IWeekLessons {
-  title: string;
-  lessons: ILesson[];
-}
-
-export function ScheduleWeeksCard({ weeks, lessons }: ScheduleWeeksCardProps) {
+export function ScheduleWeeksCard() {
 	const { lang } = useLang();
 	const { handleSelectOtherSchedule } = useSchedules();
+	const { scheduleWeeks } = useLessons();
 	const { setMainModal } = useMainModal();
-
-	const [weeksLessons, setWeeksLessons] = useState<IWeekLessons[]>([]);
-
-	useEffect(() => {
-		const auxWeeksLessons: IWeekLessons[] = [];
-		weeks.forEach((week, i) => {
-			const auxLessons: ILesson[] = [];
-
-			lessons.forEach(lesson => {
-				if (week.includes(lesson.id)) {
-					auxLessons.push(lesson);
-				}
-			});
-
-			auxWeeksLessons.push({
-				title: `Semana ${i + 1}`,
-				lessons: auxLessons,
-			});
-		});
-
-		setWeeksLessons(auxWeeksLessons);
-	}, [lang, lessons]);
   
 	return (
 		<Card
@@ -72,20 +38,20 @@ export function ScheduleWeeksCard({ weeks, lessons }: ScheduleWeeksCardProps) {
 			</div>
 
 			<Accordion className="flex flex-col justify-center" type="single" collapsible>
-				{weeksLessons.map((category, i) => (
+				{scheduleWeeks.map((week, i) => (
 					<AccordionItem key={i} value={`item-${i + 1}`} className={cn('px-4', i === 0 ? 'border-t' : '')}>
 						<AccordionTrigger>
 							<div className="flex gap-1">
-								{category.title}
+								{week.title}
 							</div>
 						</AccordionTrigger>
 						<AccordionContent className="grid xl:grid-cols-2 gap-2">
-							{category.lessons.map((lesson, index) => (
+							{week.lessons.map((lesson, index) => (
 								<Card
 									key={lesson.id} 
 									className={cn('flex items-center px-4 py-2 transition cursor-pointer', lesson.checked ? 'border-blue-800/5 bg-blue-800 hover:bg-blue-900 ' : 'border-var(--border)/5 hover:bg-black/5 dark:hover:bg-white/5' )} 
 									onClick={() => setMainModal(
-										<LessonCard lesson={lesson} onCloseModal={() => setMainModal(null)} />
+										<LessonCard lesson={lesson} fromSchedule={true} onCloseModal={() => setMainModal(null)} />
 									)}
 								>
 									<div className="flex gap-3 items-center">

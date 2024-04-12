@@ -50,11 +50,7 @@ const SchedulesPage = () => {
 						<div className="p-8">
 							{
 								getLessonsReqStatus === 'loading' ? 'Carregando...' : (
-									
-									<ScheduleWeeksCard 
-										weeks={userSchedule.weeks} 
-										lessons={lessons}
-									/>
+									<ScheduleWeeksCard />
 								)
 							} 
 						</div>

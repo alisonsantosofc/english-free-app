@@ -12,11 +12,11 @@ export function HooksProviders({ children }: { children: React.ReactNode }) {
 				<DarkModeProvider>
 					<MainModalProvider>
 						<SessionsProvider>
-							<LessonsProvider>
-								<SchedulesProvider>
+							<SchedulesProvider>
+								<LessonsProvider>
 									{children}
-								</SchedulesProvider>
-							</LessonsProvider>
+								</LessonsProvider>
+							</SchedulesProvider>
 						</SessionsProvider>
 					</MainModalProvider>
 				</DarkModeProvider>

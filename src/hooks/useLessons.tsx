@@ -9,6 +9,7 @@ import { TRequestStatus } from '@/src/@types/IRequest';
 
 import i18n from '../i18n/useLessons.i18n.json';
 import { useLang } from './useLang';
+import { useSchedules } from './useSchedules';
 
 interface LessonsProviderProps {
   children: ReactNode;
@@ -18,6 +19,8 @@ interface LessonsContextData {
   lessons: ILesson[];
 	levels: ILevel[];
 	getLessonByLevelCategory: (lessonId: number) => ILesson;
+	scheduleWeeks: IScheduleWeek[];
+	getLessonByScheduleWeek: (lessonId: number) => ILesson;
 	getLessons: () => Promise<void>;
 	getLessonsReqStatus: TRequestStatus;
 	getLessonsReqCode: string;
@@ -47,12 +50,18 @@ interface FormatLessonsForCategoryProps {
 	lessons: ILesson[];
 }
 
+interface IScheduleWeek {
+  title: string;
+  lessons: ILesson[];
+}
+
 const LessonsContext = createContext<LessonsContextData>(
   {} as LessonsContextData
 );
 
 export function LessonsProvider({ children }: LessonsProviderProps) {
 	const { lang } = useLang();
+	const { userSchedule } = useSchedules();
 
 	// +++++ Main State +++++
 	const [lessons, setLessons] = useState<ILesson[]>(
@@ -156,6 +165,64 @@ export function LessonsProvider({ children }: LessonsProviderProps) {
 	}
 	// ----- By Levels -----
 
+	// +++++ By Schedule Weeks +++++
+	const [scheduleWeeks, setScheduleWeeks] = useState<IScheduleWeek[]>([]);
+
+	function formatLessonsForWeek(lessons: ILesson[]) {
+		const lessonsMapped = lessons.map((lesson, index) => {
+			const previousLessonId = index && index < lessons.length ? lessons[index - 1].id : null;
+			const nextLessonId = index < lessons.length - 1 ? lessons[index + 1].id : null;
+
+			return {
+				...lesson,
+				previousLessonId,
+				nextLessonId,
+			};
+		});
+
+		return lessonsMapped; 
+	}
+
+	useEffect(() => {
+		const auxScheduleWeeks: IScheduleWeek[] = [];
+		userSchedule?.weeks.forEach((week, i) => {
+			const auxLessons: ILesson[] = [];
+
+			lessons.forEach(lesson => {
+				if (week.includes(lesson.id)) {
+					auxLessons.push(lesson);
+				}
+			});
+
+			if (i === 0) {
+				console.log(formatLessonsForWeek(auxLessons));
+			}
+
+			auxScheduleWeeks.push({
+				title: `Semana ${i + 1}`,
+				lessons: formatLessonsForWeek(auxLessons),
+			});
+		});
+
+		setScheduleWeeks(auxScheduleWeeks);
+	}, [lessons, userSchedule]);
+
+	function getLessonByScheduleWeek(lessonId: number): ILesson {
+		let lessonsForFilter: ILesson[] = [];
+
+		scheduleWeeks.forEach(scheduleWeek => {
+			lessonsForFilter = [
+				...lessonsForFilter,
+				...scheduleWeek.lessons,
+			];
+		});
+
+		const lesson = lessonsForFilter.filter((lesson) => lesson.id === lessonId)[0];
+
+		return lesson;
+	}
+	// ----- By Schedule Weeks -----
+
 	// +++++ Requests +++++
 	const [getLessonsReqStatus, setGetLessonsReqStatus] = useState<TRequestStatus>('idle');
 	const [getLessonsReqCode, setGetLessonsReqCode] = useState<string>('');
@@ -219,6 +286,8 @@ export function LessonsProvider({ children }: LessonsProviderProps) {
 			lessons, 
 			levels,
 			getLessonByLevelCategory, 
+			scheduleWeeks,
+			getLessonByScheduleWeek,
 			getLessons, 
 			getLessonsReqStatus, 
 			getLessonsReqCode,
