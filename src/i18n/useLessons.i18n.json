@@ -5,7 +5,8 @@
         "grammar": "Gramática",
         "vocabulary": "Vocabulário",
         "topics": "Tópicos"
-      }
+      },
+      "week": "Semana"
     }
   },
   "en-us": {
@@ -14,7 +15,8 @@
         "grammar": "Grammar",
         "vocabulary": "Vocabulary",
         "topics": "Topics"
-      }
+      },
+      "week": "Week"
     }
   }
 }

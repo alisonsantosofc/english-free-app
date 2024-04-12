@@ -1,6 +1,7 @@
 {
   "pt-br":{
     "content": {
+      "lessons": "Aulas",
       "buttons": {
         "selectOtherSchedule": "Alterar cronograma"
       }
@@ -8,6 +9,7 @@
   },
   "en-us": {
     "content": {
+      "lessons": "Lessons",
       "buttons": {
         "selectOtherSchedule": "Change schedule"
       }

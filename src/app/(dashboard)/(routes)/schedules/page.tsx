@@ -14,6 +14,7 @@ import i18n from './i18n.json';
 import SchedulesSelector from '@/src/features/schedules/SchedulesSelector';
 import { toast } from '@/src/components/ui/use-toast';
 import { ScheduleWeeksCard } from '@/src/features/schedules/ScheduleWeeksCard';
+import { replaceStringWithParams } from '@/src/utils/strings';
 
 const SchedulesPage = () => {
 	const { lang } = useLang();
@@ -39,8 +40,10 @@ const SchedulesPage = () => {
 	return (
 		<section className="w-full h-section">
 			<Heading 
-				title={userSchedule ? `Cronograma de ${userSchedule.months} meses` : i18n[lang].content.title}
-				description={userSchedule ? userSchedule.description : i18n[lang].content.textHighlight}
+				title={userSchedule ? replaceStringWithParams(i18n[lang].content.selectedScheduleTitle, {
+					months: String(userSchedule.months),
+				}) : i18n[lang].content.title}
+				description={i18n[lang].content.textHighlight}
 				icon={CalendarCheck}
 				bgColor="bg-blue-800"
 			/>

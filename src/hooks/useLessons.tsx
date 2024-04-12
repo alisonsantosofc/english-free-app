@@ -199,13 +199,13 @@ export function LessonsProvider({ children }: LessonsProviderProps) {
 			}
 
 			auxScheduleWeeks.push({
-				title: `Semana ${i + 1}`,
+				title: `${i18n[lang].content.week} ${i + 1}`,
 				lessons: formatLessonsForWeek(auxLessons),
 			});
 		});
 
 		setScheduleWeeks(auxScheduleWeeks);
-	}, [lessons, userSchedule]);
+	}, [lessons, userSchedule, lang]);
 
 	function getLessonByScheduleWeek(lessonId: number): ILesson {
 		let lessonsForFilter: ILesson[] = [];

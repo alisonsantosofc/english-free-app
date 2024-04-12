@@ -27,7 +27,7 @@ export function ScheduleWeeksCard() {
 			className="min-w-full p-6 border-var(--border)/5 flex flex-col justify-between transition"
 		>
 			<div className="flex justify-between">
-				<h4 className="text-xl font-medium mb-4">{'Aulas'}</h4>
+				<h4 className="text-xl font-medium mb-4">{i18n[lang].content.lessons}</h4>
 				<Button
 					className="p-0 m-0 h-fit font-normal"
 					variant="underlink"

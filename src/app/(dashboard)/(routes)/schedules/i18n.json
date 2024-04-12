@@ -2,6 +2,7 @@
   "pt-br":{
     "content": {
       "title": "Cronograma de estudo",
+      "selectedScheduleTitle": "Cronograma de #months meses",
       "textHighlight": "Organize melhor seus estudos e aprenda inglês de uma forma simplificada."
     },
     "requests": {
@@ -12,6 +13,7 @@
   "en-us": {
     "content": {
       "title": "Study schedule",
+      "selectedScheduleTitle": "Schedule of #months months",
       "textHighlight": "Better organize your studies and learn English in up to 12 months."
     },
     "requests": {
