@@ -36,11 +36,11 @@ export function Sidebar() {
 			icon: CalendarCheck,
 			href: '/schedules',
 		},
-		{
-			label: i18n[lang].content.routesLabels.certified,
-			icon: GraduationCap,
-			href: '/certified',
-		}
+		// {
+		// 	label: i18n[lang].content.routesLabels.certified,
+		// 	icon: GraduationCap,
+		// 	href: '/certified',
+		// }
 	];
 
 	return (

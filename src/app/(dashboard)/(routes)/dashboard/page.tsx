@@ -27,12 +27,12 @@ const DashboardPage = () => {
 			href: '/schedules',
 			bgColor: 'bg-blue-800',
 		},
-		{
-			label: i18n[lang].content.routesLabels.certified,
-			icon: GraduationCap,
-			href: '/certified',
-			bgColor: 'bg-gray-600',
-		},
+		// {
+		// 	label: i18n[lang].content.routesLabels.certified,
+		// 	icon: GraduationCap,
+		// 	href: '/certified',
+		// 	bgColor: 'bg-gray-600',
+		// },
 	];
 
 	return (

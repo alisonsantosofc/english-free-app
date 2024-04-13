@@ -46,7 +46,7 @@ body,
   }
 
   .animate-right-left {
-    animation: rightleft 60s linear infinite;
+    animation: rightleft 240s linear infinite;
   }
 
   .animate-right-left > * {
