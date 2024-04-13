@@ -38,7 +38,7 @@ const Register = () => {
 	return (
 		<Button
 			variant="default"
-			className="flex gap-2 bg-blue-800 text-white hover:bg-blue-800/90"
+			className="flex gap-2"
 			onClick={() => {
 				if (!session.data) {
 					redirect('/register');

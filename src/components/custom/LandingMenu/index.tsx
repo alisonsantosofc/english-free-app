@@ -1,7 +1,7 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { ArrowBigUpDash, HeartHandshake, Home, Menu, Search, Sparkles } from 'lucide-react';
+import { HelpCircle, Home, Menu, Search, Sparkles } from 'lucide-react';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/src/components/ui/popover';
 import { Avatar, AvatarFallback, AvatarImage } from '@/src/components/ui/avatar';
@@ -12,6 +12,7 @@ import { Separator } from '../../ui/separator';
 import { useLang } from '@/src/hooks/useLang';
 
 import i18n from './i18n.json';
+import Link from 'next/link';
 
 export function LandingMenu() {
 	const session = useSession();
@@ -38,7 +39,7 @@ export function LandingMenu() {
 	const lastOptions = [
 		{
 			label: i18n[lang].content.options.support,
-			icon: HeartHandshake,
+			icon: HelpCircle,
 			href: '/support',
 		},
 	];
@@ -70,25 +71,27 @@ export function LandingMenu() {
 				<Separator orientation="horizontal" className="my-1 sm:hidden" />
 
 				{options.map(option => (
-					<div 
+					<Link 
 						key={option.href}
+						href={option.href}
 						className="flex p-3 w-full justify-start cursor-pointer rounded-lg transition hover:bg-foreground/[0.04] hover:text-letter text-label text-sm"
 					>
 						<option.icon className="h-5 w-5 mr-3 text-letter" />
 						<span>{option.label}</span>
-					</div>
+					</Link>
 				))}
 
 				<Separator orientation="horizontal" className="my-1" />
 				
 				{lastOptions.map(option => (
-					<div 
+					<Link 
 						key={option.href}
+						href={option.href}
 						className="flex p-3 w-full justify-start cursor-pointer rounded-lg transition hover:bg-foreground/[0.04] hover:text-letter text-label text-sm"
 					>
 						<option.icon className="h-5 w-5 mr-3 text-letter" />
 						<span>{option.label}</span>
-					</div>
+					</Link>
 				))}
 			</PopoverContent>
 		</Popover>

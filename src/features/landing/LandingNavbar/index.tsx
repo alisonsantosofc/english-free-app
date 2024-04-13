@@ -1,3 +1,5 @@
+'use client';
+
 import { Nunito } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
