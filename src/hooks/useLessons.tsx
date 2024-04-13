@@ -194,10 +194,6 @@ export function LessonsProvider({ children }: LessonsProviderProps) {
 				}
 			});
 
-			if (i === 0) {
-				console.log(formatLessonsForWeek(auxLessons));
-			}
-
 			auxScheduleWeeks.push({
 				title: `${i18n[lang].content.week} ${i + 1}`,
 				lessons: formatLessonsForWeek(auxLessons),

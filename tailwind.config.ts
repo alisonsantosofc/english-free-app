@@ -61,12 +61,12 @@ const config = {
 					foreground: 'hsl(var(--card-foreground))',
 				},
 				// Custom colors
-				mainColor: {
+				'main-color': {
 					'200': 'var(--main-color-200)',
 					'400': 'var(--main-color-400)',
 					'500': 'var(--main-color-500)',
 				},
-				secondColor: {
+				'second-color': {
 					'400': 'var(--second-color-400)',
 					'500': 'var(--second-color-500)',
 				},
@@ -76,6 +76,7 @@ const config = {
 					'500': 'var(--shape-500)',
 					'600': 'var(--shape-600)',
 				},
+				'input-background': 'var(--input-background)',
 			},
 			boxShadow: {
 				custom: '3px 3px 5px 0px var(--shadow-color)'

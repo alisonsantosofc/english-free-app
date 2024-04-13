@@ -85,7 +85,7 @@ body,
   }
 
   :root {
-    --background: 0 0% 100%;
+    --background: 0 0% 95%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -113,7 +113,7 @@ body,
     --hyper-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 82.4%;
     --ring: 222.2 84% 4.9%;
     
     --radius: 0.5rem;
@@ -130,6 +130,7 @@ body,
 
     --shape-500: #f0f0f7;
     --shape-600: #e9e9ef;
+    --input-background: #fff;
   }
  
   .dark {
@@ -170,6 +171,8 @@ body,
 
     --shape-500: #1a1a23;
     --shape-600: #2c3139;
+
+    --input-background: #010611;
   }
 
   /* Estilo para a área da barra de rolagem */
@@ -183,7 +186,7 @@ body,
   }
 
   .app.dark input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #020817 inset; /* Define a cor de fundo para a cor desejada */
+    -webkit-box-shadow: 0 0 0 1000px #010611 inset; /* Define a cor de fundo para a cor desejada */
     -webkit-text-fill-color: white;
     -webkit-text-size-adjust: none;
   }

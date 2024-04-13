@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ToggleDarkMode } from '@/src/components/custom/ToggleDarkMode';
 import { ToggleLang } from '@/src/components/custom/ToggleLang';
 import { cn } from '@/src/lib/utils';
+import { LandingMenu } from '@/src/components/custom/LandingMenu';
 
 const nunito = Nunito({ 
 	weight: '900', 
@@ -26,13 +27,16 @@ export function LandingNavbar() {
 							src="/images/icon.svg"
 						/>
 					</div>
-					<h1 className={cn('hidden sm:block text-3xl lg:text-4xl font-bold', nunito.className)}>
+					<h1 className={cn('text-3xl lg:text-4xl font-bold', nunito.className)}>
             English Free
 					</h1>
 				</Link>
-				<div className="flex gap-4">
-					<ToggleDarkMode />
-					<ToggleLang />
+				<div className="flex items-center gap-4">
+					<div className="hidden sm:flex gap-4 h-fit">
+						<ToggleDarkMode />
+						<ToggleLang />
+					</div>
+					<LandingMenu />
 				</div>
 			</div>
 		</div>
