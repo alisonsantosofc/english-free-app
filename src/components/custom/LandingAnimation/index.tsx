@@ -5,7 +5,7 @@ export function LandingAnimation() {
 	const { lang } = useLang();
 
 	return (
-		<div className="w-screen overflow-hidden absolute bottom-[10%] left-0">
+		<div className="w-screen overflow-hidden hidden sm:absolute bottom-[10%] left-0">
 			<div className="relative w-full min-h-[108px] md:min-h-[174px] bg-blue-800 ">
 				<div className="min-w-max flex gap-16 absolute bottom-4 left-0 animate-right-left">
 					<h1 className="text-7xl md:text-9xl text-background font-extrabold tracking-wide">
