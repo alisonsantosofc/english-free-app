@@ -1,20 +1,18 @@
 {
   "pt-br":{
     "content": {
-      "learnFree": "APRENDER INGLÊS GRÁTIS",
-      "dominate": "DOMINE EM POUCO TEMPO",
-      "sixSchedule": "CRONOGRAMA DE 6 MESES",
-      "twelveSchedule": "CRONOGRAMA DE 12 MESES",
-      "twentyFourSchedule": "CRONOGRAMA DE 2 ANOS"
+      "lead1": "APRENDER INGLÊS GRÁTIS",
+      "lead2": "DOMINE INGLÊS EM POUCO TEMPO",
+      "lead3": "NÃO PERCA TEMPO PESQUISANDO VIDEOS",
+      "lead4": "ACOMPANHE SEU PROGRESSO NAS AULAS"
     }
   },
   "en-us": {
     "content": {
-      "learnFree": "LEARN ENGLISH FREE",
-       "dominate": "DOMINE IN A SHORT TIME",
-       "sixSchedule": "6 MONTH SCHEDULES",
-       "twelveSchedule": "12 MONTH SCHEDULES",
-       "twentyFourSchedule": "2 YEAR SCHEDULES"
+      "lead1": "APRENDER INGLÊS GRÁTIS",
+      "lead2": "DOMINE EM POUCO TEMPO",
+      "lead3": "NÃO PERCA TEMPO PESQUISANDO",
+      "lead4": "CRONOGRAMA DE 12 MESES"
     }
   }
 }

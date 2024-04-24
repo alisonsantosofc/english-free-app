@@ -1,7 +1,7 @@
 'use client';
 
 import * as z from 'zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
@@ -34,6 +34,7 @@ const Page = () => {
 	}
 
 	const [showPassword, setShowPassword] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const formSchema = z.object({
 		email: z.string().email({
@@ -52,10 +53,9 @@ const Page = () => {
 		}
 	});
 
-	const isLoading = form.formState.isSubmitting;
-
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
+			setIsLoading(true);
 			signIn('credentials', {
 				email: values.email.toLowerCase(),
 				password: values.password,
@@ -64,6 +64,7 @@ const Page = () => {
 
 			form.reset();
 		} catch (error: any) {
+			setIsLoading(false);
 			console.log(error);
 		} finally {
 			router.refresh();
@@ -90,6 +91,8 @@ const Page = () => {
 						</Button>
 					</p>
 				</header>
+
+				{isLoading && 'Carregando...'}
 
 				<Form {...form}>
 					<form 

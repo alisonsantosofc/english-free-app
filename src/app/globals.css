@@ -46,7 +46,7 @@ body,
   }
 
   .animate-right-left {
-    animation: rightleft 120s linear infinite;
+    animation: rightleft 200s linear infinite;
   }
 
   .animate-right-left > * {
@@ -194,5 +194,20 @@ body,
   /* Anular o preenchimento automático para inputs específicos */
   .app input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #fff inset; /* Define a cor de fundo para a cor desejada */
+  }
+
+  /* HTML: <div class="loader"></div> */
+  .loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: 
+      radial-gradient(farthest-side,var(--letter) 94%,#0000) top/8px 8px no-repeat,
+      conic-gradient(#0000 30%,var(--letter));
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    animation: l13 1s infinite linear;
+  }
+  @keyframes l13{ 
+    100%{transform: rotate(1turn)}
   }
 }
