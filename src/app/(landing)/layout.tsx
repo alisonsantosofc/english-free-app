@@ -16,7 +16,7 @@ const LandingLayout = async ({
 	}
 
 	return (
-		<div className="w-full h-full bg-background text-letter">
+		<div className="relative w-full min-h-full bg-background text-letter">
 			<LandingNavbar />
 			{children}
 			<Footer className="absolute left-0 bottom-0 border-none" />

@@ -22,7 +22,7 @@ const SupportPage = () => {
 						<p className="w-full text-2xl md:text-4xl lg:text-5xl md:max-w-3xl font-bold">
 							{i18n[lang].content.title}
 						</p>
-						<p className="w-full mt-2 md:max-w-xl">
+						<p className="w-full mt-2 md:max-w-xl text-sm sm:text-base">
 							{i18n[lang].content.textHighlight}
 						</p>
 						<div className="flex gap-4 flex-col sm:flex-row md:flex-row mt-8">
@@ -32,13 +32,6 @@ const SupportPage = () => {
 							>
 								<span>{i18n[lang].content.buttons.help}</span>
 								<Headset className="w-5 h-5" />
-							</Button>
-							<Button
-								variant="outline"
-								className="flex gap-2"
-							>
-								<span>{i18n[lang].content.buttons.helpNow}</span>
-								<Hand className="w-5 h-5" />
 							</Button>
 						</div>
 					</div>

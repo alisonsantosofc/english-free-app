@@ -15,7 +15,7 @@ const LandingPage = () => {
 	const { lang } = useLang();
 
 	return (
-		<main className="overflow-hidden w-screen xl:w-[1244px] mx-auto h-full p-4 xl:p-0">
+		<main className="w-screen xl:w-[1244px] xl:mx-auto xl:p-0 p-4 ">
 			<section className="flex flex-col gap-4 pt-20 md:pt-44">
 				<div className="flex flex-col items-center justify-between md:flex-row">
 					<div>
@@ -31,7 +31,7 @@ const LandingPage = () => {
 						</div>
 					</div>
 
-					<div className="relative w-64 h-64 sm:w-96 sm:h-96">
+					<div className="relative w-64 h-64 mb-24 sm:mb-0 sm:w-96 sm:h-96">
 						<Image
 							fill
 							alt="logo"

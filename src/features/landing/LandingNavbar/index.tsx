@@ -16,20 +16,20 @@ const nunito = Nunito({
 
 export function LandingNavbar() {
 	return (
-		<div className="fixed top-0 right-0 bg-background w-full h-20 flex items-center justify-center px-4 xl:px-0">
+		<div className="fixed z-50 top-0 right-0 bg-background w-full h-20 flex items-center justify-center px-4 xl:px-0">
 			<div className="w-full md:w-[1244px] flex items-center justify-between gap-8">
 				<Link 
 					href="/" 
 					className="flex items-center"
 				>
-					<div className="relative w-14 h-14 mr-4">
+					<div className="relative w-10 h-10 sm:w-14 sm:h-14 mr-4">
 						<Image
 							fill
 							alt="logo"
 							src="/images/icon.svg"
 						/>
 					</div>
-					<h1 className={cn('text-3xl lg:text-4xl font-bold', nunito.className)}>
+					<h1 className={cn('text-xl sm:text-3xl lg:text-4xl font-bold', nunito.className)}>
             English Free
 					</h1>
 				</Link>
