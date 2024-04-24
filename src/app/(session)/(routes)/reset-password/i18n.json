@@ -12,6 +12,8 @@
       "buttonSave": "Salvar"
     },
     "messages": {
+      "invalidCode": "Código não foi inserido ou está inválido",
+      "invalidPassword": "Senha deve conter no minímo 8 caracteres",
       "resetPasswordSuccess": "Senha atualizada com sucesso, você já pode ultilizar sua nova senha!"
     },
     "requests": {
@@ -33,6 +35,8 @@
       "buttonSave": "Save"
     },
     "messages": {
+      "invalidCode": "Code was not entered or is invalid",
+      "invalidPassword": "Password must contain at least 8 characters",
       "resetPasswordSuccess": "Password updated successfully, you can now use your new password!"
     },
     "requests": {

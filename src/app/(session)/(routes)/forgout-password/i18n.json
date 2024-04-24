@@ -7,7 +7,7 @@
       "resetPassword": "Você já tem um código?",
       "inputs": {
         "email": {
-          "description": "Para redefinir sua senha, informe o seu endereço de e-mail utilizado no cadastro."
+          "description": "Para redefinir sua senha, informe o seu endereço de email utilizado no cadastro."
         }
       },
       "button": {
@@ -15,6 +15,7 @@
       }
     },
     "messages": {
+      "invalidEmail": "Email não foi inserido ou está inválido",
       "generatedCodeSuccess": "Código gerado com sucesso, em alguns instantes você receberá um email com seu código!"
     },
     "requests": {
@@ -40,6 +41,7 @@
       }
     },
     "messages": {
+      "invalidEmail": "Email was not entered or is invalid",
       "generatedCodeSuccess": "Code generated successfully, in a few moments you will receive an email with your code!"
     },
     "requests": {

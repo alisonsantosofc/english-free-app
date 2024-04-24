@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { signIn, useSession } from 'next-auth/react';
+import { Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
 
 import { 
@@ -17,11 +18,11 @@ import {
 import { Input } from '@/src/components/ui/input';
 import { Button } from '@/src/components/ui/button';
 import { Label } from '@/src/components/ui/label';
+import { FormFieldError } from '@/src/components/custom/FormFieldError';
 import { LandingNavbar } from '@/src/features/landing/LandingNavbar';
+import { useLang } from '@/src/hooks/useLang';
 
 import i18n from './i18n.json';
-import { useLang } from '@/src/hooks/useLang';
-import { Eye, EyeOff } from 'lucide-react';
 
 const Page = () => {
 	const router = useRouter();
@@ -36,10 +37,10 @@ const Page = () => {
 
 	const formSchema = z.object({
 		email: z.string().email({
-			message: 'Email está inválido',
+			message: i18n[lang].messages.invalidEmail,
 		}),
 		password: z.string().min(8, {
-			message: 'Senha está inválida',
+			message: i18n[lang].messages.invalidPassword,
 		}),
 	});
 
@@ -56,7 +57,8 @@ const Page = () => {
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
 			signIn('credentials', {
-				...values,
+				email: values.email.toLowerCase(),
+				password: values.password,
 				callbackUrl: '/dashboard'
 			});
 
@@ -92,23 +94,24 @@ const Page = () => {
 				<Form {...form}>
 					<form 
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="flex flex-col gap-4"
+						className="flex flex-col gap-4 pb-8"
 					>
-						<FormField 
+						<FormField
 							name="email"
 							render={({ field }) => (
 								<FormItem className="flex flex-col">
-									<Label className="text-label">
-										email
-									</Label>
+									<Label className="text-label">email</Label>
 									<FormControl className="m-0 p-0">
-										<Input 
-											className="px-4 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+										<Input
+											className={`px-4 outline-none focus-visible:ring-0 focus-visible:ring-transparent lowercase ${
+												form.formState.errors.email ? 'border-red-500' : ''
+											}`}
 											disabled={isLoading}
 											placeholder="example@email.com"
 											{...field}
 										/>
 									</FormControl>
+									<FormFieldError error={form.formState.errors.email} />
 								</FormItem>
 							)}
 						/>
@@ -131,10 +134,12 @@ const Page = () => {
 												className="absolute top-0 right-0 mt-2 mr-3 cursor-pointer text-label"
 												onClick={() => setShowPassword(!showPassword)}
 											>
-												{showPassword ? <Eye /> : <EyeOff />}
+												{showPassword ? <Eye className="w-6 h-6" /> : <EyeOff className="w-6 h-6" />}
 											</div>
 										</div>
 									</FormControl>
+									<FormFieldError error={form.formState.errors.password} />
+									
 									<Button 
 										className="p-0 m-0 font-normal w-fit h-fit"
 										variant="link"

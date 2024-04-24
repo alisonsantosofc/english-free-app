@@ -5,7 +5,8 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { signIn, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 import { 
 	Form, 
@@ -16,6 +17,7 @@ import {
 import { Input } from '@/src/components/ui/input';
 import { Button } from '@/src/components/ui/button';
 import { Label } from '@/src/components/ui/label';
+import { FormFieldError } from '@/src/components/custom/FormFieldError';
 import { LandingNavbar } from '@/src/features/landing/LandingNavbar';
 
 import { useLang } from '@/src/hooks/useLang';
@@ -23,7 +25,6 @@ import { useSessions } from '@/src/hooks/useSessions';
 import { useToast } from '@/src/components/ui/use-toast';
 
 import i18n from './i18n.json';
-import Link from 'next/link';
 
 const Page = () => {
 	const router = useRouter();
@@ -42,7 +43,7 @@ const Page = () => {
 
 	const formSchema = z.object({
 		email: z.string().email({
-			message: 'Email está inválido',
+			message: i18n[lang].messages.invalidEmail,
 		}),
 	});
 
@@ -110,23 +111,25 @@ const Page = () => {
 				<Form {...form}>
 					<form 
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="flex flex-col gap-4"
+						className="flex flex-col gap-4 pb-8"
 					>
-						<FormField 
+						<FormField
 							name="email"
 							render={({ field }) => (
 								<FormItem className="flex flex-col">
-									<Label className="text-label">
-										email
-									</Label>
+									<Label className="text-label">email</Label>
 									<FormControl className="m-0 p-0">
-										<Input 
-											className="px-4 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+										<Input
+											className={`px-4 outline-none focus-visible:ring-0 focus-visible:ring-transparent lowercase ${
+												form.formState.errors.email ? 'border-red-500' : ''
+											}`}
 											disabled={isLoading || sendResetPasswordCodeReqStatus === 'loading'}
 											placeholder="example@email.com"
 											{...field}
 										/>
 									</FormControl>
+									<FormFieldError error={form.formState.errors.email} />
+
 									<Label className="text-label font-normal text-xs">
 										{i18n[lang].content.inputs.email.description}
 									</Label>

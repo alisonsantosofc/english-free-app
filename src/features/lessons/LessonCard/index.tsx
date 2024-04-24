@@ -97,6 +97,7 @@ export function LessonCard({ lesson, fromSchedule, onCloseModal }: LessonCardPro
 						checked={checkedLesson} 
 						labelText={i18n[lang].content.checklesson} 
 						checkedLabelText={i18n[lang].content.checkedLabelText}
+						labelTextClassName="block text-sm font-medium mt-[-1px]"
 						onClick={handleCheckLesson}
 						disabled={checkUserLessonReqStatus === 'loading'}
 					/>

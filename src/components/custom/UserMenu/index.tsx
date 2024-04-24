@@ -42,7 +42,7 @@ export function UserMenu() {
 					{i18n[lang].content.options.subscription}
 				</div> */}
 
-				<Separator orientation="horizontal" className="sm:hidden" />
+				<Separator orientation="horizontal" className="my-1" />
 				
 				<AuthButton.Logout />
 			</PopoverContent>

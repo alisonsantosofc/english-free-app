@@ -24,6 +24,7 @@ import {
 import { Input } from '@/src/components/ui/input';
 import { Button } from '@/src/components/ui/button';
 import { Label } from '@/src/components/ui/label';
+import { FormFieldError } from '@/src/components/custom/FormFieldError';
 import { LandingNavbar } from '@/src/features/landing/LandingNavbar';
 
 import { useLang } from '@/src/hooks/useLang';
@@ -54,10 +55,10 @@ const Page = () => {
 
 	const formSchema = z.object({
 		code: z.string().min(6, {
-			message: 'Código está inválido',
+			message: i18n[lang].messages.invalidCode,
 		}),
 		password: z.string().min(8, {
-			message: 'Senha está inválida',
+			message: i18n[lang].messages.invalidPassword,
 		}),
 	});
 
@@ -108,7 +109,7 @@ const Page = () => {
 	return (
 		<section className="h-full flex justify-center items-start pt-20 sm:items-center">
 			<LandingNavbar />
-			<div className="w-full sm:w-96 p-4 lg:p-8">
+			<div className="w-full sm:w-[368px] p-4 lg:p-8">
 				<header className="mb-8">
 					<h2 className="text-2xl sm:text-3xl font-bold">
 						{i18n[lang].content.title}
@@ -153,6 +154,8 @@ const Page = () => {
 											</InputOTPGroup>
 										</InputOTP>
 									</FormControl>
+
+									<FormFieldError error={form.formState.errors.code} />
 								</FormItem>
 							)}
 						/>
@@ -180,6 +183,8 @@ const Page = () => {
 											</div>
 										</div>
 									</FormControl>
+
+									<FormFieldError error={form.formState.errors.password} />
 								</FormItem>
 							)}
 						/>
