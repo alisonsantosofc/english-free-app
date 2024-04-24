@@ -92,8 +92,6 @@ const Page = () => {
 					</p>
 				</header>
 
-				{isLoading && 'Carregando...'}
-
 				<Form {...form}>
 					<form 
 						onSubmit={form.handleSubmit(onSubmit)}

@@ -12,8 +12,8 @@ interface FormFieldErrorProps {
 export function FormFieldError({ error }: FormFieldErrorProps) {
 	return (
 		<div className={cn('flex items-center gap-1', error ? '' : 'hidden')}>
-			<AlertCircle className="w-4 h-4 text-red-800" />
-			<Label className="text-xs text-red-800 mt-[2px]">{error ? error.message : ''}</Label>
+			<AlertCircle className="w-4 h-4 text-red-800 dark:text-red-400" />
+			<Label className="text-xs text-red-800 dark:text-red-400 mt-[2px]">{error ? error.message : ''}</Label>
 		</div>
 	);
 }
